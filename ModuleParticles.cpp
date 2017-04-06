@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
+#include "ModuleCollision.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -26,8 +27,11 @@ bool ModuleParticles::Start()
 	shoot.anim.loop = true ;
 	shoot.anim.speed = 0.3f;
 	shoot.speed.y -= 6;
-	shoot.life = 800;
+	shoot.life = 1200;
 
+	spaceship_shot.anim.PushBack({ 13,1,5,11 });
+	spaceship_shot.speed.y += 6;
+	spaceship_shot.life = 1000;
 
 	return true;
 }
@@ -53,45 +57,65 @@ bool ModuleParticles::CleanUp()
 // Update: draw background
 update_status ModuleParticles::Update()
 {
-	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		Particle* p = active[i];
 
-		if(p == nullptr)
+		if (p == nullptr)
 			continue;
 
-		if(p->Update() == false)
+		if (p->Update() == false)
 		{
+			App->collision->EraseCollider(active[i]->collider);
 			delete p;
 			active[i] = nullptr;
+		
 		}
-		else if(SDL_GetTicks() >= p->born)
+		else if (SDL_GetTicks() >= p->born)
 		{
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
-			if(p->fx_played == false)
+			if (p->fx_played == false)
 			{
 				p->fx_played = true;
-				// Play particle fx here
 			}
 		}
-
 	}
 
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32 delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
-	Particle* p = new Particle(particle);
-	p->born = SDL_GetTicks() + delay;
-	p->position.x = x;
-	p->position.y = y;
-	for (int i = 0; i < MAX_ACTIVE_PARTICLES; i++) {
-		if (active[i] == nullptr) {
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		if (active[i] == nullptr)
+		{
+			Particle* p = new Particle(particle);
+			p->born = SDL_GetTicks() + delay;
+			p->position.x = x;
+			p->position.y = y;
+			if (collider_type != COLLIDER_NONE)
+				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			active[i] = p;
 			break;
 		}
 	}
+}
+
+void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
+{
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		// Always destroy particles that collide
+		if (active[i] != nullptr && active[i]->collider == c1)
+		{
+			//			App->particles->AddParticle(App->particles->explosion, active[i]->position.x, active[i]->position.y, COLLIDER_NONE);
+			delete active[i];
+			active[i] = nullptr;
+			break;
+		}
+	}
+
 }
 
 // -------------------------------------------------------------
@@ -112,17 +136,20 @@ bool Particle::Update()
 {
 	bool ret = true;
 
-	if(life > 0)
+	if (life > 0)
 	{
-		if((SDL_GetTicks() - born) > life)
+		if ((SDL_GetTicks() - born) > life)
 			ret = false;
 	}
 	else
-		if(anim.Finished())
+		if (anim.Finished())
 			ret = false;
 
 	position.x += speed.x;
 	position.y += speed.y;
+
+	if (collider != nullptr)
+		collider->SetPos(position.x, position.y);
 
 	return ret;
 }

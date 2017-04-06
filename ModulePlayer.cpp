@@ -6,6 +6,8 @@
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "ModuleCollision.h"
+#include "ModuleEnemySpaceship.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -45,10 +47,12 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	if (started == false) {
-		graphics = App->textures->Load("assets/textures/player1.png"); 
-		started = true;
-	}
+	position.x = 100;
+	position.y = 220;
+
+	graphics = App->textures->Load("assets/textures/player1.png"); 
+
+	player = App->collision->AddCollider({ position.x, position.y, 22, 29 }, COLLIDER_PLAYER, this);
 	return ret;
 }
 
@@ -58,6 +62,7 @@ bool ModulePlayer::CleanUp()
 	LOG("Unloading player");
 
 	App->textures->Unload(graphics);
+	App->collision->EraseCollider(player);
 
 	return true;
 }
@@ -66,7 +71,7 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	
-	int speed = 1;
+	int speed = 2;
 
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
@@ -81,18 +86,34 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
-		position.x += speed;
-		if (current_animation != &right)
-		{
-			right.Reset();
-			current_animation = &right;
-			shoot_pos = 7;
+		if (position.x <= 300) {
+			position.x += speed;
+		}
+		else if (position.x < 350) {
+			position.x += speed;
+			if (App->render->camera.x > -80) {
+				App->render->camera.x -= speed;
+			}
+			if (current_animation != &right)
+			{
+				right.Reset();
+				current_animation = &right;
+				shoot_pos = 7;
+			}
 		}
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
-		position.x -= speed;
+		if (position.x >= 50) {
+			position.x -= speed;
+		}
+		else if (position.x > 30) {
+			position.x -= speed;
+			if (App->render->camera.x < -50) {
+				App->render->camera.x += speed;
+			}
+		}
 		if (current_animation != &left)
 		{
 			left.Reset();
@@ -108,11 +129,30 @@ update_status ModulePlayer::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_LCTRL] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->shoot, position.x + shoot_pos, position.y);
+		App->particles->AddParticle(App->particles->shoot, position.x + shoot_pos, position.y, COLLIDER_PLAYER_SHOT,0);
 		Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 	}
+
+
+	player->SetPos(position.x, position.y);
+
+
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
 	return UPDATE_CONTINUE;
+}
+
+
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+
+	if (c1 == player) {
+
+		App->player->Disable();
+
+		App->collision->EraseCollider(player);
+
+		//		App->scene_space->scroll_speed = 0;
+
+	}
 }

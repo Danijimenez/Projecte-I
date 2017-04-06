@@ -11,22 +11,29 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
 #include "ModuleParticles.h"
-
+#include "ModuleCollision.h"
+#include "ModuleEnemySpaceship.h"
 
 Application::Application()
 {
-	modules[0] = window = new ModuleWindow();
-	modules[1] = render = new ModuleRender();
-	modules[2] = input = new ModuleInput();
-	modules[3] = textures = new ModuleTextures();
-	modules[4] = level_1 = new ModuleLevel1();
-	modules[5] = level_2 = new ModuleLevel2();
-	modules[6] = HallOfAces = new ModuleHallOfAces();
-	modules[7] = welcome = new ModuleWelcome();
-	modules[8] = player = new ModulePlayer();
-	modules[9] = fade = new ModuleFadeToBlack();
-	modules[10] = audio = new ModuleAudio();
-	modules[11] = particles = new ModuleParticles();
+	int i = 0;
+
+	modules[i++] = window = new ModuleWindow();
+	modules[i++] = render = new ModuleRender();
+	modules[i++] = input = new ModuleInput();
+	modules[i++] = textures = new ModuleTextures();
+	modules[i++] = welcome = new ModuleWelcome();
+	modules[i++] = level_1 = new ModuleLevel1();
+	modules[i++] = level_2 = new ModuleLevel2();
+	modules[i++] = HallOfAces = new ModuleHallOfAces();
+	modules[i++] = player = new ModulePlayer();
+	modules[i++] = spaceship = new ModuleEnemySpaceship();
+	modules[i++] = particles = new ModuleParticles();
+	modules[i++] = collision = new ModuleCollision();
+	modules[i++] = audio = new ModuleAudio();
+	modules[i++] = fade = new ModuleFadeToBlack();
+
+
 }	
 
 Application::~Application()
@@ -45,6 +52,8 @@ bool Application::Init()
 	level_1->Disable();
 	level_2->Disable();
 	HallOfAces->Disable();
+	//	Disable enemy
+	spaceship->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

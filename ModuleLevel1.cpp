@@ -9,6 +9,7 @@
 #include"ModulePlayer.h"
 #include "ModuleWelcome.h"
 #include "ModuleAudio.h"
+#include "ModuleEnemySpaceship.h"
 
 // Reference at https://youtu.be/6OlenbCC4WI?t=382
 
@@ -29,7 +30,7 @@ bool ModuleLevel1::Start()
 	graphics = App->textures->Load("assets/textures/TileMap-LvL1.png");
 	App->audio->Play("assets/music/1-4.ogg");
 	App->stop_music = true;
-	App->render->camera.x = -50;
+	App->render->camera.x = -65;
 	App->render->camera.y = 350;
 
 	App->player->Enable();
@@ -41,6 +42,7 @@ bool ModuleLevel1::Start()
 bool ModuleLevel1::CleanUp()
 {
 	App->player->Disable();
+	App->spaceship->Disable();
 
 	App->textures->Unload(graphics);
 
@@ -56,6 +58,12 @@ bool ModuleLevel1::CleanUp()
 update_status ModuleLevel1::Update()
 {
 	// Draw everything --------------------------------------	
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN) {
+		App->player->Enable();
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) {
+		App->spaceship->Enable();
+	}
 
 	App->render->Blit(graphics, 0, -3500, &ground);
 

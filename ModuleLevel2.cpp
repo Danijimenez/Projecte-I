@@ -10,6 +10,7 @@
 #include "ModuleWelcome.h"
 #include "ModuleAudio.h"
 #include "ModuleHallOfAces.h"
+#include "ModuleEnemySpaceship.h"
 
 // Reference at https://youtu.be/6OlenbCC4WI?t=382
 
@@ -31,8 +32,8 @@ bool ModuleLevel2::Start()
 	graphics = App->textures->Load("assets/textures/TileMap-LvL2.png");
 	App->audio->Play("assets/music/2-7.ogg");
 	App->stop_music = true;
-	App->render->camera.x = -50;
-	App->render->camera.y = 400;
+	App->render->camera.x = -20;
+	App->render->camera.y = 450;
 
 
 //	App->player->Enable();
@@ -58,6 +59,13 @@ bool ModuleLevel2::CleanUp()
 // Update: draw background
 update_status ModuleLevel2::Update()
 {
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN) {
+		App->player->Enable();
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) {
+		App->spaceship->Enable();
+	}
+
 	App->render->Blit(graphics, 0, -4500, &ground);
 
 
