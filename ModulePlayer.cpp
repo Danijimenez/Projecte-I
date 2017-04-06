@@ -34,6 +34,7 @@ ModulePlayer::ModulePlayer()
 
 	left.PushBack({ 29, 2, 19, 29 });
 	left.PushBack({ 1, 2, 14, 29 });
+
 	left.loop = false;
 	left.speed = 0.1f;
 
@@ -52,7 +53,7 @@ bool ModulePlayer::Start()
 
 	graphics = App->textures->Load("assets/textures/player1.png"); 
 
-	player = App->collision->AddCollider({ position.x, position.y, 22, 29 }, COLLIDER_PLAYER, this);
+	player = App->collision->AddCollider({ position.x-3, position.y, 25, 29 }, COLLIDER_PLAYER, this);
 	return ret;
 }
 
@@ -94,12 +95,13 @@ update_status ModulePlayer::Update()
 			if (App->render->camera.x > -80) {
 				App->render->camera.x -= speed;
 			}
-			if (current_animation != &right)
-			{
-				right.Reset();
-				current_animation = &right;
-				shoot_pos = 7;
-			}
+		
+		}
+		if (current_animation != &right)
+		{
+			right.Reset();
+			current_animation = &right;
+			shoot_pos = 7;
 		}
 	}
 
@@ -134,7 +136,7 @@ update_status ModulePlayer::Update()
 	}
 
 
-	player->SetPos(position.x, position.y);
+	player->SetPos(position.x-3, position.y);
 
 
 	// Draw everything --------------------------------------

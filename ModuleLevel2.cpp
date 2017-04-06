@@ -29,14 +29,12 @@ bool ModuleLevel2::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
+	App->player->Enable();
 	graphics = App->textures->Load("assets/textures/TileMap-LvL2.png");
 	App->audio->Play("assets/music/2-7.ogg");
 	App->stop_music = true;
 	App->render->camera.x = -20;
 	App->render->camera.y = 450;
-
-
-//	App->player->Enable();
 
 	return ret;
 }
@@ -44,7 +42,8 @@ bool ModuleLevel2::Start()
 // Load assets
 bool ModuleLevel2::CleanUp()
 {
-//	App->player->Disable();
+	App->player->Disable();
+	App->spaceship->Disable();
 
 	App->textures->Unload(graphics);
 
