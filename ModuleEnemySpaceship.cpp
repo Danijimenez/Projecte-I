@@ -71,12 +71,9 @@ bool ModuleEnemySpaceship::CleanUp()
 void ModuleEnemySpaceship::OnCollision(Collider* c1, Collider* c2) {
 
 	if (c1 == spaceship) {
-
-		App->spaceship->Disable();
-
-		spaceship->SetPos(0, 500);
-
-		//		App->scene_space->scroll_speed = 0;
-
+		if (c2 != App->player->player) {
+			App->spaceship->Disable();
+			spaceship->SetPos(0, 500);
+		}
 	}
 }

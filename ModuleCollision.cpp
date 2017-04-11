@@ -192,15 +192,11 @@ bool ModuleCollision::EraseCollider(Collider* collider)
 bool Collider::CheckCollision(const SDL_Rect& r) const
 {
 	bool collision = false;
-	// TODO 0: Return true if there is an overlap
-	// between argument "r" and property "rect"
 
-//	if ((r.x + r.w > rect.x) || (r.x < rect.x + rect.w) || (r.y + r.h > rect.y) || (r.y < rect.x + rect.h)) {
 
 		if (rect.x +rect.w >= r.x && rect.x <= r.x + r.w) {
 			if (rect.y + rect.h >= r.y && rect.y <= r.y + r.h) {
 
-				//	if ((rect.x + rect.w >= r.x) && (rect.x <= r.x + r.w) && (rect.y + rect.h <= r.y) && (rect.y >= r.y + r.h)) {
 				collision = true;
 			}
 		}

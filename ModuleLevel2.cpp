@@ -17,7 +17,7 @@
 ModuleLevel2::ModuleLevel2()
 {
 
-	ground = { 0, 0, 352, 4755 };
+	ground = { 0, 0, 402, 4755 };
 
 }
 
@@ -33,7 +33,7 @@ bool ModuleLevel2::Start()
 	graphics = App->textures->Load("assets/textures/TileMap-LvL2.png");
 	App->audio->Play("assets/music/2-7.ogg");
 	App->stop_music = true;
-	App->render->camera.x = -20;
+	App->render->camera.x = -8;
 	App->render->camera.y = 450;
 
 	return ret;
@@ -43,7 +43,7 @@ bool ModuleLevel2::Start()
 bool ModuleLevel2::CleanUp()
 {
 	App->player->Disable();
-	App->spaceship->Disable();
+//	App->spaceship->Disable();
 
 	App->textures->Unload(graphics);
 

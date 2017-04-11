@@ -9,8 +9,6 @@
 #include "ModuleCollision.h"
 #include "ModuleEnemySpaceship.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
 
 ModulePlayer::ModulePlayer()
 {
@@ -24,19 +22,18 @@ ModulePlayer::ModulePlayer()
 	// idle animation 
 	idle.PushBack({63, 3, 22, 28});
 
-	//
-	right.PushBack({ 130, 3, 22, 28 });
+	// right
 	right.PushBack({ 99, 2, 19, 29 });
+	right.PushBack({ 130, 3, 22, 28 });
+
 	right.loop = false;
 	right.speed = 0.1f;
 
-
-
+	// left
 	left.PushBack({ 29, 2, 19, 29 });
 	left.PushBack({ 1, 2, 14, 29 });
-
 	left.loop = false;
-	left.speed = 0.1f;
+	left.speed = 0.1;
 
 }
 
@@ -48,8 +45,8 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	position.x = 100;
-	position.y = 220;
+	position.x = 260;
+	position.y = 260;
 
 	graphics = App->textures->Load("assets/textures/player1.png"); 
 
@@ -72,7 +69,7 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	
-	int speed = 2;
+	int speed = 1;
 
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
@@ -81,18 +78,20 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
-		position.y += speed;
+		if (App->render->camera.y - position.y < 20) {
+			position.y += speed;
+		}
 	}
 
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
-		if (position.x <= 300) {
+		if (position.x <= 220) {
 			position.x += speed;
 		}
-		else if (position.x < 350) {
+		else if (position.x < 380) {
 			position.x += speed;
-			if (App->render->camera.x > -80) {
+			if (App->render->camera.x > -130) {
 				App->render->camera.x -= speed;
 			}
 		
@@ -107,12 +106,12 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
-		if (position.x >= 50) {
+		if (position.x >= 220) {
 			position.x -= speed;
 		}
-		else if (position.x > 30) {
+		else if (position.x > 0) {
 			position.x -= speed;
-			if (App->render->camera.x < -50) {
+			if (App->render->camera.x < 0) {
 				App->render->camera.x += speed;
 			}
 		}
@@ -135,6 +134,7 @@ update_status ModulePlayer::Update()
 		Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 	}
 
+	position.y += 1;
 
 	player->SetPos(position.x-3, position.y);
 

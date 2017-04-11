@@ -13,6 +13,7 @@
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemySpaceship.h"
+#include "ModuleEnemies.h"
 
 Application::Application()
 {
@@ -27,7 +28,7 @@ Application::Application()
 	modules[i++] = level_2 = new ModuleLevel2();
 	modules[i++] = HallOfAces = new ModuleHallOfAces();
 	modules[i++] = player = new ModulePlayer();
-	modules[i++] = spaceship = new ModuleEnemySpaceship();
+	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = audio = new ModuleAudio();
@@ -49,11 +50,12 @@ bool Application::Init()
 	// Player will be enabled on the first update of a new scene
 	player->Disable();
 	// Disable the map that you do not start with
-	level_1->Disable();
+	welcome->Disable();
+//	level_1->Disable();
 	level_2->Disable();
 	HallOfAces->Disable();
 	//	Disable enemy
-	spaceship->Disable();
+//	spaceship->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

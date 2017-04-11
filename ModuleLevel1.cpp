@@ -10,6 +10,7 @@
 #include "ModuleWelcome.h"
 #include "ModuleAudio.h"
 #include "ModuleEnemySpaceship.h"
+#include "ModuleEnemies.h"
 
 // Reference at https://youtu.be/6OlenbCC4WI?t=382
 
@@ -30,10 +31,16 @@ bool ModuleLevel1::Start()
 	graphics = App->textures->Load("assets/textures/TileMap-LvL1.png");
 	App->audio->Play("assets/music/1-4.ogg");
 	App->stop_music = true;
-	App->render->camera.x = -65;
+	App->render->camera.x = -64;
 	App->render->camera.y = 350;
 
 	App->player->Enable();
+
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 150, -10);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 320, -10);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 300, -10);
+
 
 	return ret;
 }
@@ -42,7 +49,7 @@ bool ModuleLevel1::Start()
 bool ModuleLevel1::CleanUp()
 {
 	App->player->Disable();
-	App->spaceship->Disable();
+//	App->spaceship->Disable();
 
 	App->textures->Unload(graphics);
 
@@ -57,21 +64,22 @@ bool ModuleLevel1::CleanUp()
 // Update: draw background
 update_status ModuleLevel1::Update()
 {
+	int speed = 1;
 	// Draw everything --------------------------------------	
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN) {
 		App->player->Enable();
 	}
-	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) {
-		App->spaceship->Enable();
-	}
+
 
 	App->render->Blit(graphics, 0, -3500, &ground);
 
+	//Scroll
 
+	App->render->camera.y += speed;
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE]) {
 		App->fade->FadeToBlack(this, App->level_2, 2.0f);
 	}
 
 	return UPDATE_CONTINUE;
-}
+} 

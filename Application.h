@@ -20,6 +20,7 @@ class ModuleAudio;
 class ModuleParticles;
 class ModuleCollision;
 class ModuleEnemySpaceship;
+class ModuleEnemies;
 
 class Application
 {
@@ -40,6 +41,7 @@ public:
 	ModuleFadeToBlack* fade;
 	ModuleAudio* audio;
 	ModuleParticles* particles;
+	ModuleEnemies* enemies;
 	bool stop_music;
 
 
