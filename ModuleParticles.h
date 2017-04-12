@@ -44,7 +44,8 @@ public:
 
 private:
 
-	SDL_Texture* graphics = nullptr;
+	SDL_Texture* shoots = nullptr;
+	SDL_Texture* ground_explosion = nullptr;
 	Particle* active[MAX_ACTIVE_PARTICLES];
 	uint last_particle = 0;
 
@@ -52,6 +53,8 @@ public:
 
 	Particle shoot;
 	Particle spaceship_shot;
+	Particle turret_explosion;
+	Particle box_explosion;
 };
 
 #endif // __MODULEPARTICLES_H__

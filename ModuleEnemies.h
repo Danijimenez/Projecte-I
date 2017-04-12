@@ -10,7 +10,8 @@
 enum ENEMY_TYPES
 {
 	NO_TYPE,
-	BASICENEMY
+	BASICENEMY,
+	TURRET
 };
 
 class Enemy;

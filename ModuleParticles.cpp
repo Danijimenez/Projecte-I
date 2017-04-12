@@ -21,7 +21,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("assets/textures/Shoots.png");
+	shoots = App->textures->Load("assets/textures/Shoots.png");
 
 	shoot.anim.PushBack({ 5, 1, 6, 6 });
 	shoot.anim.loop = true ;
@@ -29,10 +29,26 @@ bool ModuleParticles::Start()
 	shoot.speed.y -= 6;
 	shoot.life = 1200;
 
-	spaceship_shot.anim.PushBack({ 13,1,5,11 });
-	spaceship_shot.speed.y += 6;
-	spaceship_shot.life = 1000;
+//	spaceship_shot.anim.PushBack({ 13,1,5,11 });
+//	spaceship_shot.speed.y += 6;
+//	spaceship_shot.life = 1000;
 
+
+	shoots = App->textures->Load("assets/textures/Ground Explosions.png");
+
+	turret_explosion.anim.PushBack({ 8, 3, 30, 27 });
+	turret_explosion.anim.PushBack({ 47, 3, 30, 27 });
+	turret_explosion.anim.PushBack({ 79, 3, 30, 27 });
+	turret_explosion.anim.PushBack({ 107, 2, 30, 27 });
+	turret_explosion.anim.PushBack({ 141, 2, 30, 27 });
+	turret_explosion.anim.PushBack({ 9, 40, 30, 27 });
+	turret_explosion.anim.PushBack({ 46, 40, 30, 27 });
+	turret_explosion.anim.PushBack({ 80, 38, 30, 27 });
+	turret_explosion.anim.PushBack({ 111, 37, 30, 27 });
+	turret_explosion.anim.PushBack({ 142, 38, 30, 27 });
+	turret_explosion.anim.speed = 0.2f;
+	turret_explosion.anim.loop = false;
+	
 	return true;
 }
 
@@ -40,7 +56,7 @@ bool ModuleParticles::Start()
 bool ModuleParticles::CleanUp()
 {
 	LOG("Unloading particles");
-	App->textures->Unload(graphics);
+	App->textures->Unload(shoots);
 
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -73,7 +89,7 @@ update_status ModuleParticles::Update()
 		}
 		else if (SDL_GetTicks() >= p->born)
 		{
-			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+			App->render->Blit(shoots, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 			if (p->fx_played == false)
 			{
 				p->fx_played = true;
@@ -110,6 +126,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
 			//			App->particles->AddParticle(App->particles->explosion, active[i]->position.x, active[i]->position.y, COLLIDER_NONE);
+			active[i]->collider->to_delete=true;
 			delete active[i];
 			active[i] = nullptr;
 			break;

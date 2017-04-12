@@ -8,33 +8,60 @@ ModuleCollision::ModuleCollision()
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 		colliders[i] = nullptr;
 
-	matrix[COLLIDER_WALL][COLLIDER_WALL] = false;
-	matrix[COLLIDER_WALL][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_WALL][COLLIDER_ENEMY] = true;
-	matrix[COLLIDER_WALL][COLLIDER_PLAYER_SHOT] = true;
-	matrix[COLLIDER_WALL][COLLIDER_ENEMY_SHOT] = true;
 
-	matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
-	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_BASIC] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_GREENSHIP] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_POWERUPSHIP] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_ENEMMY_TURRET] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER_SHOT] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_SHOT] = true;
 
-	matrix[COLLIDER_ENEMY][COLLIDER_WALL] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY] = false;
-	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER_SHOT] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY_SHOT] = false;
+	matrix[COLLIDER_ENEMY_BASIC][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_ENEMY_BASIC][COLLIDER_ENEMY_BASIC] = false;
+	matrix[COLLIDER_ENEMY_BASIC][COLLIDER_ENEMY_GREENSHIP] = false;
+	matrix[COLLIDER_ENEMY_BASIC][COLLIDER_ENEMY_POWERUPSHIP] = false;
+	matrix[COLLIDER_ENEMY_BASIC][COLLIDER_ENEMMY_TURRET] = false;
+	matrix[COLLIDER_ENEMY_BASIC][COLLIDER_PLAYER_SHOT] = true;
+	matrix[COLLIDER_ENEMY_BASIC][COLLIDER_ENEMY_SHOT] = false;
 
-	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_WALL] = true;
+	matrix[COLLIDER_ENEMY_GREENSHIP][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_ENEMY_GREENSHIP][COLLIDER_ENEMY_BASIC] = false;
+	matrix[COLLIDER_ENEMY_GREENSHIP][COLLIDER_ENEMY_GREENSHIP] = false;
+	matrix[COLLIDER_ENEMY_GREENSHIP][COLLIDER_ENEMY_POWERUPSHIP] = false;
+	matrix[COLLIDER_ENEMY_GREENSHIP][COLLIDER_ENEMMY_TURRET] = false;
+	matrix[COLLIDER_ENEMY_GREENSHIP][COLLIDER_PLAYER_SHOT] = true;
+	matrix[COLLIDER_ENEMY_GREENSHIP][COLLIDER_ENEMY_SHOT] = false;
+
+	matrix[COLLIDER_ENEMY_POWERUPSHIP][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_ENEMY_POWERUPSHIP][COLLIDER_ENEMY_BASIC] = false;
+	matrix[COLLIDER_ENEMY_POWERUPSHIP][COLLIDER_ENEMY_GREENSHIP] = false;
+	matrix[COLLIDER_ENEMY_POWERUPSHIP][COLLIDER_ENEMY_POWERUPSHIP] = false;
+	matrix[COLLIDER_ENEMY_POWERUPSHIP][COLLIDER_ENEMMY_TURRET] = false;
+	matrix[COLLIDER_ENEMY_POWERUPSHIP][COLLIDER_PLAYER_SHOT] = true;
+	matrix[COLLIDER_ENEMY_POWERUPSHIP][COLLIDER_ENEMY_SHOT] = false;
+
+	matrix[COLLIDER_ENEMMY_TURRET][COLLIDER_PLAYER] = false;
+	matrix[COLLIDER_ENEMMY_TURRET][COLLIDER_ENEMY_BASIC] = false;
+	matrix[COLLIDER_ENEMMY_TURRET][COLLIDER_ENEMY_GREENSHIP] = false;
+	matrix[COLLIDER_ENEMMY_TURRET][COLLIDER_ENEMY_POWERUPSHIP] = false;
+	matrix[COLLIDER_ENEMMY_TURRET][COLLIDER_ENEMMY_TURRET] = false;
+	matrix[COLLIDER_ENEMMY_TURRET][COLLIDER_PLAYER_SHOT] = true;
+	matrix[COLLIDER_ENEMMY_TURRET][COLLIDER_ENEMY_SHOT] = false;
+
 	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_PLAYER] = false;
-	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY_BASIC] = true;
+	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY_GREENSHIP] = true;
+	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY_POWERUPSHIP] = true;
+	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMMY_TURRET] = true;
 	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_PLAYER_SHOT] = false;
 	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY_SHOT] = false;
 
-	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_WALL] = true;
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMY] = false;
+	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMY_BASIC] = false;
+	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMY_GREENSHIP] = false;
+	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMY_POWERUPSHIP] = false;
+	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMMY_TURRET] = false;
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER_SHOT] = false;
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMY_SHOT] = false;
 
@@ -87,7 +114,9 @@ update_status ModuleCollision::Update()
 			{
 				if (matrix[c1->type][c2->type] && c1->callback)
 					c1->callback->OnCollision(c1, c2);
-		
+
+				if (matrix[c2->type][c1->type] && c2->callback)
+					c2->callback->OnCollision(c2, c1);
 			}
 		}
 	}
@@ -116,24 +145,28 @@ void ModuleCollision::DebugDraw()
 			case COLLIDER_NONE: // white
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
-			case COLLIDER_WALL: // blue
-			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
-			break;
 			case COLLIDER_PLAYER: // green
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
-			case COLLIDER_ENEMY: // red
+
+			case COLLIDER_ENEMY_BASIC: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
-			case COLLIDER_PLAYER_SHOT: // yellow
+			case COLLIDER_ENEMY_GREENSHIP: // red
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+			case COLLIDER_ENEMY_POWERUPSHIP: // red
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+			case COLLIDER_ENEMMY_TURRET: // red
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
 
+			case COLLIDER_PLAYER_SHOT: // yellow
 			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
 			break;
 			case COLLIDER_ENEMY_SHOT: // magenta
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
-			break;
-			case COLLIDER_BORDER:
-			App->render->DrawQuad(colliders[i]->rect, 0, 0, 0, alpha);
 			break;
 		}
 	}

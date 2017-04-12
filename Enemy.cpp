@@ -27,7 +27,26 @@ void Enemy::Draw(SDL_Texture* sprites)
 		App->render->Blit(sprites, position.x, position.y, &(animation->GetCurrentFrame()));
 }
 
-void Enemy::OnCollision(Collider* collider)
+void Enemy::OnCollision(Collider* c1, Collider* c2)
 {
-	//App->particles->AddParticle(App->particles->spaceship_shot, position.x, position.y,COLLIDER_NONE,0);
+	/*
+	COLLIDER_PLAYER,
+		COLLIDER_ENEMY_BASIC,
+		COLLIDER_ENEMY_GREENSHIP,
+		COLLIDER_ENEMY_POWERUPSHIP,
+		COLLIDER_ENEMMY_TURRET,
+		COLLIDER_PLAYER_SHOT,
+		COLLIDER_ENEMY_SHOT,
+
+		*/
+
+	switch (collider->type)	{
+	case COLLIDER_ENEMMY_TURRET:
+	App->particles->AddParticle(App->particles->turret_explosion, position.x, position.y, COLLIDER_NONE,0);
+	break;
+	default:
+		break;
+	}
+	
+	collider->to_delete = true;
 }

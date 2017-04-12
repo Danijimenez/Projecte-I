@@ -5,6 +5,7 @@
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
 #include"Enemy_BasicEnemy.h"
+#include "Enemy_Turret.h"
 
 #define SPAWN_MARGIN 50
 
@@ -22,7 +23,7 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 
-	sprites = App->textures->Load("assets/textures/spaceship.png");
+	sprites = App->textures->Load("assets/textures/turret.png");
 
 	return true;
 }
@@ -128,7 +129,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		case ENEMY_TYPES::BASICENEMY:
 			enemies[i] = new BasicEnemy(info.x, info.y);
 			break;
-		}
+		case ENEMY_TYPES::TURRET:
+			enemies[i] = new Turret(info.x, info.y);
+		}			
 	}
 }
 
@@ -138,7 +141,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
-			enemies[i]->OnCollision(c2);
+			enemies[i]->OnCollision(c2, c1);
 			delete enemies[i];
 			enemies[i] = nullptr;
 			break;

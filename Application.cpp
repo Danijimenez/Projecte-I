@@ -27,8 +27,8 @@ Application::Application()
 	modules[i++] = level_1 = new ModuleLevel1();
 	modules[i++] = level_2 = new ModuleLevel2();
 	modules[i++] = HallOfAces = new ModuleHallOfAces();
-	modules[i++] = player = new ModulePlayer();
 	modules[i++] = enemies = new ModuleEnemies();
+	modules[i++] = player = new ModulePlayer();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = audio = new ModuleAudio();

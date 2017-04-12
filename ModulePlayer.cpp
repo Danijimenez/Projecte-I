@@ -33,7 +33,7 @@ ModulePlayer::ModulePlayer()
 	left.PushBack({ 29, 2, 19, 29 });
 	left.PushBack({ 1, 2, 14, 29 });
 	left.loop = false;
-	left.speed = 0.1;
+	left.speed = 0.1f;
 
 }
 
@@ -43,14 +43,18 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
-	LOG("Loading player textures");
 	bool ret = true;
-	position.x = 260;
-	position.y = 260;
+	if (!started) {
+		LOG("Loading player textures");
+		
+		position.x = 260;
+		position.y = 260;
 
-	graphics = App->textures->Load("assets/textures/player1.png"); 
+		graphics = App->textures->Load("assets/textures/player1.png");
 
-	player = App->collision->AddCollider({ position.x-3, position.y, 25, 29 }, COLLIDER_PLAYER, this);
+		player = App->collision->AddCollider({ position.x - 3, position.y, 25, 29 }, COLLIDER_PLAYER, this); //
+		started = true;
+	}
 	return ret;
 }
 
@@ -78,9 +82,7 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
-		if (App->render->camera.y - position.y < 20) {
-			position.y += speed;
-		}
+		position.y += 2*speed;
 	}
 
 
@@ -134,7 +136,7 @@ update_status ModulePlayer::Update()
 		Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 	}
 
-	position.y += 1;
+	position.y -= 1;
 
 	player->SetPos(position.x-3, position.y);
 
@@ -152,9 +154,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 
 		App->player->Disable();
 
-		App->collision->EraseCollider(player);
-
-		//		App->scene_space->scroll_speed = 0;
+		player->to_delete = true;
 
 	}
 }
