@@ -29,21 +29,14 @@ void Enemy::Draw(SDL_Texture* sprites)
 
 void Enemy::OnCollision(Collider* c1, Collider* c2)
 {
-	/*
-	COLLIDER_PLAYER,
-		COLLIDER_ENEMY_BASIC,
-		COLLIDER_ENEMY_GREENSHIP,
-		COLLIDER_ENEMY_POWERUPSHIP,
-		COLLIDER_ENEMMY_TURRET,
-		COLLIDER_PLAYER_SHOT,
-		COLLIDER_ENEMY_SHOT,
-
-		*/
 
 	switch (collider->type)	{
 	case COLLIDER_ENEMMY_TURRET:
-	App->particles->AddParticle(App->particles->turret_explosion, position.x, position.y, COLLIDER_NONE,0);
+		App->particles->AddParticle(App->particles->turret_explosion, position.x, position.y, COLLIDER_NONE, 0);
 	break;
+	case COLLIDER_ENEMY_BASIC:
+		App->particles->AddParticle(App->particles->turret_explosion, position.x, position.y, COLLIDER_NONE, 0);
+		break;
 	default:
 		break;
 	}

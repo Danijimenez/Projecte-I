@@ -88,10 +88,10 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
-		if (position.x <= 220) {
+		if (position.x <= 160) {
 			position.x += speed;
 		}
-		else if (position.x < 380) {
+		else if (position.x < 224) {
 			position.x += speed;
 			if (App->render->camera.x > -130) {
 				App->render->camera.x -= speed;
@@ -108,7 +108,7 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
-		if (position.x >= 220) {
+		if (position.x >= 120) {
 			position.x -= speed;
 		}
 		else if (position.x > 0) {
@@ -139,7 +139,7 @@ update_status ModulePlayer::Update()
 	position.y -= 1;
 
 	player->SetPos(position.x-3, position.y);
-
+	
 
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -150,9 +150,9 @@ update_status ModulePlayer::Update()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 
-	if (c1 == player) {
+	if (player->type==COLLIDER_PLAYER) {
 
-		App->player->Disable();
+//		App->player->Disable();
 
 		player->to_delete = true;
 

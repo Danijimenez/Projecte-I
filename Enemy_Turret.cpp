@@ -22,7 +22,6 @@ Turret::Turret(int x, int y) : Enemy(x, y)
 	original_pos.x = x;
 	original_pos.y = y;
 
-	animation = &down;
 	//path
 	path.PushBack({ 0.0, 0.0 }, 240);
 }

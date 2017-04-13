@@ -2,6 +2,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
+#include "ModulePlayer.h"
 
 ModuleCollision::ModuleCollision()
 {
@@ -79,6 +80,9 @@ update_status ModuleCollision::PreUpdate()
 	{
 		if(colliders[i] != nullptr && colliders[i]->to_delete == true)
 		{
+			if (colliders[i]->type == COLLIDER_PLAYER) {
+				App->player->Disable();
+			}
 			delete colliders[i];
 			colliders[i] = nullptr;
 		}

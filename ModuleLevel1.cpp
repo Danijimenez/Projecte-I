@@ -32,13 +32,13 @@ bool ModuleLevel1::Start()
 	App->audio->Play("assets/music/1-4.ogg");
 	App->stop_music = true;
 	App->render->camera.x = -64;
-	App->render->camera.y = 350;
+	App->render->camera.y = 0;
 
 	App->player->Enable();
 
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 150, -10);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 320, -10);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 150, -20);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 320, -30);
 	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 300, -10);
 	App->enemies->AddEnemy(ENEMY_TYPES::TURRET, 150, -10);
 
@@ -64,7 +64,7 @@ bool ModuleLevel1::CleanUp()
 // Update: draw background
 update_status ModuleLevel1::Update()
 {
-	int speed = 0;
+	int speed = 1;
 	// Draw everything --------------------------------------	
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN) {
 		App->player->Enable();
