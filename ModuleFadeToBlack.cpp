@@ -8,6 +8,7 @@
 
 #include "ModuleWelcome.h"
 #include "ModuleLevel1.h"
+#include "ModuleDebug.h"
 
 ModuleFadeToBlack::ModuleFadeToBlack()
 {

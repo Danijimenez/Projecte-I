@@ -1,5 +1,5 @@
-#ifndef __ModulePlayer_H__
-#define __ModulePlayer_H__
+#ifndef __ModulePlayer2_H__
+#define __ModulePlayer2_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -7,20 +7,13 @@
 
 struct SDL_Texture;
 struct Collider;
+enum SHOOT_TYPE;
 
-enum SHOOT_TYPE {
-	STANDARD,
-	LASER,
-	LASER_LVL2,
-	VULCAN,
-	VULCAN_LVL2
-};
-
-class ModulePlayer : public Module
+class ModulePlayer2 : public Module
 {
 public:
-	ModulePlayer();
-	~ModulePlayer();
+	ModulePlayer2();
+	~ModulePlayer2();
 
 	bool Start();
 	update_status Update();
@@ -36,28 +29,14 @@ public:
 	Animation left[2];
 	iPoint position;
 	bool started = false;
-	Collider* player;
-	SHOOT_TYPE shoot_type = STANDARD;
+	SHOOT_TYPE shoot_type;
+	Collider* player2;
 	bool can_reset = false;
 	int left_anim = 0;
 	int right_anim = 0;
 	bool move_up = true;
 	bool move_down = true;
-
-	int font_score = -1;
-	char score_text[10];
-	char hiscore_text[10];
-	bool destroyed = false;
-	int speed = 1;
-	
-	int move_speed;
-	int lifes;
-	int player_points = 0;
 	bool living = false;
-
-
-
-
 };
 
 #endif

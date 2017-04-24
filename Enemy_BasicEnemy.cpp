@@ -17,6 +17,7 @@ BasicEnemy::BasicEnemy(int x, int y) : Enemy(x, y)
 	left_down.PushBack({ 74,107,22,21 });
 
 	collider = App->collision->AddCollider({ 0, 0, 26, 26 }, COLLIDER_TYPE::COLLIDER_ENEMY_BASIC, (Module*)App->enemies);
+	collider->life_units = 1;
 
 	original_pos.x = x;
 	original_pos.y = y;

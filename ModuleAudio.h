@@ -21,6 +21,9 @@ public:
 public:
 	Mix_Music* soundtrack = nullptr;
 	Mix_Chunk* fx_shoot = nullptr;
+	Mix_Chunk* powerup_ship_explosion = nullptr;
+	Mix_Chunk* green_ship_explosion = nullptr;
+	Mix_Chunk* basic_enemy_explosion = nullptr;
 };
 
 #endif

@@ -1,36 +1,22 @@
-#ifndef __ModuleEnemies_H__
-#define __ModuleEnemies_H__
+#ifndef __ModuleEnemies_Ground_H__
+#define __ModuleEnemies_Ground_H__
 
 #include "Module.h"
 #include "Enemy_BasicEnemy.h"
 
-#define MAX_ENEMIES 100
+#define MAX_ENEMIES 1000
 
 
-enum ENEMY_TYPES
-{
-	NO_TYPE,
-	BASICENEMY,
-	GREENSHIP,
-	POWERUP_SHIP,
-	POWERUP,
-	TURRET,
-};
 
 class Enemy;
 
-struct EnemyInfo
-{
-	ENEMY_TYPES type = ENEMY_TYPES::NO_TYPE;
-	int x, y;
-};
 
-class ModuleEnemies : public Module
+class ModuleEnemies_Ground : public Module
 {
 public:
 
-	ModuleEnemies();
-	~ModuleEnemies();
+	ModuleEnemies_Ground();
+	~ModuleEnemies_Ground();
 
 	bool Start();
 	update_status PreUpdate();
@@ -47,8 +33,8 @@ private:
 
 private:
 
-	EnemyInfo queue[MAX_ENEMIES];
-	Enemy* enemies[MAX_ENEMIES];
+	EnemyInfo queue_ground[MAX_ENEMIES];
+	Enemy* enemies_ground[MAX_ENEMIES];
 	SDL_Texture* sprites;
 };
 

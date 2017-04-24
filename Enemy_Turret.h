@@ -20,11 +20,12 @@ private:
 	Animation right_down;
 	Animation left_up;
 	Animation left_down;
+	Animation turret_anim[16];
 
 public:
 
 	Turret(int x, int y);
-
+//	int life_units = 4;
 	void Move();
 };
 

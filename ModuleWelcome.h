@@ -20,7 +20,12 @@ public:
 public:
 	
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* background = nullptr;
 	SDL_Rect welcome;
+	SDL_Rect ground;
+
+	bool player1 = false;
+	bool player2 = false;
 
 	bool gate_welcome = true;
 };

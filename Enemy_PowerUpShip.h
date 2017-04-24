@@ -13,11 +13,13 @@ private:
 	bool going_up = true;
 	int original_y = 0;
 	Animation fly;
+	Animation shoot;
+	Animation leave;
 
 public:
 
 	PowerUpShip(int x, int y);
-
+//	int life_units = 5;
 	void Move();
 };
 

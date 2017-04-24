@@ -35,9 +35,22 @@ public:
 		return frames[(int)current_frame];
 	}
 
+	bool isFinished() const
+	{
+		bool ret = false;
+		if (current_frame >= last_frame-1) {
+			ret = true;
+		}
+		return ret;
+	}
+
 	bool Finished() const
 	{
 		return loops > 0;
+	}
+	bool ResetLoops() {
+		loops = true;
+		return loops;
 	}
 
 	void Reset()

@@ -1,7 +1,7 @@
 #ifndef __ModuleCollision_H__
 #define __ModuleCollision_H__
 
-#define MAX_COLLIDERS 50
+#define MAX_COLLIDERS 1000
 
 #include "Module.h"
 
@@ -15,6 +15,9 @@ enum COLLIDER_TYPE
 	COLLIDER_ENEMMY_TURRET,
 	COLLIDER_PLAYER_SHOT,
 	COLLIDER_ENEMY_SHOT,
+	COLLIDER_POWER_UP,
+	COLLIDER_WALL_UP,
+	COLLIDER_WALL_DOWN,
 
 	COLLIDER_MAX
 };
@@ -25,6 +28,7 @@ struct Collider
 	bool to_delete = false;
 	COLLIDER_TYPE type;
 	Module* callback = nullptr;
+	int life_units;
 
 	Collider(SDL_Rect rectangle, COLLIDER_TYPE type, Module* callback = nullptr) :
 		rect(rectangle),
@@ -56,12 +60,12 @@ public:
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Module* callback = nullptr);
 	bool EraseCollider(Collider* collider);
 	void DebugDraw();
-
+	bool debug = true;
 private:
 
 	Collider* colliders[MAX_COLLIDERS];
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
-	bool debug = true;
+
 };
 
 #endif // __ModuleCollision_H__

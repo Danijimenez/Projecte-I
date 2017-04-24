@@ -1,17 +1,19 @@
-#ifndef __MODULELEVEL2_H__
-#define __MODULELEVEL2_H__
+#ifndef __MODULEDEBUG_H__
+#define __MODULEDEBUG_H__
 
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
 
-struct SDL_Texture;
 
-class ModuleLevel2 : public Module
+struct SDL_Texture;
+struct Collider;
+
+class ModuleDebug : public Module
 {
 public:
-	ModuleLevel2();
-	~ModuleLevel2();
+	ModuleDebug();
+	~ModuleDebug();
 
 	bool Start();
 	update_status Update();
@@ -25,8 +27,11 @@ public:
 	SDL_Rect foreground;
 	SDL_Rect background;
 	Animation water;
-	bool gate_level2 = true;
-
+	bool gate_level1 = true;
+	Collider* top;
+	int top_pos;
+	Collider* bottom;
+	int bottom_pos;
 };
 
-#endif // __MODULESCENEHONDA_H__
+#endif 

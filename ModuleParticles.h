@@ -6,11 +6,13 @@
 #include "Globals.h"
 #include "p2Point.h"
 
+
 #define MAX_ACTIVE_PARTICLES 100
 
 struct SDL_Texture;
 struct Collider;
 enum COLLIDER_TYPE;
+
 
 struct Particle
 {
@@ -18,7 +20,7 @@ struct Particle
 	Animation anim;
 	uint fx = 0;
 	iPoint position;
-	iPoint speed;
+	fPoint speed;
 	Uint32 born = 0;
 	Uint32 life = 0;
 	bool fx_played = false;
@@ -45,16 +47,26 @@ public:
 private:
 
 	SDL_Texture* shoots = nullptr;
-	SDL_Texture* ground_explosion = nullptr;
 	Particle* active[MAX_ACTIVE_PARTICLES];
 	uint last_particle = 0;
 
 public:
 
 	Particle shoot;
-	Particle spaceship_shot;
-	Particle turret_explosion;
+
+
+	Particle enemy_shot;
+	Particle enemy_shot_flash;
+	Particle ground_explosion;
+	Particle basic_enemy_explosion;
+	Particle air_enemy_explosion;
+	Particle standard_shot;
+	Particle standard_shot_flash;
+	Particle laser;
+	Particle laser_flash;
+	Particle laser2;
 	Particle box_explosion;
+	Particle player_explosion;
 };
 
 #endif // __MODULEPARTICLES_H__

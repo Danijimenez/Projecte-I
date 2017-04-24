@@ -5,7 +5,9 @@
 #include "Animation.h"
 #include "Globals.h"
 
+
 struct SDL_Texture;
+struct Collider;
 
 class ModuleLevel1 : public Module
 {
@@ -26,7 +28,10 @@ public:
 	SDL_Rect background;
 	Animation water;
 	bool gate_level1 = true;
-
+	Collider* top;
+	int top_pos;
+	Collider* bottom;
+	int bottom_pos;
 };
 
 #endif // __MODULESCENEHONDA_H__

@@ -13,11 +13,13 @@ private:
 	bool going_up = true;
 	int original_y = 0;
 	Animation fly;
+	Animation leave;
+	Animation back;
+	Animation leave_back;
 
 public:
 
 	GreenShip(int x, int y);
-
 	void Move();
 };
 

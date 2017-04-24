@@ -50,7 +50,7 @@ public:
 				break;
 			}
 		}
-
+		
 		if (need_loop && loop)
 			current_frame = 0;
 

@@ -21,7 +21,7 @@ enum update_status
 typedef unsigned int uint;
 
 // Configuration -----------
-#define SCREEN_SIZE 2
+#define SCREEN_SIZE 3
 #define SCREEN_WIDTH 224
 #define SCREEN_HEIGHT 256
 #define WIN_FULLSCREEN 0
@@ -29,6 +29,11 @@ typedef unsigned int uint;
 #define WIN_BORDERLESS 0
 #define WIN_RESIZABLE 0
 #define REN_VSYNC 1
+
+//Points
+
+//int score[10];
+//int game = 0;
 
 #endif // __GLOBALS_H__
 

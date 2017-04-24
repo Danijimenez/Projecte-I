@@ -29,25 +29,128 @@ bool ModuleParticles::Start()
 	shoot.speed.y -= 6;
 	shoot.life = 1200;
 
-//	spaceship_shot.anim.PushBack({ 13,1,5,11 });
-//	spaceship_shot.speed.y += 6;
-//	spaceship_shot.life = 1000;
 
 
-	shoots = App->textures->Load("assets/textures/Ground Explosions.png");
+	shoots = App->textures->Load("assets/textures/Particles.png");
 
-	turret_explosion.anim.PushBack({ 8, 3, 30, 27 });
-	turret_explosion.anim.PushBack({ 47, 3, 30, 27 });
-	turret_explosion.anim.PushBack({ 79, 3, 30, 27 });
-	turret_explosion.anim.PushBack({ 107, 2, 30, 27 });
-	turret_explosion.anim.PushBack({ 141, 2, 30, 27 });
-	turret_explosion.anim.PushBack({ 9, 40, 30, 27 });
-	turret_explosion.anim.PushBack({ 46, 40, 30, 27 });
-	turret_explosion.anim.PushBack({ 80, 38, 30, 27 });
-	turret_explosion.anim.PushBack({ 111, 37, 30, 27 });
-	turret_explosion.anim.PushBack({ 142, 38, 30, 27 });
-	turret_explosion.anim.speed = 0.2f;
-	turret_explosion.anim.loop = false;
+	// Player laser PowerUp shot
+
+	laser2.anim.PushBack({ 224, 327, 2, 15 });
+	laser2.anim.PushBack({ 224, 327, 2, 15 });
+	laser2.anim.speed = 0.01f;
+	laser2.anim.loop = true;
+	laser2.speed.y = -5;
+
+
+	laser.anim.PushBack({ 224, 327, 2, 15 });
+	laser.anim.PushBack({ 224, 327, 2, 15 });
+	laser.anim.speed = 0.01f;
+	laser.anim.loop = true;
+	laser.speed.y = -5;
+
+
+
+	laser_flash.anim.PushBack({ 230, 328, 22, 29 }); //spawn player y + 1;
+	laser_flash.anim.speed = 0.2f;
+	laser_flash.anim.loop = false;
+
+	//Players standard shot
+
+	standard_shot.anim.PushBack({ 221, 367, 6, 6 });
+	standard_shot.anim.speed = 0.01f;
+	standard_shot.anim.loop = true;
+	standard_shot.speed.y = -10;
+
+
+
+	standard_shot_flash.anim.PushBack({ 227, 366, 22, 7 }); //spawn player y + 5;
+	standard_shot_flash.anim.speed = 0.2f;
+	standard_shot_flash.anim.loop = false;
+
+	//Enemy shots
+
+	enemy_shot.anim.PushBack({ 88, 86, 6, 5 });
+	enemy_shot.anim.PushBack({ 96, 86, 6, 5  });
+	enemy_shot.anim.loop = true;
+	enemy_shot.anim.speed = 5.0f;
+	enemy_shot.speed.y -= 6;
+	enemy_shot.life = 1200;
+
+	enemy_shot_flash.anim.PushBack({ 57,83,12,11 });
+	enemy_shot_flash.anim.PushBack({ 73,83,6,5 });
+	enemy_shot.anim.loop = false;
+	enemy_shot.anim.speed = 5.0f;
+
+
+	// Player explosion
+
+	player_explosion.anim.PushBack({ 44, 118, 41, 38 });
+	player_explosion.anim.PushBack({ 94, 117, 41, 38 });
+	player_explosion.anim.PushBack({ 149, 118, 41, 38 });
+	player_explosion.anim.PushBack({ 198, 118, 41, 38 });
+	player_explosion.anim.PushBack({ 44, 163, 41, 38 });
+	player_explosion.anim.PushBack({ 95, 162, 41, 38 });
+	player_explosion.anim.PushBack({ 169, 161, 41, 38 });
+	player_explosion.anim.PushBack({ 200, 160, 41, 38 });
+	player_explosion.anim.speed = 0.2f;
+	player_explosion.anim.loop = false;
+
+
+	// Ground explosions
+
+	ground_explosion.anim.PushBack({ 51, 321, 30, 27 });
+	ground_explosion.anim.PushBack({ 90, 321, 30, 27 });
+	ground_explosion.anim.PushBack({ 122, 320, 30, 27 });
+	ground_explosion.anim.PushBack({ 150, 320, 30, 27 });
+	ground_explosion.anim.PushBack({ 184, 320, 30, 27 });
+	ground_explosion.anim.PushBack({ 52, 359, 30, 27 });
+	ground_explosion.anim.PushBack({ 89, 359, 30, 27 });
+	ground_explosion.anim.PushBack({ 123, 357, 30, 27 });
+	ground_explosion.anim.PushBack({ 154, 356, 30, 27 });
+	ground_explosion.anim.PushBack({ 185, 357, 30, 27 });
+
+	ground_explosion.anim.speed = 0.2f;
+	ground_explosion.anim.loop = false;
+
+	// Basc enemy explosion
+
+	basic_enemy_explosion.anim.PushBack({ 39, 516, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 96, 511, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 161, 511, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 208, 511, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 39, 562, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 95, 563, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 159, 563, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 216, 564, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 42, 612, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 96, 613, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 157, 612, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 218, 610, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 40, 666, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 95, 666, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 154, 666, 32, 30 });
+	basic_enemy_explosion.anim.PushBack({ 218, 666, 32, 30 });
+
+	basic_enemy_explosion.anim.speed = 0.2f;
+	basic_enemy_explosion.anim.loop = false;
+
+	// Air enemies explosion
+
+	air_enemy_explosion.anim.PushBack({ 21, 735, 77, 75});
+	air_enemy_explosion.anim.PushBack({ 110, 734, 77, 75 });
+	air_enemy_explosion.anim.PushBack({ 208, 731, 77, 75 });
+	air_enemy_explosion.anim.PushBack({ 25, 821, 77, 75 });
+	air_enemy_explosion.anim.PushBack({ 122, 818, 77, 75 });
+	air_enemy_explosion.anim.PushBack({ 229, 815, 77, 75 });
+	air_enemy_explosion.anim.PushBack({ 14, 921, 77, 75 });
+	air_enemy_explosion.anim.PushBack({ 98, 920, 77, 75 });
+	air_enemy_explosion.anim.PushBack({ 186, 922, 77, 75 });
+	air_enemy_explosion.anim.PushBack({ 275, 922, 77, 75 });
+	air_enemy_explosion.anim.PushBack({ 371, 915, 77, 75 });
+
+	air_enemy_explosion.anim.speed = 0.2f;
+	air_enemy_explosion.anim.loop = false;
+
 	
 	return true;
 }
