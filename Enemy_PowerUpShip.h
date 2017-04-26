@@ -8,7 +8,7 @@
 class PowerUpShip : public Enemy
 {
 private:
-	iPoint original_pos;
+	fPoint original_pos;
 	Path path;
 	bool going_up = true;
 	int original_y = 0;

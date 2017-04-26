@@ -50,7 +50,7 @@ public:
 	bool destroyed = false;
 	int speed = 1;
 	
-	int move_speed;
+	float move_speed;
 	int lifes;
 	int player_points = 0;
 	bool living = false;

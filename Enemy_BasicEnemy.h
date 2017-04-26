@@ -7,7 +7,7 @@
 class BasicEnemy : public Enemy
 {
 private:
-	iPoint original_pos;
+	fPoint original_pos;
 	Path path;
 	bool going_up = true;
 	int original_y = 0;
@@ -19,6 +19,7 @@ private:
 	Animation right_down;
 	Animation left_up;
 	Animation left_down;
+	Animation anim[16];
 	
 
 public:

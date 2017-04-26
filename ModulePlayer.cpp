@@ -118,9 +118,9 @@ update_status ModulePlayer::Update()
 
 		if (App->render->camera.x > -402) {
 			if (position.x < 302) {
-				position.x += move_speed;
+				position.x += 2*move_speed;
 
-				App->render->camera.x -= speed;
+				App->render->camera.x -= 2*speed;
 			}
 		}
 		
@@ -143,9 +143,9 @@ update_status ModulePlayer::Update()
 	{
 
 		if (position.x > 0) {
-			position.x -= move_speed;
+			position.x -= 2*move_speed;
 			if (App->render->camera.x < 0) {
-				App->render->camera.x += move_speed;
+				App->render->camera.x += 2*move_speed;
 			}
 		}
 		if (current_animation != &left[left_anim])

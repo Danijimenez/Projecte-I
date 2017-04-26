@@ -29,7 +29,7 @@ bool ModuleWelcome::Start()
 {
 	LOG("Loading welcome scene");
 	App->stop_music = false;
-	App->level_1->Enable();
+//	App->level_1->Enable();
 	graphics = App->textures->Load("assets/textures/welcome.png");
 	App->render->camera.x = -25;
 	App->render->camera.y = 0;

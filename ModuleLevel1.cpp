@@ -40,7 +40,7 @@ bool ModuleLevel1::Start()
 
 	App->stop_music = true;
 	App->render->camera.x = -176;
-	App->render->camera.y = 0;
+	App->render->camera.y = 160;
 
 	App->collision->debug = false;
 
@@ -60,16 +60,19 @@ bool ModuleLevel1::Start()
 	bottom = App->collision->AddCollider({ 0, bottom_pos , 352 ,10 }, COLLIDER_WALL_DOWN);
 
 
-	//App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 150, -20);
-	//App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 320, -30);
-	//App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 300, -10);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 0, -100);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 181, -300);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 162, -100);
+
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BASICENEMY, 67, -1535);	//XP Box
 
 //	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 48, -337);
 
-//	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 193, -790);	//XP Box
-//	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 221, -790);	//XP Box
-//	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 193, -750);	//XP Box
-//	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 221, -750);	//XP Box
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 67, -1535);	//XP Box
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 131, -1563);	//XP Box
+
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 230, -1611);	//XP Box
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 294, -1643);	//XP Box
 
 //	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 38, -578);	//Missile Box
 
@@ -101,7 +104,7 @@ bool ModuleLevel1::CleanUp()
 // Update: draw background
 update_status ModuleLevel1::Update()
 {
-	int speed = 1;
+	float speed = 0.5;
 	// Draw everything --------------------------------------	
 
 	top_pos -= speed;
@@ -127,6 +130,13 @@ update_status ModuleLevel1::Update()
 	if (App->input->keyboard[SDL_SCANCODE_F1]) {
 		App->fade->FadeToBlack(this, App->welcome, 2.0f);
 	}
+
+
+	if (App->input->keyboard[SDL_SCANCODE_1]) {
+		App->render->camera.y +=0;
+		App->render->camera.y += 0;
+	}
+
 
 	return UPDATE_CONTINUE;
 } 

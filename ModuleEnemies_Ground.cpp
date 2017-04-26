@@ -47,7 +47,7 @@ update_status ModuleEnemies_Ground::PreUpdate()
 	{
 		if(queue_ground[i].type != ENEMY_TYPES::NO_TYPE)
 		{
-			if(queue_ground[i].y * SCREEN_SIZE < App->render->camera.y + (App->render->camera.h * SCREEN_SIZE) + SPAWN_MARGIN)
+			if (-queue_ground[i].y  < App->render->camera.y + SPAWN_MARGIN - 160)
 			{
 				SpawnEnemy(queue_ground[i]);
 				queue_ground[i].type = ENEMY_TYPES::NO_TYPE;
