@@ -44,11 +44,13 @@ public:
 	bool move_up = true;
 	bool move_down = true;
 
+	bool move = true;
+
 	int font_score = -1;
 	char score_text[10];
 	char hiscore_text[10];
 	bool destroyed = false;
-	int speed = 1;
+	float speed = 0.5;
 	
 	float move_speed;
 	int lifes;

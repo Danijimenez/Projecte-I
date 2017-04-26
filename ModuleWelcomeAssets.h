@@ -1,5 +1,5 @@
-#ifndef __MODULEWELCOME_H__
-#define __MODULEWELCOME_H__
+#ifndef __MODULEWELCOMEASSETS_H__
+#define __MODULEWELCOMEASSETS_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -7,18 +7,18 @@
 
 struct SDL_Texture;
 
-class ModuleWelcome : public Module
+class ModuleWelcomeAssets : public Module
 {
 public:
-	ModuleWelcome();
-	~ModuleWelcome();
+	ModuleWelcomeAssets();
+	~ModuleWelcomeAssets();
 
 	bool Start();
 	update_status Update();
 	bool CleanUp();
 
 public:
-
+	
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* background = nullptr;
 	SDL_Rect welcome;
@@ -28,6 +28,7 @@ public:
 	bool player2 = false;
 
 	bool gate_welcome = true;
+	int speed = 1;
 };
 
 #endif // __MODULESCENEKEN_H__

@@ -19,11 +19,12 @@
 #include "ModuleEnemies_Ground.h"
 #include "ModuleFonts.h"
 #include "ModuleDebug.h"
+#include "ModuleWelcomeAssets.h"
 
 Application::Application()
 {
 	int i = 0;
-	
+
 	modules[i++] = window = new ModuleWindow();
 	modules[i++] = render = new ModuleRender();
 	modules[i++] = input = new ModuleInput();
@@ -32,7 +33,7 @@ Application::Application()
 	modules[i++] = level_2 = new ModuleLevel2();
 	modules[i++] = debug = new ModuleDebug();
 	modules[i++] = HallOfAces = new ModuleHallOfAces();
-
+	modules[i++] = welcomeassets = new ModuleWelcomeAssets();
 	modules[i++] = enemies_ground = new ModuleEnemies_Ground();
 	modules[i++] = level_1_assets = new ModuleLevel1_assets();
 	modules[i++] = enemies = new ModuleEnemies();
@@ -46,12 +47,12 @@ Application::Application()
 	modules[i++] = fade = new ModuleFadeToBlack();
 
 
-	
-}	
+
+}
 
 Application::~Application()
 {
-	for(int i = NUM_MODULES - 1; i >= 0; --i)
+	for (int i = NUM_MODULES - 1; i >= 0; --i)
 		delete modules[i];
 }
 
@@ -63,7 +64,8 @@ bool Application::Init()
 	player->Disable();
 	player2->Disable();
 	// Disable the map that you do not start with
-//	welcome->Disable();
+	//	welcome->Disable();
+	welcomeassets->Disable();
 	debug->Disable();
 	level_1->Disable();
 	level_1_assets->Disable();
@@ -71,10 +73,10 @@ bool Application::Init()
 	HallOfAces->Disable();
 
 
-	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
+	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
 
-	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
+	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
 
 	return ret;
@@ -84,13 +86,13 @@ update_status Application::Update()
 {
 	update_status ret = UPDATE_CONTINUE;
 
-	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
+	for (int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->PreUpdate() : UPDATE_CONTINUE;
 
-	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
+	for (int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->Update() : UPDATE_CONTINUE;
 
-	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
+	for (int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate() : UPDATE_CONTINUE;
 
 	return ret;
@@ -100,7 +102,7 @@ bool Application::CleanUp()
 {
 	bool ret = true;
 	stop_music = false;
-	for(int i = NUM_MODULES - 1; i >= 0 && ret == true; --i)
+	for (int i = NUM_MODULES - 1; i >= 0 && ret == true; --i)
 		ret = modules[i]->CleanUp();
 
 	return ret;

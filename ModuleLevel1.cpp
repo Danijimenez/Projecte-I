@@ -104,7 +104,7 @@ bool ModuleLevel1::CleanUp()
 // Update: draw background
 update_status ModuleLevel1::Update()
 {
-	float speed = 0.5;
+	float speed = 1;
 	// Draw everything --------------------------------------	
 
 	top_pos -= speed;

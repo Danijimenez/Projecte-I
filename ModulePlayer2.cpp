@@ -8,7 +8,10 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
-#include "ModuleEnemySpaceship.h"
+#include "ModuleFonts.h"
+#include "ModuleLevel1.h"
+
+#include<stdio.h>
 
 
 ModulePlayer2::ModulePlayer2()
@@ -66,8 +69,16 @@ bool ModulePlayer2::Start()
 
 		graphics = App->textures->Load("assets/textures/player2.png");
 
-		player2 = App->collision->AddCollider({ position.x+12, position.y, 22, 29 }, COLLIDER_PLAYER, this); //
+		font_score = App->fonts->Load("assets/fonts/RedCharacters.png", " !|#$%&'()*+,-./0123456789:;¿<>?@abcdefghijklmnopqrstuvwxyz!?_·¬", 4);
+		App->fonts->Load("assets/fonts/GreenCharacters.png", " !|#$%&'()*+,-./0123456789:;¿<>?@abcdefghijklmnopqrstuvwxyz!?_·¬", 4);
+		App->fonts->Load("assets/fonts/YellowCharacters.png", " !|#$%&'()*+,-./0123456789:;¿<>?@abcdefghijklmnopqrstuvwxyz!?_·¬", 4);
+
+		player2 = App->collision->AddCollider({ position.x + 12, position.y, 22, 29 }, COLLIDER_PLAYER, this); //
+		speed = 0;
 		started = true;
+		move_speed = 1;
+		lifes = 3;
+		living = true;
 	}
 	return ret;
 }
@@ -79,6 +90,7 @@ bool ModulePlayer2::CleanUp()
 
 	App->textures->Unload(graphics);
 	App->collision->EraseCollider(player2);
+	App->fonts->UnLoad(font_score);
 
 	return true;
 }
@@ -91,12 +103,12 @@ update_status ModulePlayer2::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT && move_up)
 	{
-		position.y -= speed;
+		position.y -= move_speed;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT && move_down)
 	{
-		position.y += 2 * speed;
+		position.y += 2 * move_speed;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_UP) {
@@ -107,9 +119,9 @@ update_status ModulePlayer2::Update()
 	{
 
 		if (position.x < 385) {
-			position.x += speed;
+			position.x += move_speed;
 			if (App->render->camera.x > -360) {
-				App->render->camera.x -= speed;
+				App->render->camera.x -= move_speed;
 			}
 
 		}
@@ -123,7 +135,7 @@ update_status ModulePlayer2::Update()
 			right_anim = 1;
 		}
 	}
-	
+
 	if (App->input->keyboard[SDL_SCANCODE_J] == KEY_STATE::KEY_UP) {
 		left_anim = 0;
 	}
@@ -131,9 +143,9 @@ update_status ModulePlayer2::Update()
 	{
 
 		if (position.x > 0) {
-			position.x -= speed;
+			position.x -= move_speed;
 			if (App->render->camera.x < 0) {
-				App->render->camera.x += speed;
+				App->render->camera.x += move_speed;
 			}
 		}
 		if (current_animation != &left[left_anim])
@@ -142,7 +154,7 @@ update_status ModulePlayer2::Update()
 			current_animation = &left[left_anim];
 
 		}
-		if (left[left_anim].isFinished()==true) {
+		if (left[left_anim].isFinished() == true) {
 			left_anim = 1;
 		}
 	}
@@ -159,27 +171,27 @@ update_status ModulePlayer2::Update()
 		switch (shoot_type)
 		{
 		case STANDARD:
-			App->particles->AddParticle(App->particles->shoot, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->shoot, position.x, position.y, COLLIDER_PLAYER_2_SHOT, 0);
 			break;
 		case LASER:
 
 			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 0);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 16);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 16);
 			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 16);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 32);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 32);
 
 			break;
 		case LASER_LVL2:
 
 			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 0);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 16);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 16);
 			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 16);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 32);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 32);
 
 			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 32);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 48);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 48);
 			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 48);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 64);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 64);
 			break;
 		case VULCAN:
 
@@ -204,6 +216,30 @@ update_status ModulePlayer2::Update()
 
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+
+	// Draw UI (score) --------------------------------------
+
+	App->fonts->BlitText(34, 0, font_score, "1 up  hi-score  2 up");
+
+	switch (lifes) {
+	case 1:
+		App->fonts->BlitText(200, 17, font_score, "¬");
+		break;
+	case 2:
+		App->fonts->BlitText(200, 17, font_score, "¬¬");
+		break;
+	case 3:
+		App->fonts->BlitText(200, 17, font_score, "¬¬¬");
+		break;
+
+	}
+
+
+	sprintf_s(score_text, 10, "%7d", player_points);
+	sprintf_s(hiscore_text, 10, "%7d", 50000);
+
+	App->fonts->BlitText(150, 9, 2, score_text); // player score
+	App->fonts->BlitText(78, 9, 2, hiscore_text); // hi score
 
 	return UPDATE_CONTINUE;
 }

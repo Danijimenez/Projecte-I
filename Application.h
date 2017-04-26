@@ -3,13 +3,14 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 19
+#define NUM_MODULES 20
 
 class ModuleWindow;
 class ModuleInput;
 class ModuleTextures;
 class ModuleRender;
 class ModuleWelcome;
+class ModuleWelcomeAssets;
 class ModuleLevel1;
 class ModuleLevel2;
 class ModuleHallOfAces;
@@ -52,6 +53,7 @@ public:
 	ModuleEnemies* enemies;
 	ModuleEnemies_Ground* enemies_ground;
 	ModuleFonts* fonts;
+	ModuleWelcomeAssets* welcomeassets;
 
 	bool stop_music;
 

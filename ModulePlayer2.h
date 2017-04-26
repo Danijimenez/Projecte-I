@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "p2Point.h"
 
+
 struct SDL_Texture;
 struct Collider;
 enum SHOOT_TYPE;
@@ -37,6 +38,16 @@ public:
 	bool move_up = true;
 	bool move_down = true;
 	bool living = false;
+
+	int font_score = -1;
+	char score_text[10];
+	char hiscore_text[10];
+	bool destroyed = false;
+	int speed = 1;
+
+	float move_speed;
+	int lifes;
+	int player_points = 0;
 };
 
 #endif

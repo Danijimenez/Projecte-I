@@ -11,7 +11,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleAudio.h"
 #include "ModuleDebug.h"
-#include "ModuleLevel1(assets).h"
+#include "ModuleWelcomeAssets.h"
 
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -29,13 +29,13 @@ bool ModuleWelcome::Start()
 {
 	LOG("Loading welcome scene");
 	App->stop_music = false;
-//	App->level_1->Enable();
+	App->welcomeassets->Enable();
 	graphics = App->textures->Load("assets/textures/welcome.png");
 	App->render->camera.x = -25;
 	App->render->camera.y = 0;
-//	App->level_1_assets->Enable();
+	//	App->level_1_assets->Enable();
 
-//	App->player->Enable();
+	//	App->player->Enable();
 
 
 	return true;
@@ -45,9 +45,9 @@ bool ModuleWelcome::Start()
 bool ModuleWelcome::CleanUp()
 {
 	LOG("Unloading ken scene");
-		
-	App->textures->Unload(graphics);
 
+	App->textures->Unload(graphics);
+	App->welcomeassets->Disable();
 	App->audio->Stop();
 
 

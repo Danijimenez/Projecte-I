@@ -116,6 +116,9 @@
     <ClInclude Include="ModuleDebug.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleWelcomeAssets.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -203,6 +206,9 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleDebug.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWelcomeAssets.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

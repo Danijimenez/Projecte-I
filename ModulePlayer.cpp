@@ -199,8 +199,11 @@ update_status ModulePlayer::Update()
 
 	move_up = true;
 	move_down = true;
+	if (move) {
+		position.y -= move_speed;
+	}
 
-	position.y -= speed;
+	move = !move;
 
 	player->SetPos(position.x-3, position.y);
 	
