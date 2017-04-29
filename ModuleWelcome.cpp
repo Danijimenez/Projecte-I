@@ -12,6 +12,8 @@
 #include "ModuleAudio.h"
 #include "ModuleDebug.h"
 #include "ModuleWelcomeAssets.h"
+#include "ModuleEnemies.h"
+#include "ModuleEnemies_Ground.h"
 
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -33,9 +35,6 @@ bool ModuleWelcome::Start()
 	graphics = App->textures->Load("assets/textures/welcome.png");
 	App->render->camera.x = -25;
 	App->render->camera.y = 0;
-	//	App->level_1_assets->Enable();
-
-	//	App->player->Enable();
 
 
 	return true;
@@ -48,7 +47,6 @@ bool ModuleWelcome::CleanUp()
 
 	App->textures->Unload(graphics);
 	App->welcomeassets->Disable();
-	App->audio->Stop();
 
 
 	return true;

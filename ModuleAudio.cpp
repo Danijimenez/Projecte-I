@@ -12,7 +12,7 @@ ModuleAudio::~ModuleAudio()
 {
 }
 
-bool ModuleAudio::Init()
+bool ModuleAudio::Start()
 {
 	
 	Mix_Init(MIX_INIT_OGG);
@@ -51,7 +51,7 @@ bool ModuleAudio::Play(const char* path)
 bool ModuleAudio::Stop()
 {
 	if (App->stop_music) {
-		Mix_FreeMusic(soundtrack);
+//		Mix_FreeMusic(soundtrack);
 		App->stop_music = false;
 	}
 	return true;
@@ -61,8 +61,11 @@ bool ModuleAudio::Stop()
 bool ModuleAudio::CleanUp()
 {
 	LOG("Quitting SDL Mix");
-	Stop();
+//	Stop();
+	if (App->stop_music) {
 	Mix_CloseAudio();
 	Mix_Quit();
+	App->stop_music = false;
+	}
 	return true;
 }

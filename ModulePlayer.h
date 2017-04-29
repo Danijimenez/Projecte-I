@@ -56,7 +56,8 @@ public:
 	int lifes;
 	int player_points = 0;
 	bool living = false;
-
+	bool hittable = true;
+	int damage = 0;
 
 
 

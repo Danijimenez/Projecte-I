@@ -173,6 +173,13 @@ ModuleCollision::ModuleCollision()
 ModuleCollision::~ModuleCollision()
 {}
 
+
+bool ModuleCollision::Start() {
+	for (uint i = 0; i < MAX_COLLIDERS; ++i)
+		colliders[i] = nullptr;
+	return true;
+}
+
 update_status ModuleCollision::PreUpdate()
 {
 	// Remove all colliders scheduled for deletion
@@ -180,9 +187,7 @@ update_status ModuleCollision::PreUpdate()
 	{
 		if(colliders[i] != nullptr && colliders[i]->to_delete == true)
 		{
-			if (colliders[i]->type == COLLIDER_PLAYER) {
-				App->player->Disable();
-			}
+
 			delete colliders[i];
 			colliders[i] = nullptr;
 		}
@@ -258,7 +263,9 @@ void ModuleCollision::DebugDraw()
 			case COLLIDER_PLAYER: // green
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
-
+			case COLLIDER_PLAYER_2: // green
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
+			break;
 			case COLLIDER_ENEMY_BASIC: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
@@ -276,6 +283,10 @@ void ModuleCollision::DebugDraw()
 			break;
 
 			case COLLIDER_PLAYER_SHOT: // yellow
+			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+
+			case COLLIDER_PLAYER_2_SHOT: // yellow
 			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
 			break;
 			case COLLIDER_ENEMY_SHOT: // magenta

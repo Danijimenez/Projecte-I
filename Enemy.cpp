@@ -24,6 +24,8 @@ const Collider* Enemy::GetCollider() const
 	return collider;
 }
 
+
+
 void Enemy::Draw(SDL_Texture* sprites)
 {
 	if (collider != nullptr)
@@ -35,32 +37,28 @@ void Enemy::Draw(SDL_Texture* sprites)
 
 void Enemy::OnCollision(Collider* c1, Collider* c2)
 {
-
+	//if (c2->type)
 	switch (collider->type)	{
 	case COLLIDER_ENEMMY_TURRET:
 		App->particles->AddParticle(App->particles->ground_explosion, position.x, position.y, COLLIDER_NONE, 0);
-		App->player->player_points += 20;
 
 	break;
 	case COLLIDER_ENEMY_BASIC:
 		App->particles->AddParticle(App->particles->ground_explosion, position.x, position.y, COLLIDER_NONE, 0);
-		App->player->player_points += 150;
 		Mix_PlayChannel(-1, App->audio->basic_enemy_explosion, 0);
 		break;
 	case COLLIDER_ENEMY_GREENSHIP:
 		App->particles->AddParticle(App->particles->air_enemy_explosion, position.x, position.y, COLLIDER_NONE, 0);
-		App->player->player_points += 40;
 		Mix_PlayChannel(-1, App->audio->green_ship_explosion, 0);
 
 		break;
 	case COLLIDER_ENEMY_POWERUPSHIP:
 		App->particles->AddParticle(App->particles->air_enemy_explosion, position.x, position.y, COLLIDER_NONE, 0);
 		App->enemies->AddEnemy(POWERUP, position.x+28, position.y+29);
-		App->player->player_points += 20;
 		Mix_PlayChannel(-1, App->audio->powerup_ship_explosion, 0);
 		break;
 	case COLLIDER_POWER_UP:
-		if (c1 == App->player->player) {
+		if (c1->type==COLLIDER_PLAYER) {
 			if (App->player->shoot_type != SHOOT_TYPE::LASER) {
 				App->player->shoot_type = SHOOT_TYPE::LASER;
 			}

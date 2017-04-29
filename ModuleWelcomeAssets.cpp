@@ -30,13 +30,11 @@ bool ModuleWelcomeAssets::Start()
 {
 	LOG("Loading welcome scene");
 	App->stop_music = false;
-//	App->level_1->Enable();
+
 	graphics = App->textures->Load("assets/textures/TileMap-Full-LvL1.png");
 	App->render->camera.x = -25;
 	App->render->camera.y = 0;
-//	App->level_1_assets->Enable();
 
-//	App->player->Enable();
 
 
 	return true;
@@ -49,7 +47,6 @@ bool ModuleWelcomeAssets::CleanUp()
 		
 	App->textures->Unload(graphics);
 
-	App->audio->Stop();
 
 
 	return true;

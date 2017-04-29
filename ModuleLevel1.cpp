@@ -16,6 +16,7 @@
 #include "ModuleEnemies_Ground.h"
 #include "ModuleLevel1(assets).h"
 #include "ModuleHallOfAces.h"
+#include "ModuleParticles.h"
 
 // Reference at https://youtu.be/6OlenbCC4WI?t=382
 
@@ -34,13 +35,21 @@ bool ModuleLevel1::Start()
 	LOG("Loading background assets");
 	bool ret = true;
 	graphics = App->textures->Load("assets/textures/TileMap-LvL1.png");
-	App->audio->Play("assets/music/1-4.ogg");
+
 
 	App->level_1_assets->Enable();
 
 	App->stop_music = true;
 	App->render->camera.x = -176;
-	App->render->camera.y = 160;
+	App->render->camera.y = 0;
+
+	App->collision->Enable();
+	App->enemies->Enable();
+	App->audio->Enable();
+	App->particles->Enable();
+	App->enemies_ground->Enable();
+
+	App->audio->Play("assets/music/1-4.ogg");
 
 	App->collision->debug = false;
 
@@ -52,6 +61,7 @@ bool ModuleLevel1::Start()
 	}
 
 	App->player->speed = 1;
+	speed = 1;
 
 	top_pos = App->render->camera.y-10;
 	bottom_pos = App->render->camera.y + App->render->camera.h;
@@ -60,26 +70,40 @@ bool ModuleLevel1::Start()
 	bottom = App->collision->AddCollider({ 0, bottom_pos , 352 ,10 }, COLLIDER_WALL_DOWN);
 
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 0, -100);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 126, -100);
 	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 181, -300);
 	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 162, -100);
 
-	App->enemies_ground->AddEnemy(ENEMY_TYPES::BASICENEMY, 67, -1535);	//XP Box
 
-//	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 48, -337);
+	//	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 48, -337);
 
-	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 67, -1535);	//XP Box
-	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 131, -1563);	//XP Box
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 140, -210);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 256, -400);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 200, -970);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 256, -1020);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 256, -1070);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 148, -1020);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 100, -1090);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 50, -1090);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 230, -1600);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 260, -1630);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 240, -1660);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 270, -1690);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 230, -1710);
 
-	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 230, -1611);	//XP Box
-	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 294, -1643);	//XP Box
+	App->enemies->AddEnemy(ENEMY_TYPES::POWERUP_SHIP, 140, -520);
+	App->enemies->AddEnemy(ENEMY_TYPES::POWERUP_SHIP, 130, -1120);
+	App->enemies->AddEnemy(ENEMY_TYPES::POWERUP_SHIP, 140, -1800);
 
-//	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 38, -578);	//Missile Box
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, 150, -680);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, 120, -850);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, 120, -2000);
 
-//	App->enemies->AddEnemy(ENEMY_TYPES::POWERUP, 150, 100);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 67, -1535);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 131, -1563);
 
-
-//	App->enemies->AddEnemy(ENEMY_TYPES::POWERUP_SHIP, 75, 0);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 230, -1611);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 294, -1643);
 
 
 	return ret;
@@ -88,12 +112,32 @@ bool ModuleLevel1::Start()
 // Load assets
 bool ModuleLevel1::CleanUp()
 {
-	App->player->Disable();
-//	App->spaceship->Disable();
+
+
+	if (App->player->player_points > hi_score) {
+		hi_score = App->player->player_points;
+	}
+
+	else if (App->player2->player_points > hi_score) {
+		hi_score = App->player2->player_points;
+	}
 
 	App->textures->Unload(graphics);
 
-	App->audio->Stop();
+	App->audio->Disable();
+
+	App->collision->Disable();
+
+	App->particles->Disable();
+	App->player->Disable();
+	App->player2->Disable();
+	App->level_1_assets->Disable();
+
+	App->enemies->Disable();
+
+	App->enemies_ground->Disable();
+
+//	speed = 0;
 
 
 	LOG("Unloading Level 1");
@@ -104,7 +148,7 @@ bool ModuleLevel1::CleanUp()
 // Update: draw background
 update_status ModuleLevel1::Update()
 {
-	float speed = 1;
+
 	// Draw everything --------------------------------------	
 
 	top_pos -= speed;
@@ -123,20 +167,28 @@ update_status ModuleLevel1::Update()
 
 	App->render->camera.y += speed*SCREEN_SIZE;
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE]) {
-		App->fade->FadeToBlack(this, App->level_2, 2.0f);
-	}
+
 
 	if (App->input->keyboard[SDL_SCANCODE_F1]) {
 		App->fade->FadeToBlack(this, App->welcome, 2.0f);
+		top->to_delete = true;
+		bottom->to_delete = true;
 	}
 
-
-	if (App->input->keyboard[SDL_SCANCODE_1]) {
-		App->render->camera.y +=0;
+	if (App->render->camera.y > 10000) {
+		speed = 0;
+		App->player->speed = 0;
+		App->player2->speed = 0;
 		App->render->camera.y += 0;
+		App->fade->FadeToBlack(this, App->HallOfAces, 2.0f);
+
+
 	}
 
+	if (App->input->keyboard[SDL_SCANCODE_F6])
+	{
+		App->fade->FadeToBlack(this, App->HallOfAces, 2.0f);
+	}
 
 	return UPDATE_CONTINUE;
 } 

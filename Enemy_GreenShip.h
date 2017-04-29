@@ -16,7 +16,7 @@ private:
 	Animation leave;
 	Animation back;
 	Animation leave_back;
-
+	Animation shot;
 public:
 
 	GreenShip(int x, int y);

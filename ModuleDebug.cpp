@@ -11,6 +11,8 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleWelcome.h"
 #include "ModuleCollision.h"
+#include "ModuleHallOfAces.h"
+#include "ModuleAudio.h"
 
 
 // Reference at https://youtu.be/6OlenbCC4WI?t=382
@@ -30,7 +32,9 @@ bool ModuleDebug::Start()
 	LOG("Loading background assets");
 	bool ret = true;
 	graphics = App->textures->Load("assets/textures/TileMap-LvL1.png");
-
+	App->enemies->Enable();
+	App->enemies_ground->Enable();
+	App->audio->Init();
 	App->player->speed = 0;
 	App->collision->debug = true;
 	return ret;
@@ -45,6 +49,9 @@ bool ModuleDebug::CleanUp()
 	App->player2->Disable();
 
 	App->textures->Unload(graphics);
+
+	App->enemies->CleanUp();
+	App->enemies_ground->CleanUp();
 
 	LOG("Unloading Debug level");
 
@@ -71,7 +78,7 @@ update_status ModuleDebug::Update()
 		App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, App->player->position.x, App->player->position.y-200);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_4] == KEY_STATE::KEY_DOWN) {
-		App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, App->player->position.x+50, App->player->position.y - 350);
+		App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, App->player->position.x+50, App->player->position.y - 100);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_5] == KEY_STATE::KEY_DOWN) {
 		App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, App->player->position.x, App->player->position.y - 100);
@@ -99,12 +106,10 @@ update_status ModuleDebug::Update()
 	}
 	// Win/Lose
 
-	if (App->input->keyboard[SDL_SCANCODE_8] == KEY_STATE::KEY_DOWN) {
-		//
+	if (App->input->keyboard[SDL_SCANCODE_F6] == KEY_STATE::KEY_DOWN) {
+		App->fade->FadeToBlack(this, App->welcome, 2.0f);
 	}
-	if (App->input->keyboard[SDL_SCANCODE_9] == KEY_STATE::KEY_DOWN) {
-		//
-	}
+
 
 	if (App->input->keyboard[SDL_SCANCODE_F1]) {
 		App->fade->FadeToBlack(this, App->welcome, 2.0f);

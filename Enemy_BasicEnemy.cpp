@@ -2,7 +2,7 @@
 #include "Enemy_BasicEnemy.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
-
+#include "ModulePlayer2.h"
 #include "ModuleInput.h"
 
 BasicEnemy::BasicEnemy(int x, int y) : Enemy(x, y)
@@ -48,46 +48,182 @@ BasicEnemy::BasicEnemy(int x, int y) : Enemy(x, y)
 
 void BasicEnemy::Move()
 {
-	if (App->player->position.y > position.y) {
+	if (App->player->living && !App->player2->living) {
+		if (App->player->position.y > position.y) {
 
-		float angle = atan2(App->player->position.y - position.y, App->player->position.x - position.x);
-		angle *= 180 / 3.14;
+			float angle = atan2(App->player->position.y - position.y, App->player->position.x - position.x);
+			angle *= 180 / 3.14;
 
-		uint k = 15;
-		for (uint i = 0; i < 16; i++) {
-			k--;
-			if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+			uint k = 15;
+			for (uint i = 0; i < 16; i++) {
+				k--;
+				if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
 
-				animation = &anim[k];
+					animation = &anim[k];
 
-				break;
+					break;
+				}
+			}
+		}
+
+		else {
+
+			float angle = atan2(position.y - App->player->position.y, position.x - App->player->position.x);
+			angle *= 180 / 3.14;
+
+			uint k = 7;
+			for (uint i = 0; i < 16; i++) {
+
+				if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+
+					animation = &anim[k];
+
+					break;
+
+				}
+				k--;
 			}
 		}
 	}
+
+	//Player 2 only
+
+	else if (App->player2->living && !App->player->living) {
+		if (App->player2->position.y > position.y) {
+
+			float angle = atan2(App->player2->position.y - position.y, App->player2->position.x - position.x);
+			angle *= 180 / 3.14;
+
+			uint k = 15;
+			for (uint i = 0; i < 16; i++) {
+				k--;
+				if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+
+					animation = &anim[k];
+
+					break;
+				}
+			}
+		}
+
+		else {
+
+			float angle = atan2(position.y - App->player2->position.y, position.x - App->player2->position.x);
+			angle *= 180 / 3.14;
+
+			uint k = 7;
+			for (uint i = 0; i < 16; i++) {
+
+				if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+
+					animation = &anim[k];
+
+					break;
+
+				}
+				k--;
+			}
+		}
+	}
+
+	// Both players
 
 	else {
+		//Decide player to shoot
 
-		float angle = atan2(position.y - App->player->position.y, position.x - App->player->position.x);
-		angle *= 180 / 3.14;
+		int player1_x = (App->player->position.x - position.x);
+		int player1_y = (App->player->position.y - position.y);
 
-		uint k = 7;
-		for (uint i = 0; i < 16; i++) {
+		int player2_x = (App->player2->position.x - position.x);
+		int player2_y = (App->player2->position.y - position.y);
 
-			if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+		//Player 1
+		if (pow(player1_x, 2) + pow(player1_y, 2) <= pow(player2_x, 2) + pow(player2_y, 2)) {
 
-				animation = &anim[k];
+			if (App->player->position.y > position.y) {
 
-				break;
+				float angle = atan2(App->player->position.y - position.y, App->player->position.x - position.x);
+				angle *= 180 / 3.14;
 
+				uint k = 15;
+				for (uint i = 0; i < 16; i++) {
+					k--;
+					if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+
+						animation = &anim[k];
+
+						break;
+					}
+				}
 			}
-			k--;
+
+			else {
+
+				float angle = atan2(position.y - App->player->position.y, position.x - App->player->position.x);
+				angle *= 180 / 3.14;
+
+				uint k = 7;
+				for (uint i = 0; i < 16; i++) {
+
+					if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+
+						animation = &anim[k];
+
+						break;
+
+					}
+					k--;
+				}
+			}
+
+
+		}
+		// player 2
+
+		else {
+
+			if (App->player2->position.y > position.y) {
+
+				float angle = atan2(App->player2->position.y - position.y, App->player2->position.x - position.x);
+				angle *= 180 / 3.14;
+
+				uint k = 15;
+				for (uint i = 0; i < 16; i++) {
+					k--;
+					if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+
+						animation = &anim[k];
+
+						break;
+					}
+				}
+			}
+
+			else {
+
+				float angle = atan2(position.y - App->player2->position.y, position.x - App->player2->position.x);
+				angle *= 180 / 3.14;
+
+				uint k = 7;
+				for (uint i = 0; i < 16; i++) {
+
+					if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+
+						animation = &anim[k];
+
+						break;
+
+					}
+					k--;
+				}
+			}
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_M] == KEY_STATE::KEY_DOWN) {
+		if (App->input->keyboard[SDL_SCANCODE_M] == KEY_STATE::KEY_DOWN) {
+			position = original_pos + path.GetCurrentPosition();
+		}
+		original_pos.y -= 0.5f;
 		position = original_pos + path.GetCurrentPosition();
-	}
-	original_pos.y -= 0.5f;
-	position = original_pos + path.GetCurrentPosition();
 
 }

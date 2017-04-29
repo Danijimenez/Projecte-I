@@ -8,13 +8,17 @@
 #include "ModuleWelcome.h"
 #include "ModulePlayer.h"
 #include "ModuleAudio.h"
-
+#include "ModuleEnemies.h"
+#include "ModuleEnemies_Ground.h"
+#include "ModuleLevel1.h"
+#include "ModuleParticles.h"
+#include "ModuleCollision.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModuleHallOfAces::ModuleHallOfAces()
 {
-	HallOfAces = { 0, 0, 358, 481 };
+	HallOfAces = { 0, 0, 224, 256 };
 }
 
 ModuleHallOfAces::~ModuleHallOfAces()
@@ -24,11 +28,17 @@ ModuleHallOfAces::~ModuleHallOfAces()
 bool ModuleHallOfAces::Start()
 {
 	LOG("Loading Hall of Aces scene");
-	App->stop_music = true;
+
 	graphics = App->textures->Load("assets/textures/hall_of_aces.png");
+
+	App->audio->Enable();
+	App->stop_music = true;
 	App->audio->Play("assets/music/hall_of_aces.ogg");
-	App->render->camera.x = -25;
+	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+
+	App->level_1->speed = 0;
+
 	return true;
 }
 
@@ -38,8 +48,9 @@ bool ModuleHallOfAces::CleanUp()
 	LOG("Unloading Hall of Aces scene");
 
 	App->textures->Unload(graphics);
-	
-	App->audio->Stop();
+
+	App->stop_music = true;
+	App->audio->Disable();
 	
 
 	return true;

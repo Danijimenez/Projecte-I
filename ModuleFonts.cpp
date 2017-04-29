@@ -128,6 +128,7 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 		charRec.y = inTable_y * font->char_h;
 		charRec.w = font->char_w;
 		charRec.h = font->char_h;
+		if (charRec.x<=128&&charRec.y<32)
 		App->render->Blit(font->graphic, x, y, &charRec, 1.0f,false);
 		x += font->char_w;
 

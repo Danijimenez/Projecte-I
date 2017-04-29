@@ -21,6 +21,7 @@ private:
 	Animation left_up;
 	Animation left_down;
 	Animation turret_anim[16];
+	int shoot;
 
 public:
 

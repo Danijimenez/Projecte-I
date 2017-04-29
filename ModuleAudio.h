@@ -13,7 +13,7 @@ public:
 	ModuleAudio();
 	~ModuleAudio();
 
-	bool Init();
+	bool Start();
 	bool Play(const char*);
 	bool Stop();
 	bool CleanUp();

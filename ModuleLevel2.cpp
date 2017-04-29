@@ -69,7 +69,7 @@ update_status ModuleLevel2::Update()
 
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE]) {
-		App->fade->FadeToBlack(this, App->HallOfAces, 2.0f);
+		App->fade->FadeToBlack(this, App->welcome, 2.0f);
 
 	}
 

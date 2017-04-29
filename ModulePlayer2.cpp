@@ -10,6 +10,8 @@
 #include "ModuleCollision.h"
 #include "ModuleFonts.h"
 #include "ModuleLevel1.h"
+#include "ModuleFadeToBlack.h"
+#include "ModuleWelcome.h"
 
 #include<stdio.h>
 
@@ -64,20 +66,20 @@ bool ModulePlayer2::Start()
 	if (!started) {
 		LOG("Loading player textures");
 
-		position.x = 260;
-		position.y = 260;
+		position.x = 176;
+		position.y = 176;
 
 		graphics = App->textures->Load("assets/textures/player2.png");
 
 		font_score = App->fonts->Load("assets/fonts/RedCharacters.png", " !|#$%&'()*+,-./0123456789:;¿<>?@abcdefghijklmnopqrstuvwxyz!?_·¬", 4);
 		App->fonts->Load("assets/fonts/GreenCharacters.png", " !|#$%&'()*+,-./0123456789:;¿<>?@abcdefghijklmnopqrstuvwxyz!?_·¬", 4);
 		App->fonts->Load("assets/fonts/YellowCharacters.png", " !|#$%&'()*+,-./0123456789:;¿<>?@abcdefghijklmnopqrstuvwxyz!?_·¬", 4);
-
-		player2 = App->collision->AddCollider({ position.x + 12, position.y, 22, 29 }, COLLIDER_PLAYER, this); //
+		shoot_type = STANDARD;
+		player2 = App->collision->AddCollider({ position.x + 12, position.y, 22, 29 }, COLLIDER_PLAYER_2, this); //
 		speed = 0;
 		started = true;
 		move_speed = 1;
-		lifes = 3;
+		lifes = 2;
 		living = true;
 	}
 	return ret;
@@ -91,7 +93,7 @@ bool ModulePlayer2::CleanUp()
 	App->textures->Unload(graphics);
 	App->collision->EraseCollider(player2);
 	App->fonts->UnLoad(font_score);
-
+	started = true;
 	return true;
 }
 
@@ -101,25 +103,25 @@ update_status ModulePlayer2::Update()
 
 	int speed = 1;
 
-	if (App->input->keyboard[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT && move_up)
+	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && move_up)
 	{
 		position.y -= move_speed;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT && move_down)
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT && move_down)
 	{
 		position.y += 2 * move_speed;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_UP) {
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_UP) {
 		right_anim = 0;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 	{
 
 		if (position.x < 385) {
-			position.x += move_speed;
+			position.x += 2*move_speed;
 			if (App->render->camera.x > -360) {
 				App->render->camera.x -= move_speed;
 			}
@@ -136,14 +138,14 @@ update_status ModulePlayer2::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_J] == KEY_STATE::KEY_UP) {
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_UP) {
 		left_anim = 0;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 	{
 
 		if (position.x > 0) {
-			position.x -= move_speed;
+			position.x -= 2*move_speed;
 			if (App->render->camera.x < 0) {
 				App->render->camera.x += move_speed;
 			}
@@ -159,8 +161,8 @@ update_status ModulePlayer2::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE
+		&& App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE) {
 		//	idle.Reset();
 		current_animation = &idle;
 
@@ -171,7 +173,7 @@ update_status ModulePlayer2::Update()
 		switch (shoot_type)
 		{
 		case STANDARD:
-			App->particles->AddParticle(App->particles->shoot, position.x, position.y, COLLIDER_PLAYER_2_SHOT, 0);
+			App->particles->AddParticle(App->particles->standard_shot, position.x, position.y+11, COLLIDER_PLAYER_2_SHOT, 0);
 			break;
 		case LASER:
 
@@ -209,7 +211,7 @@ update_status ModulePlayer2::Update()
 	move_down = true;
 
 
-	position.y -= 1;
+	position.y -= App->player->speed;
 
 	player2->SetPos(position.x, position.y);
 
@@ -222,24 +224,43 @@ update_status ModulePlayer2::Update()
 	App->fonts->BlitText(34, 0, font_score, "1 up  hi-score  2 up");
 
 	switch (lifes) {
-	case 1:
+	case 0:
 		App->fonts->BlitText(200, 17, font_score, "¬");
 		break;
-	case 2:
+	case 1:
 		App->fonts->BlitText(200, 17, font_score, "¬¬");
 		break;
-	case 3:
+	case 2:
 		App->fonts->BlitText(200, 17, font_score, "¬¬¬");
 		break;
 
 	}
 
+	if (!living) {
+		lifes--;
+		position.x = 176;
+		position.y = -App->render->camera.y / SCREEN_SIZE + 200;
+		if (lifes < 0) {
+			player2->to_delete = true;
+			this->Disable();
+			App->fade->FadeToBlack(this, App->welcome, 2.0f);
+		}
+		living = true;
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) {
+		hittable = !hittable;
+	}
 
 	sprintf_s(score_text, 10, "%7d", player_points);
-	sprintf_s(hiscore_text, 10, "%7d", 50000);
+	sprintf_s(hiscore_text, 10, "%7d", App->level_1->hi_score);
 
 	App->fonts->BlitText(150, 9, 2, score_text); // player score
 	App->fonts->BlitText(78, 9, 2, hiscore_text); // hi score
+
+	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
+		hittable = !hittable;
+	}
 
 	return UPDATE_CONTINUE;
 }
@@ -247,38 +268,53 @@ update_status ModulePlayer2::Update()
 
 void ModulePlayer2::OnCollision(Collider* c1, Collider* c2) {
 
-	switch (c2->type)
-	{
-	case COLLIDER_ENEMMY_TURRET:
-		break;
-	case COLLIDER_ENEMY_BASIC:
-		player2->to_delete = true;
-		App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);
-		living = false;
-		break;
-	case COLLIDER_ENEMY_GREENSHIP:
-		player2->to_delete = true;
-		App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);
-		living = false;
-		break;
-	case COLLIDER_ENEMY_POWERUPSHIP:
-		player2->to_delete = true;
-		App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);
-		living = false;
-		break;
-	case COLLIDER_ENEMY_SHOT:
-		player2->to_delete = true;
-		App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);
-		living = false;
-		break;
-	case COLLIDER_WALL_UP:
-		move_up = false;
-		break;
-	case COLLIDER_WALL_DOWN:
-		move_down = false;
-		break;
-	default:
-		break;
+	if (hittable) {
+		switch (c2->type)
+		{
+		case COLLIDER_ENEMMY_TURRET:
+			break;
+		case COLLIDER_ENEMY_BASIC:
+			App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);
+			living = false;
+			break;
+		case COLLIDER_ENEMY_GREENSHIP:
+
+			App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);
+			living = false;
+			break;
+		case COLLIDER_ENEMY_POWERUPSHIP:
+
+			App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);
+			living = false;
+			break;
+		case COLLIDER_ENEMY_SHOT:
+
+			App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);
+			living = false;
+			break;
+		case COLLIDER_WALL_UP:
+			move_up = false;
+			break;
+		case COLLIDER_WALL_DOWN:
+			move_down = false;
+			break;
+		default:
+			break;
+		}
 	}
+	else {
+		switch (c2->type)
+		{
+		case COLLIDER_WALL_UP:
+			move_up = false;
+			break;
+		case COLLIDER_WALL_DOWN:
+			move_down = false;
+			break;
+		default:
+			break;
+		}
+	}
+
 
 }

@@ -1,7 +1,7 @@
 #ifndef __ModuleCollision_H__
 #define __ModuleCollision_H__
 
-#define MAX_COLLIDERS 1000
+#define MAX_COLLIDERS 200
 
 #include "Module.h"
 
@@ -53,6 +53,8 @@ public:
 
 	ModuleCollision();
 	~ModuleCollision();
+
+	bool Start();
 
 	update_status PreUpdate();
 	update_status Update();

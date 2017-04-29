@@ -30,10 +30,6 @@ typedef unsigned int uint;
 #define WIN_RESIZABLE 0
 #define REN_VSYNC 1
 
-//Points
-
-//int score[10];
-//int game = 0;
 
 #endif // __GLOBALS_H__
 

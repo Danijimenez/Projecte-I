@@ -108,6 +108,7 @@ bool ModuleEnemies::CleanUp()
 			delete enemies[i];
 			enemies[i] = nullptr;
 		}
+		queue[i].type = NO_TYPE;
 	}
 
 	return true;
@@ -165,14 +166,9 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
-			c1->life_units--;
-			if (c1->life_units <= 0) {
-				enemies[i]->OnCollision(c2, c1);
-				delete enemies[i];
-				enemies[i] = nullptr;
-				break;
 
-			}
+			c1->life_units--;
+
 			if (c2->type == COLLIDER_PLAYER_SHOT) {
 				switch (c1->type)
 				{
@@ -187,7 +183,6 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				case COLLIDER_ENEMY_POWERUPSHIP:
 					App->player->player_points += 20;
 					break;
-
 				default:
 					break;
 				}
@@ -212,6 +207,14 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					break;
 				}
 
+			}
+	
+			if (c1->life_units <= 0) {
+				enemies[i]->OnCollision(c2, c1);
+				delete enemies[i];
+				enemies[i] = nullptr;
+				break;
+				 
 			}
 
 		}

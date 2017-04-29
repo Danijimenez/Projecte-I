@@ -32,6 +32,8 @@ public:
 	int top_pos;
 	Collider* bottom;
 	int bottom_pos;
+	int hi_score = 0;
+	float speed = 1;
 };
 
 #endif // __MODULESCENEHONDA_H__

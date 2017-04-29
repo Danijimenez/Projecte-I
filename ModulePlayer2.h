@@ -44,7 +44,7 @@ public:
 	char hiscore_text[10];
 	bool destroyed = false;
 	int speed = 1;
-
+	bool hittable = true;
 	float move_speed;
 	int lifes;
 	int player_points = 0;
