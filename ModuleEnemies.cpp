@@ -114,6 +114,22 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
+bool ModuleEnemies::FreeEnemies()
+{
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
+			delete enemies[i];
+			enemies[i] = nullptr;
+		}
+		queue[i].type = NO_TYPE;
+	}
+
+	return true;
+}
+
 bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y)
 {
 	bool ret = false;

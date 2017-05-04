@@ -109,6 +109,22 @@ bool ModuleEnemies_Ground::CleanUp()
 	return true;
 }
 
+
+bool ModuleEnemies_Ground::FreeEnemies()
+{
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies_ground[i] != nullptr)
+		{
+			delete enemies_ground[i];
+			enemies_ground[i] = nullptr;
+		}
+	}
+
+	return true;
+}
+
 bool ModuleEnemies_Ground::AddEnemy(ENEMY_TYPES type, int x, int y)
 {
 	bool ret = false;

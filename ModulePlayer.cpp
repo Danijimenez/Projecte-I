@@ -10,7 +10,7 @@
 #include "ModuleFonts.h"
 #include "ModuleLevel1.h"
 #include "ModuleFadeToBlack.h"
-#include "ModuleWelcome.h"
+#include "ModuleHallOfAces.h"
 
 #include<stdio.h>
 
@@ -251,7 +251,7 @@ update_status ModulePlayer::Update()
 		if (lifes < 0) {
 			player->to_delete = true;
 			this->Disable();
-			App->fade->FadeToBlack(this, App->welcome, 2.0f);
+			App->fade->FadeToBlack(App->level_1, App->HallOfAces, 2.0f);
 		}
 		living = true;
 	}

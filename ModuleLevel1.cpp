@@ -43,11 +43,6 @@ bool ModuleLevel1::Start()
 	App->render->camera.x = -176;
 	App->render->camera.y = 0;
 
-	App->collision->Enable();
-	App->enemies->Enable();
-	App->audio->Enable();
-	App->particles->Enable();
-	App->enemies_ground->Enable();
 
 	App->audio->Play("assets/music/1-4.ogg");
 
@@ -124,18 +119,13 @@ bool ModuleLevel1::CleanUp()
 
 	App->textures->Unload(graphics);
 
-	App->audio->Disable();
-
-	App->collision->Disable();
-
-	App->particles->Disable();
 	App->player->Disable();
 	App->player2->Disable();
-	App->level_1_assets->Disable();
 
-	App->enemies->Disable();
 
-	App->enemies_ground->Disable();
+	App->enemies->FreeEnemies();
+	App->enemies_ground->FreeEnemies();
+
 
 //	speed = 0;
 

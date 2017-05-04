@@ -31,13 +31,10 @@ bool ModuleHallOfAces::Start()
 
 	graphics = App->textures->Load("assets/textures/hall_of_aces.png");
 
-	App->audio->Enable();
 	App->stop_music = true;
 	App->audio->Play("assets/music/hall_of_aces.ogg");
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
-
-	App->level_1->speed = 0;
 
 	return true;
 }
@@ -48,10 +45,6 @@ bool ModuleHallOfAces::CleanUp()
 	LOG("Unloading Hall of Aces scene");
 
 	App->textures->Unload(graphics);
-
-	App->stop_music = true;
-	App->audio->Disable();
-	
 
 	return true;
 }
