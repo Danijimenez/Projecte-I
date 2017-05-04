@@ -64,7 +64,7 @@ bool ModulePlayer::Start()
 
 		LOG("Loading player textures");
 		
-		position.x = 176;
+		position.x = 150;
 		position.y = 176;
 		destroyed = false;
 

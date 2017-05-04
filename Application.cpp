@@ -43,10 +43,11 @@ Application::Application()
 	modules[i++] = collision = new ModuleCollision();
 
 	modules[i++] = player = new ModulePlayer();
+	modules[i++] = player2 = new ModulePlayer2();
 
 	modules[i++] = enemies_ground = new ModuleEnemies_Ground();
 	modules[i++] = enemies = new ModuleEnemies();
-	modules[i++] = player2 = new ModulePlayer2();
+
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = fonts = new ModuleFonts();
 	modules[i++] = fade = new ModuleFadeToBlack();

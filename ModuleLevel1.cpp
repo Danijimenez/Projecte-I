@@ -56,6 +56,7 @@ bool ModuleLevel1::Start()
 	}
 
 	App->player->speed = 1;
+	App->player2->speed = 1;
 	speed = 1;
 
 	top_pos = App->render->camera.y-10;

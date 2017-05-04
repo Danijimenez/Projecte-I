@@ -11,7 +11,7 @@
 #include "ModuleFonts.h"
 #include "ModuleLevel1.h"
 #include "ModuleFadeToBlack.h"
-#include "ModuleWelcome.h"
+#include "ModuleHallOfAces.h"
 
 #include<stdio.h>
 
@@ -63,10 +63,10 @@ ModulePlayer2::~ModulePlayer2()
 bool ModulePlayer2::Start()
 {
 	bool ret = true;
-	if (!started) {
+
 		LOG("Loading player textures");
 
-		position.x = 176;
+		position.x = 200;
 		position.y = 176;
 
 		graphics = App->textures->Load("assets/textures/player2.png");
@@ -76,12 +76,11 @@ bool ModulePlayer2::Start()
 		App->fonts->Load("assets/fonts/YellowCharacters.png", " !|#$%&'()*+,-./0123456789:;¿<>?@abcdefghijklmnopqrstuvwxyz!?_·¬", 4);
 		shoot_type = STANDARD;
 		player2 = App->collision->AddCollider({ position.x + 12, position.y, 22, 29 }, COLLIDER_PLAYER_2, this); //
-		speed = 0;
-		started = true;
+		speed = 1;
 		move_speed = 1;
 		lifes = 2;
 		living = true;
-	}
+	
 	return ret;
 }
 
@@ -93,7 +92,7 @@ bool ModulePlayer2::CleanUp()
 	App->textures->Unload(graphics);
 	App->collision->EraseCollider(player2);
 	App->fonts->UnLoad(font_score);
-	started = true;
+
 	return true;
 }
 
@@ -243,7 +242,7 @@ update_status ModulePlayer2::Update()
 		if (lifes < 0) {
 			player2->to_delete = true;
 			this->Disable();
-			App->fade->FadeToBlack(this, App->welcome, 2.0f);
+			App->fade->FadeToBlack(App->level_1, App->HallOfAces, 2.0f);
 		}
 		living = true;
 	}

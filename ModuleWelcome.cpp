@@ -36,6 +36,8 @@ bool ModuleWelcome::Start()
 	App->render->camera.x = -25;
 	App->render->camera.y = 0;
 
+	player1 = false;
+	player2 = false;
 
 	return true;
 }
@@ -64,17 +66,17 @@ update_status ModuleWelcome::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_1]) {
 		App->fade->FadeToBlack(this, App->level_1, 2.0f);
-		App->level_1->Disable();
+//		App->level_1->Disable();
 		player1 = true;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_2]) {
 		App->fade->FadeToBlack(this, App->level_1, 2.0f);
-		App->level_1->Disable();
+//		App->level_1->Disable();
 		player2 = true;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_3]) {
 		App->fade->FadeToBlack(this, App->level_1, 2.0f);
-		App->level_1->Disable();
+//		App->level_1->Disable();
 		player1 = true;
 		player2 = true;
 	}
