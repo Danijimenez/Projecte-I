@@ -223,7 +223,7 @@ void BasicEnemy::Move()
 		if (App->input->keyboard[SDL_SCANCODE_M] == KEY_STATE::KEY_DOWN) {
 			position = original_pos + path.GetCurrentPosition();
 		}
-		original_pos.y -= 0.5f;
+		original_pos.y -= 1;
 		position = original_pos + path.GetCurrentPosition();
 
 }

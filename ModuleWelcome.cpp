@@ -85,7 +85,7 @@ update_status ModuleWelcome::Update()
 		App->fade->FadeToBlack(this, App->debug, 2.0f);
 	}
 
-	if (App->render->camera.y > 10000) {
+	if (App->render->camera.y > 3400) {
 		App->render->camera.y = 0;
 	}
 
