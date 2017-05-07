@@ -64,7 +64,7 @@ update_status ModuleWelcome::Update()
 	App->render->Blit(graphics, 0, 0, &welcome, false);
 
 
-	if (App->input->keyboard[SDL_SCANCODE_1]) {
+	if (App->input->keyboard[SDL_SCANCODE_1] || App->input->contrkey[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, App->level_1, 2.0f);
 //		App->level_1->Disable();
 		player1 = true;

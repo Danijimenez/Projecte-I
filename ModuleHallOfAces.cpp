@@ -58,7 +58,7 @@ update_status ModuleHallOfAces::Update()
 	App->render->Blit(graphics, 0, 0, &HallOfAces);
 
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE]) {
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->contrkey[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, App->welcome, 2.0f);
 
 	}

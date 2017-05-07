@@ -166,7 +166,7 @@ update_status ModuleLevel1::Update()
 		bottom->to_delete = true;
 	}
 
-	if (App->render->camera.y > 10000) {
+	if (App->render->camera.y > 3400) {
 		speed = 0;
 		App->player->speed = 0;
 		App->player2->speed = 0;

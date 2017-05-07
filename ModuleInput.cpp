@@ -45,7 +45,6 @@ bool ModuleInput::Init()
 
 		}
 	}
-
 	return ret;
 }
 
@@ -76,14 +75,14 @@ update_status ModuleInput::PreUpdate()
 
 	int ctrkeys = SDL_GameControllerEventState(NULL);
 
-	for (int i = 0; i < 17; ++i)
+	for (int i = 0; i < 15; ++i)
 	{
-		if (SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_A))
+		if (SDL_GameControllerGetButton(controller, button[i]))
 		{
 			if (contrkey[i] == KEY_IDLE)
 				contrkey[i] = KEY_DOWN;
 			else
-				keyboard[i] = KEY_REPEAT;
+				contrkey[i] = KEY_REPEAT;
 		}
 		else
 		{
@@ -94,7 +93,7 @@ update_status ModuleInput::PreUpdate()
 		}
 	}
 
-	if (keyboard[SDL_SCANCODE_ESCAPE])
+	if (contrkey[SDL_CONTROLLER_BUTTON_START])
 		return update_status::UPDATE_STOP;
 
 	return update_status::UPDATE_CONTINUE;
