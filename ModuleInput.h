@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "SDL\include\SDL_scancode.h"
+#include "SDL\include\SDL_gamecontroller.h"
 
 #define MAX_KEYS 300
 
@@ -28,6 +29,8 @@ public:
 
 public:
 	KEY_STATE keyboard[MAX_KEYS];
+	SDL_GameController* controller = nullptr;
+	KEY_STATE contrkey[17];
 };
 
 #endif // __ModuleInput_H__

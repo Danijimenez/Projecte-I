@@ -27,6 +27,25 @@ bool ModuleInput::Init()
 		ret = false;
 	}
 
+	int i;
+
+	SDL_Init(SDL_INIT_GAMECONTROLLER);
+
+	for (i = 0; i < SDL_NumJoysticks(); ++i) {
+		if (SDL_IsGameController(i)) {
+			char *mapping;
+			SDL_Log("Index \'%i\' is a compatible controller, named \'%s\'", i, SDL_GameControllerNameForIndex(i));
+			controller = SDL_GameControllerOpen(i);
+			mapping = SDL_GameControllerMapping(controller);
+			SDL_Log("Controller %i is mapped as \"%s\".", i, mapping);
+			SDL_free(mapping);
+		}
+		else {
+			SDL_Log("Index \'%i\' is not a compatible controller.", i);
+
+		}
+	}
+
 	return ret;
 }
 
@@ -52,6 +71,26 @@ update_status ModuleInput::PreUpdate()
 				keyboard[i] = KEY_UP;
 			else
 				keyboard[i] = KEY_IDLE;
+		}
+	}
+
+	int ctrkeys = SDL_GameControllerEventState(NULL);
+
+	for (int i = 0; i < 17; ++i)
+	{
+		if (SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_A))
+		{
+			if (contrkey[i] == KEY_IDLE)
+				contrkey[i] = KEY_DOWN;
+			else
+				keyboard[i] = KEY_REPEAT;
+		}
+		else
+		{
+			if (contrkey[i] == KEY_REPEAT || contrkey[i] == KEY_DOWN)
+				contrkey[i] = KEY_UP;
+			else
+				contrkey[i] = KEY_IDLE;
 		}
 	}
 

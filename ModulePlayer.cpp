@@ -12,6 +12,8 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleHallOfAces.h"
 
+#include "SDL/include/SDL.h"
+
 #include<stdio.h>
 
 
@@ -104,7 +106,7 @@ update_status ModulePlayer::Update()
 {
 
 
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && move_up)
+	if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_DPAD_UP)) && move_up)
 	{
 		position.y -= move_speed;
 	}
@@ -112,20 +114,28 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && move_down)
 	{
 		position.y += 2* move_speed;
+		
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP) {
 		right_anim = 0;
 	}
 
+	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_REPEAT)
+	{
+		App->render->camera.x -= 2 * speed;
+		position.y += 2 * move_speed;
+	}
+
+
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 
-		if (App->render->camera.x > -402) {
-			if (position.x < 302) {
+		
+			if (position.x < 330) {
 				position.x += 2*move_speed;
-
-				App->render->camera.x -= 2*speed;
+				if (App->render->camera.x > -128) {
+				App->render->camera.x -= speed;
 			}
 		}
 		
@@ -150,7 +160,7 @@ update_status ModulePlayer::Update()
 		if (position.x > 0) {
 			position.x -= 2*move_speed;
 			if (App->render->camera.x < 0) {
-				App->render->camera.x += 2*move_speed;
+				App->render->camera.x += move_speed;
 			}
 		}
 		if (current_animation != &left[left_anim])
@@ -169,7 +179,7 @@ update_status ModulePlayer::Update()
 		current_animation = &idle;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN)
 	{ 
 		
 		switch (shoot_type)

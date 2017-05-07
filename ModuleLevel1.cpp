@@ -40,7 +40,7 @@ bool ModuleLevel1::Start()
 	App->level_1_assets->Enable();
 
 	App->stop_music = true;
-	App->render->camera.x = -176;
+	App->render->camera.x = -64;
 	App->render->camera.y = 0;
 
 
