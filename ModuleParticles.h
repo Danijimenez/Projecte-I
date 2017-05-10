@@ -62,6 +62,7 @@ public:
 	Particle air_enemy_explosion;
 	Particle standard_shot;
 	Particle standard_shot_flash;
+	Particle bomb;
 	Particle laser;
 	Particle laser_flash;
 	Particle laser2;

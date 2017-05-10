@@ -123,6 +123,8 @@ bool ModuleLevel1::CleanUp()
 	App->player->Disable();
 	App->player2->Disable();
 
+	top->to_delete = true;
+	bottom->to_delete = true;
 
 	App->enemies->FreeEnemies();
 	App->enemies_ground->FreeEnemies();

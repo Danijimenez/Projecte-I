@@ -70,6 +70,8 @@ bool ModulePlayer::Start()
 		position.y = 176;
 		destroyed = false;
 
+		bombs = 3;
+
 		graphics = App->textures->Load("assets/textures/player1.png");
 		App->collision->Enable();
 		font_score = App->fonts->Load("assets/fonts/RedCharacters.png", " !|#$%&'()*+,-./0123456789:;¿<>?@abcdefghijklmnopqrstuvwxyz!?_·¬", 4);
@@ -183,7 +185,9 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
 		&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_IDLE
 		&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
+		&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < 5000
+		&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > -5000) {
 		current_animation = &idle;
 
 	}
@@ -219,6 +223,13 @@ update_status ModulePlayer::Update()
 		}
 		Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 	}
+
+	if ((App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_X] == KEY_STATE::KEY_DOWN) && bombs >= 0)
+	{
+		App->particles->AddParticle(App->particles->bomb, position.x - 70, position.y - 130 , COLLIDER_BOMB,0);
+		bombs--;
+	}
+
 
 	move_up = true;
 	move_down = true;

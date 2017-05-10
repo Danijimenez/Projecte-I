@@ -21,17 +21,18 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	shoots = App->textures->Load("assets/textures/Shoots.png");
 
-	shoot.anim.PushBack({ 5, 1, 6, 6 });
-	shoot.anim.loop = true ;
-	shoot.anim.speed = 0.3f;
-	shoot.speed.y -= 6;
-	shoot.life = 1200;
 
 
 
 	shoots = App->textures->Load("assets/textures/Particles.png");
+
+	shoot.anim.PushBack({ 5, 1, 6, 6 });
+	shoot.anim.loop = true;
+	shoot.anim.speed = 0.3f;
+	shoot.speed.y -= 6;
+	shoot.life = 1200;
+
 
 	// Player laser PowerUp shot
 
@@ -66,6 +67,46 @@ bool ModuleParticles::Start()
 	standard_shot_flash.anim.PushBack({ 227, 366, 22, 7 }); //spawn player y + 5;
 	standard_shot_flash.anim.speed = 0.2f;
 	standard_shot_flash.anim.loop = false;
+
+	// Players bombs
+
+	bomb.anim.PushBack({ 474, 18, 166,154 });
+	bomb.anim.PushBack({ 697, 15, 166,154 });
+	bomb.anim.PushBack({ 912, 13, 166,154 });
+	bomb.anim.PushBack({ 1112, 17, 166,154 });
+	bomb.anim.PushBack({ 472, 178, 166,154 });
+	bomb.anim.PushBack({ 683, 175, 166,154 });	
+	bomb.anim.PushBack({ 913, 182, 166,154 });
+	bomb.anim.PushBack({ 1112, 180, 166,154 });
+	bomb.anim.PushBack({ 1322, 188, 166,154 });
+	bomb.anim.PushBack({ 1537, 189, 166,154 });
+	bomb.anim.PushBack({ 470, 358, 166,154 });
+	bomb.anim.PushBack({ 682, 359, 166,154 });
+	bomb.anim.PushBack({ 915, 360, 166,154 });
+	bomb.anim.PushBack({ 1118, 367, 166,154 });
+	bomb.anim.PushBack({ 1326, 378, 166,154 });
+	bomb.anim.PushBack({ 1540, 372, 166,154 });
+	bomb.anim.PushBack({ 463, 551, 166,154 });
+	bomb.anim.PushBack({ 684, 540, 166,154 });
+	bomb.anim.PushBack({ 910, 545, 166,154 });
+	bomb.anim.PushBack({ 1114, 547, 166,154 });
+	bomb.anim.PushBack({ 1328, 552, 166,154 });
+	bomb.anim.PushBack({ 1528, 551, 166,154 });
+	bomb.anim.PushBack({ 461, 731, 166,154 });
+	bomb.anim.PushBack({ 673, 732, 166,154 });
+	bomb.anim.PushBack({ 906, 733, 166,154 });
+	bomb.anim.PushBack({ 1109, 740, 166,154 });
+	bomb.anim.PushBack({ 1321, 738, 166,154 });
+	bomb.anim.PushBack({ 1535, 732, 166,154 });
+	bomb.anim.PushBack({ 457, 928, 166,154 });
+	bomb.anim.PushBack({ 683, 927, 166,154 });
+	bomb.anim.PushBack({ 890, 925, 166,154 });
+	bomb.anim.PushBack({ 1094, 914, 166,154 });
+	bomb.anim.PushBack({ 1326, 918, 166,154 });
+	bomb.anim.PushBack({ 1531, 919, 166,154 });
+	
+	bomb.anim.speed = 0.2f;
+	bomb.anim.loop = false;
 
 	//Enemy shots
 
@@ -226,7 +267,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide
-		if (active[i] != nullptr && active[i]->collider == c1)
+		if (active[i] != nullptr && active[i]->collider == c1 && active[i]->collider->type!=COLLIDER_BOMB)
 		{
 			//			App->particles->AddParticle(App->particles->explosion, active[i]->position.x, active[i]->position.y, COLLIDER_NONE);
 			active[i]->collider->to_delete=true;

@@ -58,7 +58,7 @@ public:
 	bool living = false;
 	bool hittable = true;
 	int damage = 0;
-
+	int bombs;
 
 
 };
