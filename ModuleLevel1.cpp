@@ -123,8 +123,8 @@ bool ModuleLevel1::CleanUp()
 	App->player->Disable();
 	App->player2->Disable();
 
-	top->to_delete = true;
-	bottom->to_delete = true;
+	//top->to_delete = true;
+	//bottom->to_delete = true;
 
 	App->enemies->FreeEnemies();
 	App->enemies_ground->FreeEnemies();
@@ -142,24 +142,18 @@ bool ModuleLevel1::CleanUp()
 update_status ModuleLevel1::Update()
 {
 
-	// Draw everything --------------------------------------	
-
-	top_pos -= speed;
-	bottom_pos -= speed;
-
-	top->SetPos(0, top_pos);
-	bottom->SetPos(0, bottom_pos);
-
-	App->render->Blit(graphics, 0, -3449, &ground);
-
-	if (!App->player->living && !App->player2->living)	{
-//		App->fade->FadeToBlack(this, App->HallOfAces, 2.0f);
-	}
+	
 
 	//Scroll
+	if (move)
+	{
+		App->render->camera.y += speed;
+		top_pos -= speed;
+		bottom_pos -= speed;
 
-	App->render->camera.y += speed*SCREEN_SIZE;
-
+		top->SetPos(0, top_pos);
+		bottom->SetPos(0, bottom_pos);
+	}
 
 
 	if (App->input->keyboard[SDL_SCANCODE_F1]) {
@@ -182,6 +176,12 @@ update_status ModuleLevel1::Update()
 	{
 		App->fade->FadeToBlack(this, App->HallOfAces, 2.0f);
 	}
+
+	move = !move;
+
+	// Draw everything --------------------------------------	
+
+	App->render->Blit(graphics, 0, -3449, &ground);
 
 	return UPDATE_CONTINUE;
 } 

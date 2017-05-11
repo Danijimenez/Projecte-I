@@ -1,12 +1,21 @@
 #include "Application.h"
-#include "Enemy_BasicEnemy.h"
+#include "Enemy_BasicEnemy2.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleInput.h"
 
-BasicEnemy::BasicEnemy(int x, int y) : Enemy(x, y)
+BasicEnemy2::BasicEnemy2(int x, int y) : Enemy(x, y)
 {
+	up.PushBack({ 116,36,22,21 });
+	down.PushBack({ 76,36,22,21 });
+	left.PushBack({ 155,35,22,21 });
+	right.PushBack({ 74,75,22,21 });
+	right_up.PushBack({ 157,73,22,21 });
+	right_down.PushBack({ 116,105,22,21 });
+	left_up.PushBack({ 156,173,22,21 });
+	left_down.PushBack({ 74,107,22,21 });
+
 	anim[0].PushBack({ 27,511,32,30 });
 	anim[1].PushBack({ 234,514,32,30 });
 	anim[2].PushBack({ 24,548,32,30 });
@@ -33,20 +42,12 @@ BasicEnemy::BasicEnemy(int x, int y) : Enemy(x, y)
 
 	path.PushBack({ -0.21f, +2.08f }, 90);
 	path.PushBack({ 0.0f, 0.0f }, 40);
-	path.PushBack({ -0.05f, -1.392f }, 135);
+
 	path.loop = false;
 }
 
-void BasicEnemy::Move()
+void BasicEnemy2::Move()
 {
-	fPoint current_pos = path.GetCurrentPosition();
-	if (App->player->movep) {
-		original_pos.y -= 1;
-		position = original_pos + current_pos;
-	}
-
-
-
 	if (App->player->living && !App->player2->living) {
 		if (App->player->position.y > position.y) {
 
@@ -219,5 +220,32 @@ void BasicEnemy::Move()
 		}
 	}
 
+	if (App->player->movep) {
 
+		if (path.finished) {
+			if (!direction) {
+
+
+				speed_x_mult = (App->player->position.x - position.x);
+				speed_y_mult = (App->player->position.y - position.y);
+
+				a_mult = sqrt((pow(speed_x_mult, 2) + pow(speed_y_mult, 2)));
+
+				common_mult = (proj_speed / a_mult);
+				direction = true;
+			}
+			
+			position.x += (common_mult * speed_x_mult);
+
+			position.y += (common_mult * speed_y_mult);
+		}
+
+		else {
+			original_pos.y -= 1;
+			position = original_pos + path.GetCurrentPosition();
+		}
+
+
+
+	}
 }

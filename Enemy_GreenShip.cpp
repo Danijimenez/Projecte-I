@@ -105,8 +105,9 @@ void GreenShip::Move()
 			App->particles->laser2.speed.y = (common_mult * speed_y_mult);
 
 			if (App->particles->laser2.speed.x != 0 && App->particles->laser2.speed.y != 0)
-				App->particles->AddParticle(App->particles->laser2, position.x + 11, position.y + 10, COLLIDER_ENEMY_SHOT, 0);
-
+				App->particles->AddParticle(App->particles->enemy_shot, position.x + 11, position.y + 10, COLLIDER_ENEMY_SHOT, 0);
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 11, position.y + 10, COLLIDER_ENEMY_SHOT, 1);
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 11, position.y + 10, COLLIDER_ENEMY_SHOT, 2);
 		}
 
 

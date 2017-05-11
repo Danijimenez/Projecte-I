@@ -78,7 +78,7 @@ update_status ModuleEnemies_Ground::PostUpdate()
 	{
 		if(enemies_ground[i] != nullptr)
 		{
-			if (-enemies_ground[i]->position.y *SCREEN_SIZE < (App->render->camera.y) - SPAWN_MARGIN*16)
+			if (-enemies_ground[i]->position.y *SCREEN_SIZE < (App->render->camera.y) - SPAWN_MARGIN*5)
 			{
 				LOG("DeSpawning enemy at %d", enemies_ground[i]->position.y);
 			delete enemies_ground[i];

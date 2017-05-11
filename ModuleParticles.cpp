@@ -112,7 +112,7 @@ bool ModuleParticles::Start()
 
 	enemy_shot.anim.PushBack({ 88, 86, 6, 5 });
 	enemy_shot.anim.PushBack({ 96, 86, 6, 5  });
-	enemy_shot.anim.loop = true;
+//	enemy_shot.anim.loop = true;
 	enemy_shot.anim.speed = 5.0f;
 	enemy_shot.speed.y -= 6;
 	enemy_shot.life = 1200;
@@ -251,7 +251,8 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 		if (active[i] == nullptr)
 		{
 			Particle* p = new Particle(particle);
-			p->born = SDL_GetTicks() + delay;
+			p->born = SDL_GetTicks();
+			p->born += delay;
 			p->position.x = x;
 			p->position.y = y;
 			if (collider_type != COLLIDER_NONE)

@@ -78,15 +78,15 @@ bool ModulePlayer::Start()
 		App->fonts->Load("assets/fonts/GreenCharacters.png", " !|#$%&'()*+,-./0123456789:;¿<>?@abcdefghijklmnopqrstuvwxyz!?_·¬", 4);
 		App->fonts->Load("assets/fonts/YellowCharacters.png", " !|#$%&'()*+,-./0123456789:;¿<>?@abcdefghijklmnopqrstuvwxyz!?_·¬", 4);
 		shoot_type = STANDARD;
-		player = App->collision->AddCollider({ position.x - 3, position.y, 25, 29 }, COLLIDER_PLAYER, this); //
-		speed = 0;
+		player = App->collision->AddCollider({ position.x, position.y, 25, 29 }, COLLIDER_PLAYER, this); //
+		speed = 1;
 		started = true;
 		move_speed = 1;
 		lifes = 2;
 		living = true;
 		App->audio->Enable();
 		player_points = 0;
-
+		movep = true;
 	return ret;
 }
 
@@ -108,89 +108,93 @@ update_status ModulePlayer::Update()
 {
 
 
-	if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT 
-		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_UP] == KEY_STATE::KEY_REPEAT 
-		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTY) < -5000) 
-		&& move_up)
-	{
-		position.y -= move_speed;
-	}
+		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT
+			|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_UP] == KEY_STATE::KEY_REPEAT
+			|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTY) < -5000)
+			&& move_up)
+		{
+			position.y -= move_speed;
+		}
 
-	if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT
-		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_DOWN] == KEY_STATE::KEY_REPEAT
-		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTY) > 5000)
-		&& move_down)
-	{
-		position.y += 2 * move_speed;
-		
-	}
-	
+		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT
+			|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_DOWN] == KEY_STATE::KEY_REPEAT
+			|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTY) > 5000)
+			&& move_down)
+		{
+			position.y += 2 * move_speed;
 
-	if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP 
-		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_UP) 
-		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > 5000) {
-		int i = SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < 5000;
-		right_anim = 0;
-	}
-	
-	
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT 
-		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_REPEAT
-		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > 5000)
-	{	
+		}
+
+
+		if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP
+			|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_UP)
+			|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > 5000) {
+			int i = SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < 5000;
+			right_anim = 0;
+		}
+
+
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT
+			|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_REPEAT
+			|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > 5000)
+		{
 			if (position.x < 330) {
-				position.x += 2*move_speed;
+				position.x += 2 * move_speed;
 				if (App->render->camera.x > -128) {
-				App->render->camera.x -= speed;
+					App->render->camera.x -= speed;
+				}
+			}
+
+			if (current_animation != &right[right_anim])
+			{
+				right[right_anim].Reset();
+				current_animation = &right[right_anim];
+
+			}
+			if (right[right_anim].isFinished() == true) {
+				right_anim = 1;
 			}
 		}
-		
-		if (current_animation != &right[right_anim])
+
+		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_UP)) {
+			right_anim = 0;
+		}
+
+		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT
+			|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_REPEAT)
+			|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < -5000)
 		{
-			right[right_anim].Reset();
-			current_animation = &right[right_anim];
 
-		}
-		if (right[right_anim].isFinished() == true) {
-			right_anim = 1;
-		}
-	}
+			if (position.x > 0) {
+				position.x -= 2 * move_speed;
+				if (App->render->camera.x < 0) {
+					App->render->camera.x += move_speed;
+				}
+			}
+			if (current_animation != &left[left_anim])
+			{
+				left[left_anim].Reset();
+				current_animation = &left[left_anim];
 
-	if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_UP)) {
-		right_anim = 0;
-	}
-
-	if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT 
-		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_REPEAT)
-		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < -5000)
-	{
-
-		if (position.x > 0) {
-			position.x -= 2*move_speed;
-			if (App->render->camera.x < 0) {
-				App->render->camera.x += move_speed;
+			}
+			if (left[left_anim].isFinished() == true) {
+				left_anim = 1;
 			}
 		}
-		if (current_animation != &left[left_anim])
-		{
-			left[left_anim].Reset();
-			current_animation = &left[left_anim];
+
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
+			&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_IDLE
+			&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_IDLE
+			&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
+			&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < 5000
+			&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > -5000) {
+			current_animation = &idle;
 
 		}
-		if (left[left_anim].isFinished() == true) {
-			left_anim = 1;
-		}
+		if (movep) {
+		position.y -= speed;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
-		&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_IDLE
-		&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-		&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < 5000
-		&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > -5000) {
-		current_animation = &idle;
-
-	}
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN)
 	{ 
 		
@@ -199,6 +203,8 @@ update_status ModulePlayer::Update()
 		case STANDARD:
 			App->particles->AddParticle(App->particles->standard_shot, position.x+8, position.y, COLLIDER_PLAYER_SHOT, 0);
 			App->particles->AddParticle(App->particles->standard_shot_flash, position.x, position.y - 5, COLLIDER_NONE, 0);
+
+
 			break;
 		case LASER:		
 
@@ -235,7 +241,7 @@ update_status ModulePlayer::Update()
 	move_down = true;
 
 
-	position.y -= speed;
+	movep = !movep;
 
 
 

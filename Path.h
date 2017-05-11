@@ -15,6 +15,7 @@ class Path
 {
 public:
 	bool loop = true;
+	bool finished = false;
 	Step steps[MAX_STEPS];
 	fPoint accumulated_speed = {0.0f, 0.0f};
 
@@ -38,6 +39,7 @@ public:
 		uint count = 0;
 		uint i = 0;
 		bool need_loop = true;
+		finished=true;
 		for(; i < last_step; ++i)
 		{
 			count += steps[i].frames;
@@ -47,6 +49,7 @@ public:
 			{
 				accumulated_speed += steps[i].speed;
 				need_loop = false;
+				finished = false;
 				break;
 			}
 		}

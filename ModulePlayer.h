@@ -59,6 +59,7 @@ public:
 	bool hittable = true;
 	int damage = 0;
 	int bombs;
+	bool movep;
 
 
 };

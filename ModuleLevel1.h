@@ -33,7 +33,8 @@ public:
 	Collider* bottom;
 	int bottom_pos;
 	int hi_score = 0;
-	float speed = 1;
+	float speed = 0.5;
+	bool move=true;
 };
 
 #endif // __MODULESCENEHONDA_H__

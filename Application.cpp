@@ -35,23 +35,16 @@ Application::Application()
 	modules[i++] = debug = new ModuleDebug();
 	modules[i++] = HallOfAces = new ModuleHallOfAces();
 	modules[i++] = welcomeassets = new ModuleWelcomeAssets();
-	
+	modules[i++] = enemies_ground = new ModuleEnemies_Ground();
 	modules[i++] = level_1_assets = new ModuleLevel1_assets();
-
 	modules[i++] = welcome = new ModuleWelcome();
-
 	modules[i++] = collision = new ModuleCollision();
-
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
-
-	modules[i++] = enemies_ground = new ModuleEnemies_Ground();
 	modules[i++] = enemies = new ModuleEnemies();
-
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = fonts = new ModuleFonts();
 	modules[i++] = fade = new ModuleFadeToBlack();
-
 
 
 }

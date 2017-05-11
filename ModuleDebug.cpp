@@ -89,6 +89,9 @@ update_status ModuleDebug::Update()
 	if (App->input->keyboard[SDL_SCANCODE_7] == KEY_STATE::KEY_DOWN) {
 		App->enemies->AddEnemy(ENEMY_TYPES::POWERUP, App->player->position.x, App->player->position.y - 100);
 	}
+	if (App->input->keyboard[SDL_SCANCODE_7] == KEY_STATE::KEY_DOWN) {
+		App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, App->player->position.x, App->player->position.y - 100);
+	}
 	 // PowerUp
 
 	if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN) {

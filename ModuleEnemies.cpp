@@ -5,6 +5,7 @@
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
 #include "Enemy_BasicEnemy.h"
+#include "Enemy_BasicEnemy2.h"
 #include "Enemy_Turret.h"
 #include "Enemy_GreenShip.h"
 #include "Enemy_PowerUpShip.h"
@@ -12,6 +13,7 @@
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
+
 
 
 #define SPAWN_MARGIN 50
@@ -170,6 +172,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		case ENEMY_TYPES::POWERUP:
 			enemies[i] = new PowerUp(info.x, info.y);
+			break;
+		case ENEMY_TYPES::BASICENEMY2:
+			enemies[i] = new BasicEnemy2(info.x, info.y);
 			break;
 		}			
 	}
