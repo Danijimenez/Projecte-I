@@ -29,6 +29,7 @@ struct Particle
 	Particle(const Particle& p);
 	bool Update();
 
+	bool reload = false;
 };
 
 class ModuleParticles : public Module
@@ -43,6 +44,7 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay);
+
 
 private:
 
@@ -68,6 +70,9 @@ public:
 	Particle laser2;
 	Particle box_explosion;
 	Particle player_explosion;
+	Particle homing_missile;
+	Particle nuclear_missile;
+
 };
 
 #endif // __MODULEPARTICLES_H__

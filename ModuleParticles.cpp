@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
+#include "ModulePlayer.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -108,11 +109,29 @@ bool ModuleParticles::Start()
 	bomb.anim.speed = 0.2f;
 	bomb.anim.loop = false;
 
-	//Enemy shots
+	// Player missiles
+
+		///Homing missile
+
+	homing_missile.anim.PushBack({ 50, 50, 50, 50 });
+
+	homing_missile.reload = true;
+
+		///Nuclear missile
+
+	nuclear_missile.anim.PushBack({ 50,50,50,50 });
+
+	nuclear_missile.speed.x = 0;
+	nuclear_missile.speed.y = -3;
+
+	nuclear_missile.reload = true;
+	
+
+	// Enemy shots
 
 	enemy_shot.anim.PushBack({ 88, 86, 6, 5 });
 	enemy_shot.anim.PushBack({ 96, 86, 6, 5  });
-//	enemy_shot.anim.loop = true;
+	enemy_shot.anim.loop = true;
 	enemy_shot.anim.speed = 5.0f;
 	enemy_shot.speed.y -= 6;
 	enemy_shot.life = 1200;
@@ -226,6 +245,9 @@ update_status ModuleParticles::Update()
 
 		if (p->Update() == false)
 		{
+			if (p->reload) {
+				App->player->ammo = true;
+			}
 			App->collision->EraseCollider(active[i]->collider);
 			delete p;
 			active[i] = nullptr;

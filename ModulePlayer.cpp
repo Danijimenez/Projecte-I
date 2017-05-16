@@ -113,7 +113,7 @@ update_status ModulePlayer::Update()
 			|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTY) < -5000)
 			&& move_up)
 		{
-			position.y -= move_speed;
+			position.y -= 2 * move_speed;
 		}
 
 		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT
@@ -141,7 +141,7 @@ update_status ModulePlayer::Update()
 			if (position.x < 330) {
 				position.x += 2 * move_speed;
 				if (App->render->camera.x > -128) {
-					App->render->camera.x -= speed;
+					App->render->camera.x -= move_speed;
 				}
 			}
 
@@ -227,8 +227,39 @@ update_status ModulePlayer::Update()
 		default:
 			break;
 		}
+		
+		if (homing && ammo) 
+		{
+
+			ammo = false;
+
+			speed_x_mult = (App->player->position.x - position.x);
+			speed_y_mult = (App->player->position.y - position.y);
+
+			a_mult = sqrt((pow(speed_x_mult, 2) + pow(speed_y_mult, 2)));
+
+			common_mult = (enemy_speed / a_mult);
+
+			App->particles->homing_missile.speed.x = (common_mult * speed_x_mult);
+
+			App->particles->homing_missile.speed.y = (common_mult * speed_y_mult);
+
+			App->particles->AddParticle(App->particles->homing_missile, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+
+		}
+
+		if (nuclear && ammo)
+		{
+			ammo = false;
+
+			App->particles->AddParticle(App->particles->nuclear_missile, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+
+		}
+
 		Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 	}
+
+
 
 	if ((App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_X] == KEY_STATE::KEY_DOWN) && bombs >= 0)
 	{

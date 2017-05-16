@@ -18,7 +18,6 @@
 #include "ModuleHallOfAces.h"
 #include "ModuleParticles.h"
 
-// Reference at https://youtu.be/6OlenbCC4WI?t=382
 
 ModuleLevel1::ModuleLevel1()
 {
@@ -43,6 +42,7 @@ bool ModuleLevel1::Start()
 	App->render->camera.x = -64;
 	App->render->camera.y = 0;
 
+	path.PushBack({ 0,0.5f }, 7400);
 
 	App->audio->Play("assets/music/1-4.ogg");
 
@@ -55,7 +55,6 @@ bool ModuleLevel1::Start()
 		App->player2->Enable();
 	}
 
-	App->player->speed = 1;
 	App->player2->speed = 1;
 	speed = 1;
 
@@ -145,7 +144,6 @@ update_status ModuleLevel1::Update()
 	
 
 	//Scroll
-	if (move)
 	{
 		App->render->camera.y += speed;
 		top_pos -= speed;

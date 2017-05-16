@@ -50,7 +50,7 @@ public:
 	char score_text[10];
 	char hiscore_text[10];
 	bool destroyed = false;
-	float speed = 0.5;
+	float speed = 1;
 	
 	float move_speed;
 	int lifes;
@@ -61,6 +61,11 @@ public:
 	int bombs;
 	bool movep;
 
+	bool homing = false;
+	bool nuclear = false;
+	bool ammo = false;
+	float enemy_speed = 3.0f;
+	float speed_x_mult, speed_y_mult, common_mult, a_mult;
 
 };
 

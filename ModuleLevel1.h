@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Globals.h"
-
+#include "Path.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -35,6 +35,8 @@ public:
 	int hi_score = 0;
 	float speed = 0.5;
 	bool move=true;
+	Path path;
+	fPoint movement;
 };
 
 #endif // __MODULESCENEHONDA_H__
