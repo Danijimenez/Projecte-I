@@ -55,7 +55,6 @@ bool ModuleLevel1::Start()
 		App->player2->Enable();
 	}
 
-	App->player2->speed = 1;
 	speed = 1;
 
 	top_pos = App->render->camera.y-10;
@@ -144,6 +143,7 @@ update_status ModuleLevel1::Update()
 	
 
 	//Scroll
+/*	if (move)
 	{
 		App->render->camera.y += speed;
 		top_pos -= speed;
@@ -152,6 +152,18 @@ update_status ModuleLevel1::Update()
 		top->SetPos(0, top_pos);
 		bottom->SetPos(0, bottom_pos);
 	}
+	*/
+
+	movement = path.GetCurrentPosition();
+
+	App->render->camera.y = movement.y;
+
+	top_pos = -movement.y;
+	bottom_pos = -movement.y + App->render->camera.h;
+
+	top->SetPos(0, top_pos);
+	bottom->SetPos(0, bottom_pos);
+
 
 
 	if (App->input->keyboard[SDL_SCANCODE_F1]) {

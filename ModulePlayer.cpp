@@ -230,8 +230,9 @@ update_status ModulePlayer::Update()
 		
 		if (homing && ammo) 
 		{
-
 			ammo = false;
+
+			//select target here
 
 			speed_x_mult = (App->player->position.x - position.x);
 			speed_y_mult = (App->player->position.y - position.y);
