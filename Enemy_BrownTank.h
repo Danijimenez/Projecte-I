@@ -1,3 +1,5 @@
+#ifndef __ENEMY_BROWN_TANK_H__
+#define __ENEMY_BROWN_TANK_H__
 
 #include "Enemy.h"
 #include "Path.h"
@@ -20,3 +22,4 @@ public:
 	void Move();
 };
 
+#endif // __ENEMY_BROWN_TANK_H__
