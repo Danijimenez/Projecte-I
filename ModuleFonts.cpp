@@ -108,7 +108,7 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 	int inTable_x, inTable_y;
 	for(uint i = 0; i < len; ++i)
 	{
-		// TODO 2: Find the character in the table and its position in the texture, then Blit
+
 		for (int k = 0; k < fonts[font_id].rows; k++) {
 			for (int j = 0; j < fonts[font_id].row_chars; j++)
 			{

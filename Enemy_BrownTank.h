@@ -4,7 +4,7 @@
 #include "Enemy.h"
 #include "Path.h"
 
-class BasicEnemy : public Enemy
+class BrownTank : public Enemy
 {
 private:
 	fPoint original_pos;
@@ -17,7 +17,7 @@ private:
 
 public:
 
-	BasicEnemy(int x, int y);
+	BrownTank(int x, int y);
 
 	void Move();
 };

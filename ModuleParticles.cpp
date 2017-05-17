@@ -247,6 +247,7 @@ update_status ModuleParticles::Update()
 		{
 			if (p->reload) {
 				App->player->ammo = true;
+
 			}
 			App->collision->EraseCollider(active[i]->collider);
 			delete p;

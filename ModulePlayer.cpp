@@ -108,109 +108,109 @@ update_status ModulePlayer::Update()
 {
 
 
-		if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT
-			|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_UP] == KEY_STATE::KEY_REPEAT
-			|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTY) < -5000)
-			&& move_up)
+	if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT
+		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_UP] == KEY_STATE::KEY_REPEAT
+		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTY) < -5000)
+		&& move_up)
+	{
+		position.y -= 2 * move_speed;
+	}
+
+	if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT
+		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_DOWN] == KEY_STATE::KEY_REPEAT
+		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTY) > 5000)
+		&& move_down)
+	{
+		position.y += 2 * move_speed;
+
+	}
+
+
+	if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP
+		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_UP)
+		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > 5000) {
+		int i = SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < 5000;
+		right_anim = 0;
+	}
+
+
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT
+		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_REPEAT
+		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > 5000)
+	{
+		if (position.x < 330) {
+			position.x += 2 * move_speed;
+			if (App->render->camera.x > -128) {
+				App->render->camera.x -= move_speed;
+			}
+		}
+
+		if (current_animation != &right[right_anim])
 		{
-			position.y -= 2 * move_speed;
-		}
+			right[right_anim].Reset();
+			current_animation = &right[right_anim];
 
-		if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT
-			|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_DOWN] == KEY_STATE::KEY_REPEAT
-			|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTY) > 5000)
-			&& move_down)
+		}
+		if (right[right_anim].isFinished() == true) {
+			right_anim = 1;
+		}
+	}
+
+	if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_UP)) {
+		right_anim = 0;
+	}
+
+	if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT
+		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_REPEAT)
+		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < -5000)
+	{
+
+		if (position.x > 0) {
+			position.x -= 2 * move_speed;
+			if (App->render->camera.x < 0) {
+				App->render->camera.x += move_speed;
+			}
+		}
+		if (current_animation != &left[left_anim])
 		{
-			position.y += 2 * move_speed;
+			left[left_anim].Reset();
+			current_animation = &left[left_anim];
 
 		}
-
-
-		if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP
-			|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_UP)
-			|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > 5000) {
-			int i = SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < 5000;
-			right_anim = 0;
+		if (left[left_anim].isFinished() == true) {
+			left_anim = 1;
 		}
+	}
 
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
+		&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_IDLE
+		&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_IDLE
+		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
+		&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < 5000
+		&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > -5000) {
+		current_animation = &idle;
 
-		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT
-			|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_REPEAT
-			|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > 5000)
-		{
-			if (position.x < 330) {
-				position.x += 2 * move_speed;
-				if (App->render->camera.x > -128) {
-					App->render->camera.x -= move_speed;
-				}
-			}
-
-			if (current_animation != &right[right_anim])
-			{
-				right[right_anim].Reset();
-				current_animation = &right[right_anim];
-
-			}
-			if (right[right_anim].isFinished() == true) {
-				right_anim = 1;
-			}
-		}
-
-		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_UP)) {
-			right_anim = 0;
-		}
-
-		if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT
-			|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_REPEAT)
-			|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < -5000)
-		{
-
-			if (position.x > 0) {
-				position.x -= 2 * move_speed;
-				if (App->render->camera.x < 0) {
-					App->render->camera.x += move_speed;
-				}
-			}
-			if (current_animation != &left[left_anim])
-			{
-				left[left_anim].Reset();
-				current_animation = &left[left_anim];
-
-			}
-			if (left[left_anim].isFinished() == true) {
-				left_anim = 1;
-			}
-		}
-
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
-			&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_IDLE
-			&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_IDLE
-			&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-			&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < 5000
-			&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > -5000) {
-			current_animation = &idle;
-
-		}
-		if (movep) {
+	}
+	if (movep) {
 		position.y -= speed;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN)
-	{ 
-		
+	{
+
 		switch (shoot_type)
 		{
 		case STANDARD:
-			App->particles->AddParticle(App->particles->standard_shot, position.x+8, position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->standard_shot, position.x + 8, position.y, COLLIDER_PLAYER_SHOT, 0);
 			App->particles->AddParticle(App->particles->standard_shot_flash, position.x, position.y - 5, COLLIDER_NONE, 0);
 
 
 			break;
-		case LASER:		
+		case LASER:
 
-			App->particles->AddParticle(App->particles->laser_flash, position.x , position.y-3, COLLIDER_NONE, 0);
-			App->particles->AddParticle(App->particles->laser, position.x+10 , position.y, COLLIDER_PLAYER_SHOT, 0);
-			App->particles->AddParticle(App->particles->laser, position.x+10, position.y+15, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y - 3, COLLIDER_NONE, 0);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y + 15, COLLIDER_PLAYER_SHOT, 0);
 
 			break;
 		case LASER_LVL2:
@@ -218,7 +218,7 @@ update_status ModulePlayer::Update()
 
 			break;
 		case VULCAN:
-			App->particles->AddParticle(App->particles->standard_shot, position.x + 4, position.y, COLLIDER_PLAYER_SHOT, 0);	
+			App->particles->AddParticle(App->particles->standard_shot, position.x + 4, position.y, COLLIDER_PLAYER_SHOT, 0);
 			App->particles->AddParticle(App->particles->standard_shot, position.x + 16, position.y, COLLIDER_PLAYER_SHOT, 0);
 			break;
 		case VULCAN_LVL2:
@@ -227,44 +227,48 @@ update_status ModulePlayer::Update()
 		default:
 			break;
 		}
-		
-		if (homing && ammo) 
+
+		if (homing && ammo)
 		{
 			ammo = false;
 
 			//select target here
 
-			speed_x_mult = (App->player->position.x - position.x);
-			speed_y_mult = (App->player->position.y - position.y);
+			for (int i = 0; i < MAX_COLLIDERS; i++) {
+				//				if (App->collision->);
+					//		}
 
-			a_mult = sqrt((pow(speed_x_mult, 2) + pow(speed_y_mult, 2)));
+				speed_x_mult = (App->player->position.x - position.x);
+				speed_y_mult = (App->player->position.y - position.y);
 
-			common_mult = (enemy_speed / a_mult);
+				a_mult = sqrt((pow(speed_x_mult, 2) + pow(speed_y_mult, 2)));
 
-			App->particles->homing_missile.speed.x = (common_mult * speed_x_mult);
+				common_mult = (enemy_speed / a_mult);
 
-			App->particles->homing_missile.speed.y = (common_mult * speed_y_mult);
+				App->particles->homing_missile.speed.x = (common_mult * speed_x_mult);
 
-			App->particles->AddParticle(App->particles->homing_missile, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+				App->particles->homing_missile.speed.y = (common_mult * speed_y_mult);
 
+				App->particles->AddParticle(App->particles->homing_missile, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+
+			}
+
+			if (nuclear && ammo)
+			{
+				ammo = false;
+
+				App->particles->AddParticle(App->particles->nuclear_missile, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+
+			}
+
+			Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 		}
-
-		if (nuclear && ammo)
-		{
-			ammo = false;
-
-			App->particles->AddParticle(App->particles->nuclear_missile, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
-
-		}
-
-		Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 	}
-
 
 
 	if ((App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_X] == KEY_STATE::KEY_DOWN) && bombs >= 0)
 	{
-		App->particles->AddParticle(App->particles->bomb, position.x - 70, position.y - 130 , COLLIDER_BOMB,0);
+		App->particles->AddParticle(App->particles->bomb, position.x - 70, position.y - 130, COLLIDER_BOMB, 0);
 		bombs--;
 	}
 
@@ -277,8 +281,8 @@ update_status ModulePlayer::Update()
 
 
 
-	player->SetPos(position.x-3, position.y);
-	
+	player->SetPos(position.x - 3, position.y);
+
 
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -289,10 +293,10 @@ update_status ModulePlayer::Update()
 
 	switch (lifes) {
 	case 0:
-		App->fonts->BlitText(0, 17, font_score,  "¬");
+		App->fonts->BlitText(0, 17, font_score, "¬");
 		break;
 	case 1:
-		App->fonts->BlitText(0 , 17, font_score, "¬¬");
+		App->fonts->BlitText(0, 17, font_score, "¬¬");
 		break;
 	case 2:
 		App->fonts->BlitText(0, 17, font_score, "¬¬¬");
@@ -300,8 +304,8 @@ update_status ModulePlayer::Update()
 
 	}
 
-	
-	
+
+
 
 	sprintf_s(score_text, 10, "%7d", player_points);
 	sprintf_s(hiscore_text, 10, "%7d", App->level_1->hi_score);
@@ -314,7 +318,7 @@ update_status ModulePlayer::Update()
 	if (!living) {
 		lifes--;
 		position.x = 176;
-		position.y = -App->render->camera.y/SCREEN_SIZE+200;
+		position.y = -App->render->camera.y / SCREEN_SIZE + 200;
 		if (lifes < 0) {
 			player->to_delete = true;
 			this->Disable();
@@ -328,8 +332,8 @@ update_status ModulePlayer::Update()
 	}
 
 	return UPDATE_CONTINUE;
-}
 
+}
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 
@@ -353,7 +357,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			living = false;
 			break;
 		case COLLIDER_ENEMY_SHOT:
-
 			App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);
 			living = false;
 			break;

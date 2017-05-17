@@ -42,7 +42,7 @@ bool ModuleLevel1::Start()
 	App->render->camera.x = -64;
 	App->render->camera.y = 0;
 
-	path.PushBack({ 0,0.5f }, 7400);
+//	path.PushBack({ 0,0.5f }, 5000);
 
 	App->audio->Play("assets/music/1-4.ogg");
 
@@ -143,7 +143,8 @@ update_status ModuleLevel1::Update()
 	
 
 	//Scroll
-/*	if (move)
+
+	if (move)
 	{
 		App->render->camera.y += speed;
 		top_pos -= speed;
@@ -152,7 +153,7 @@ update_status ModuleLevel1::Update()
 		top->SetPos(0, top_pos);
 		bottom->SetPos(0, bottom_pos);
 	}
-	*/
+/*
 
 	movement = path.GetCurrentPosition();
 
@@ -163,7 +164,7 @@ update_status ModuleLevel1::Update()
 
 	top->SetPos(0, top_pos);
 	bottom->SetPos(0, bottom_pos);
-
+	*/
 
 
 	if (App->input->keyboard[SDL_SCANCODE_F1]) {

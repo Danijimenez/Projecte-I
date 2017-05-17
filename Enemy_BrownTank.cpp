@@ -5,7 +5,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleInput.h"
 
-BasicEnemy::BasicEnemy(int x, int y) : Enemy(x, y)
+BrownTank::BrownTank(int x, int y) : Enemy(x, y)
 {
 	anim[0].PushBack({ 27,511,32,30 });
 	anim[1].PushBack({ 234,514,32,30 });
@@ -37,7 +37,7 @@ BasicEnemy::BasicEnemy(int x, int y) : Enemy(x, y)
 	path.loop = false;
 }
 
-void BasicEnemy::Move()
+void BrownTank::Move()
 {
 	fPoint current_pos = path.GetCurrentPosition();
 	if (App->player->movep) {
