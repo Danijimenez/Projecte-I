@@ -49,16 +49,37 @@ bool ModuleHallOfAces::Start()
 		temp_hiScore = App->player2->player_points;
 	}
 
-	scores[9] = temp_hiScore;
+	char_num = 0;
+
+	scores[9].score = temp_hiScore;
 
 	while (!ordered)
 	{
 		for (int i = 0; i < 9; i++) {
-			if (scores[i] < scores[i + 1]) {
-				aux1 = scores[i + 1];
-				aux2 = scores[i];
-				scores[i] = aux1;
-				scores[i + 1] = aux2;
+			if (scores[i].score < scores[i + 1].score) {
+
+				score_aux1 = scores[i + 1].score;
+				score_aux2 = scores[i].score;
+
+				char1_aux1 = scores[i + i].character[0];
+				char2_aux1 = scores[i + i].character[1];
+				char3_aux1 = scores[i + i].character[2];
+				char1_aux2 = scores[i].character[0];
+				char2_aux2 = scores[i].character[1];
+				char3_aux2 = scores[i].character[2];
+
+				scores[i].score = score_aux1;
+				scores[i + 1].score = score_aux2;
+
+				scores[i].character[0] = char1_aux1;
+				scores[i].character[1] = char2_aux1;
+				scores[i].character[2] = char3_aux1;
+				scores[i + 1].character[0] = char1_aux2;
+				scores[i + 1].character[1] = char2_aux2;
+				scores[i + 1].character[2] = char3_aux2;
+
+				score_index = i;
+
 				numSwaps++;
 			}
 		}
@@ -69,21 +90,17 @@ bool ModuleHallOfAces::Start()
 			numSwaps = 0;
 	}
 	ordered = false;
+
 	//Save scores as text
 
 	sprintf_s(App->player->score_text, 10, "%7d", App->player->player_points); 
 	sprintf_s(App->player2->score_text, 10, "%7d", App->player2->player_points);
 	sprintf_s(App->player->hiscore_text, 10, "%7d", App->level_1->hi_score);
 
-	sprintf_s(scores_text_1, 10, "%7d", scores[0]);
-	sprintf_s(scores_text_2, 10, "%7d", scores[1]);
-	sprintf_s(scores_text_3, 10, "%7d", scores[2]);
-	sprintf_s(scores_text_4, 10, "%7d", scores[3]);
-	sprintf_s(scores_text_5, 10, "%7d", scores[4]);
-	sprintf_s(scores_text_6, 10, "%7d", scores[5]);
-	sprintf_s(scores_text_7, 10, "%7d", scores[6]);
-	sprintf_s(scores_text_8, 10, "%7d", scores[7]);
-	sprintf_s(scores_text_9, 10, "%7d", scores[8]);
+	for (int i = 0; i < 9; i++) {
+		sprintf_s(scores[i].score_text, 10, "%7d", scores[i].score);
+	}
+
 
 	return true;
 }
@@ -111,37 +128,52 @@ update_status ModuleHallOfAces::Update()
 	App->fonts->BlitText(150, 9, 2, App->player2->score_text); // player 2 score
 	App->fonts->BlitText(78, 9, 2, App->player->hiscore_text); // hi score
 
-	App->fonts->BlitText(100, 78, 1, scores_text_1);
-	App->fonts->BlitText(100, 96, 1, scores_text_2);
-	App->fonts->BlitText(100, 112, 1, scores_text_3);
-	App->fonts->BlitText(100, 127, 1, scores_text_4);
-	App->fonts->BlitText(100, 144, 1, scores_text_5);
-	App->fonts->BlitText(100, 160, 1, scores_text_6);
-	App->fonts->BlitText(100, 176, 1, scores_text_7);
-	App->fonts->BlitText(100, 192, 1, scores_text_8);
-	App->fonts->BlitText(100, 208, 1, scores_text_9);
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_DOWN) {
+		char_num++;
+		if (char_num == 3) {
+			char_num = 0;
+		}
+	}
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_DOWN) {
+		char_num--;
+		if (char_num == -1) {
+			char_num = 2;
+		}
+	}
+
 
 	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_UP] == KEY_STATE::KEY_DOWN) {
-		character++;
-		if (character == 65) {
-			character = 0;
+		scores[score_index].character[char_num]++;
+		if (scores[score_index].character[char_num] == 65) {
+			scores[score_index].character[char_num] = 0;
 		}
 	}
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_DOWN] == KEY_STATE::KEY_DOWN) {
-		character--;
-		if (character == 0) {
-			character = 64;
+		scores[score_index].character[char_num]--;
+		if (scores[score_index].character[char_num] == -1) {
+			scores[score_index].character[char_num] = 64;
 		}
 	}
-	std::string sym(1, name[character]);
-	screen_name = sym.c_str();
 
-	App->fonts->BlitText(55, 80, 1, screen_name);
+
+	for (int i = 0; i < 9; i++) {
+
+	
+
+	App->fonts->BlitText(100, 80 + (16 * i), 1, scores[i].score_text);
+
+	for (int j = 0; j < 3; j++) {
+		std::string sym(1, scores[i].name[j][scores[i].character[j]]);
+		scores[i].screen_name[j] = sym.c_str();
+
+		App->fonts->BlitText(60 + (8 * j), 80 + (16 * i), 1, scores[i].screen_name[j]);
+	}
+	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->contrkey[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, App->welcome, 2.0f);
 	}
-
+	
 	return UPDATE_CONTINUE;
 }
 
