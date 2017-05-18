@@ -179,13 +179,16 @@ update_status ModuleLevel1::Update()
 		App->player2->speed = 0;
 		App->render->camera.y += 0;
 		App->fade->FadeToBlack(this, App->HallOfAces, 2.0f);
-
+		top->to_delete = true;
+		bottom->to_delete = true;
 
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_F6])
 	{
 		App->fade->FadeToBlack(this, App->HallOfAces, 2.0f);
+		top->to_delete = true;
+		bottom->to_delete = true;
 	}
 
 	move = !move;

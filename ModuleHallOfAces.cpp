@@ -19,7 +19,6 @@
 #include <stdio.h>
 #include <string>
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModuleHallOfAces::ModuleHallOfAces()
 {
@@ -93,7 +92,7 @@ bool ModuleHallOfAces::Start()
 
 	//Save scores as text
 
-	sprintf_s(App->player->score_text, 10, "%7d", App->player->player_points); 
+	sprintf_s(App->player->score_text, 10, "%7d", App->player->player_points);
 	sprintf_s(App->player2->score_text, 10, "%7d", App->player2->player_points);
 	sprintf_s(App->player->hiscore_text, 10, "%7d", App->level_1->hi_score);
 
@@ -101,7 +100,9 @@ bool ModuleHallOfAces::Start()
 		sprintf_s(scores[i].score_text, 10, "%7d", scores[i].score);
 	}
 
-
+	scores[score_index].character[0] = 62;
+	scores[score_index].character[1] = 62;
+	scores[score_index].character[2] = 62;
 	return true;
 }
 
@@ -158,22 +159,22 @@ update_status ModuleHallOfAces::Update()
 
 	for (int i = 0; i < 9; i++) {
 
-	
 
-	App->fonts->BlitText(100, 80 + (16 * i), 1, scores[i].score_text);
 
-	for (int j = 0; j < 3; j++) {
-		std::string sym(1, scores[i].name[j][scores[i].character[j]]);
-		scores[i].screen_name[j] = sym.c_str();
+		App->fonts->BlitText(100, 80 + (16 * i), 1, scores[i].score_text);
 
-		App->fonts->BlitText(60 + (8 * j), 80 + (16 * i), 1, scores[i].screen_name[j]);
-	}
+		for (int j = 0; j < 3; j++) {
+			std::string sym(1, scores[i].name[j][scores[i].character[j]]);
+			scores[i].screen_name[j] = sym.c_str();
+
+			App->fonts->BlitText(60 + (8 * j), 80 + (16 * i), 1, scores[i].screen_name[j]);
+		}
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->contrkey[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, App->welcome, 2.0f);
 	}
-	
+
 	return UPDATE_CONTINUE;
 }
 

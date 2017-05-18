@@ -63,13 +63,13 @@ bool Application::Init()
 	player->Disable();
 	player2->Disable();
 	// Disable the map that you do not start with
-	welcome->Disable();
+//	welcome->Disable();
 	welcomeassets->Disable();
 	debug->Disable();
 	level_1->Disable();
 	level_1_assets->Disable();
 	level_2->Disable();
-//	HallOfAces->Disable();
+	HallOfAces->Disable();
 
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
