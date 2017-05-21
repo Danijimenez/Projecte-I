@@ -65,17 +65,17 @@ update_status ModuleWelcome::Update()
 
 
 	if (App->input->keyboard[SDL_SCANCODE_1] || App->input->contrkey[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN) {
-		App->fade->FadeToBlack(this, App->level_1, 2.0f);
+		App->fade->FadeToBlack(this, App->level_2, 2.0f);
 //		App->level_1->Disable();
 		player1 = true;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_2]) {
-		App->fade->FadeToBlack(this, App->level_1, 2.0f);
+		App->fade->FadeToBlack(this, App->level_2, 2.0f);
 //		App->level_1->Disable();
 		player2 = true;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_3]) {
-		App->fade->FadeToBlack(this, App->level_1, 2.0f);
+		App->fade->FadeToBlack(this, App->level_2, 2.0f);
 //		App->level_1->Disable();
 		player1 = true;
 		player2 = true;

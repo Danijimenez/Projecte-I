@@ -56,6 +56,9 @@ public:
 	int score_index;
 	int char_num;
 
+	int blit = 0;
+	bool pop = true;
+
 };
 
 #endif // __MODULESCENEKEN_H__
