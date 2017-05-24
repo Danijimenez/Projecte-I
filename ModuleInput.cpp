@@ -29,64 +29,23 @@ bool ModuleInput::Init()
 
 	int i;
 
-	//SDL_Init(SDL_INIT_GAMECONTROLLER);
+	SDL_Init(SDL_INIT_GAMECONTROLLER);
 
-	//for (i = 0; i < SDL_NumJoysticks(); ++i) {
-	//	if (SDL_IsGameController(i)) {
-	//		char *mapping;
-	//		SDL_Log("Index \'%i\' is a compatible controller, named \'%s\'", i, SDL_GameControllerNameForIndex(i));
-	//		controller = SDL_GameControllerOpen(i);
-	//		mapping = SDL_GameControllerMapping(controller);
-	//		SDL_Log("Controller %i is mapped as \"%s\".", i, mapping);
-	//		SDL_free(mapping);
-	//	}
-	//	else {
-	//		SDL_Log("Index \'%i\' is not a compatible controller.", i);
-
-	//	}
-	//}
-
-
-	SDL_Joystick *joy;
-	SDL_Haptic* mando;
-
-	// Initialize the joystick subsystem
-	SDL_InitSubSystem(SDL_INIT_JOYSTICK);
-
-	SDL_InitSubSystem(SDL_INIT_HAPTIC);
-
-	// Check for joystick
-	if (SDL_NumJoysticks() > 0) {
-		// Open joystick
-		joy = SDL_JoystickOpen(0);
-
-		if (joy) {
-			LOG("Opened Joystick 0\n");
-			LOG("Name: %s\n", SDL_JoystickNameForIndex(0));
-			LOG("Number of Axes: %d\n", SDL_JoystickNumAxes(joy));
-			LOG("Number of Buttons: %d\n", SDL_JoystickNumButtons(joy));
-			LOG("Number of Balls: %d\n", SDL_JoystickNumBalls(joy));
-			mando = SDL_HapticOpenFromJoystick(joy);
-
-			if (SDL_HapticRumbleSupported(mando)) {
-
-				SDL_HapticRumbleInit(mando);
-
-				if (SDL_HapticRumblePlay(mando, 1.0f, 3000) == 0) {
-
-					LOG("RETRASADO");
-
-				}
-				SDL_Delay(3000);
-			}
-
+	for (i = 0; i < SDL_NumJoysticks(); ++i) {
+		if (SDL_IsGameController(i)) {
+			char *mapping;
+			SDL_Log("Index \'%i\' is a compatible controller, named \'%s\'", i, SDL_GameControllerNameForIndex(i));
+			controller = SDL_GameControllerOpen(i);
+			mapping = SDL_GameControllerMapping(controller);
+			SDL_Log("Controller %i is mapped as \"%s\".", i, mapping);
+			SDL_free(mapping);
 		}
 		else {
-			LOG("Couldn't open Joystick 0\n");
+			SDL_Log("Index \'%i\' is not a compatible controller.", i);
+
 		}
-
-
 	}
+
 
 
 	return ret;

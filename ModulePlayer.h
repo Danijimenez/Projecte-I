@@ -61,11 +61,13 @@ public:
 	int bombs;
 	bool movep;
 
-	bool homing = false;
+	bool homing = true;
 	bool nuclear = false;
-	bool ammo = false;
+	bool ammo = true;
 	float enemy_speed = 3.0f;
 	float speed_x_mult, speed_y_mult, common_mult, a_mult;
+
+	bool homing_shot = false;
 
 };
 

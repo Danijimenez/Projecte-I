@@ -45,6 +45,9 @@ public:
 
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay);
 
+	float movement_x = 0;
+	float movement_y = 0;
+
 
 private:
 

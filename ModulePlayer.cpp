@@ -232,37 +232,21 @@ update_status ModulePlayer::Update()
 		{
 			ammo = false;
 
-			//select target here
+			App->particles->AddParticle(App->particles->homing_missile, App->player->position.x, App->player->position.y, COLLIDER_PLAYER_SHOT, 0);
 
-			for (int i = 0; i < MAX_COLLIDERS; i++) {
-				//				if (App->collision->);
-					//		}
+			homing_shot = true;
 
-				speed_x_mult = (App->player->position.x - position.x);
-				speed_y_mult = (App->player->position.y - position.y);
-
-				a_mult = sqrt((pow(speed_x_mult, 2) + pow(speed_y_mult, 2)));
-
-				common_mult = (enemy_speed / a_mult);
-
-				App->particles->homing_missile.speed.x = (common_mult * speed_x_mult);
-
-				App->particles->homing_missile.speed.y = (common_mult * speed_y_mult);
-
-				App->particles->AddParticle(App->particles->homing_missile, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
-
-			}
-
-			if (nuclear && ammo)
-			{
-				ammo = false;
-
-				App->particles->AddParticle(App->particles->nuclear_missile, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
-
-			}
-
-			Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 		}
+
+		if (nuclear && ammo)
+		{
+			ammo = false;
+
+			App->particles->AddParticle(App->particles->nuclear_missile, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+
+		}
+
+		Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 	}
 
 

@@ -52,6 +52,10 @@ private:
 	EnemyInfo queue[MAX_ENEMIES];
 	Enemy* enemies[MAX_ENEMIES];
 	SDL_Texture* sprites;
+
+	float proj_speed = 5.0f;
+	float speed_x_mult, speed_y_mult, common_mult, a_mult;
+
 };
 
 #endif // __ModuleEnemies_H__

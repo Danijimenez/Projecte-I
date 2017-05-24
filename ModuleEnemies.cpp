@@ -73,6 +73,32 @@ update_status ModuleEnemies::Update()
 
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 		if(enemies[i] != nullptr) enemies[i]->Draw(sprites);
+	
+
+	if (App->player->homing_shot) {
+		for (uint i = 0; i < MAX_ENEMIES; ++i) {
+			if (enemies[i] != nullptr) {
+
+				speed_x_mult = (App->particles->homing_missile.position.x - enemies[i]->position.x);
+				speed_y_mult = (App->particles->homing_missile.position.y - enemies[i]->position.y);
+
+				a_mult = sqrt((pow(speed_x_mult, 2) + pow(speed_y_mult, 2)));
+
+				common_mult = (proj_speed / a_mult);
+
+				App->particles->movement_x = common_mult * speed_x_mult;
+				App->particles->movement_y = common_mult * speed_y_mult;
+
+				LOG("TODO BIEN");
+
+				LOG("%.2f\t%.2f", App->particles->movement_x, App->particles->movement_y);
+
+				App->player->homing_shot = false;
+			}
+
+		}
+	}
+	
 
 	return UPDATE_CONTINUE;
 }

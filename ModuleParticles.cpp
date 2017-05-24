@@ -113,8 +113,10 @@ bool ModuleParticles::Start()
 
 		///Homing missile
 
-	homing_missile.anim.PushBack({ 50, 50, 50, 50 });
-
+	homing_missile.anim.PushBack({ 50, 50, 160, 78 });
+	homing_missile.anim.PushBack({ 60, 50, 160, 78 });
+	homing_missile.anim.loop = true;
+	homing_missile.life = 1000;
 	homing_missile.reload = true;
 
 		///Nuclear missile
@@ -332,6 +334,11 @@ bool Particle::Update()
 
 	position.x += speed.x;
 	position.y += speed.y;
+
+	if (reload) {
+		position.x += App->particles->movement_x;
+		position.y += App->particles->movement_y;
+	}
 
 	if (collider != nullptr)
 		collider->SetPos(position.x, position.y);
