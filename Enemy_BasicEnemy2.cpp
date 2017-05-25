@@ -48,6 +48,9 @@ BasicEnemy2::BasicEnemy2(int x, int y) : Enemy(x, y)
 
 void BasicEnemy2::Move()
 {
+
+	// Player 1 only
+
 	if (App->player->living && !App->player2->living) {
 		if (App->player->position.y > position.y) {
 
@@ -129,6 +132,7 @@ void BasicEnemy2::Move()
 	// Both players
 
 	else {
+
 		//Decide player to shoot
 
 		int player1_x = (App->player->position.x - position.x);
@@ -219,6 +223,9 @@ void BasicEnemy2::Move()
 			}
 		}
 	}
+
+
+	// Move
 
 	if (App->player->movep) {
 

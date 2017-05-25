@@ -113,10 +113,11 @@ bool ModuleParticles::Start()
 
 		///Homing missile
 
-	homing_missile.anim.PushBack({ 50, 50, 160, 78 });
-	homing_missile.anim.PushBack({ 60, 50, 160, 78 });
+	homing_missile.anim.PushBack({ 50, 50, 20, 20 });
+	homing_missile.anim.PushBack({ 60, 50, 20, 20 });
 	homing_missile.anim.loop = true;
 	homing_missile.life = 1000;
+
 	homing_missile.reload = true;
 
 		///Nuclear missile
@@ -316,7 +317,7 @@ Particle::Particle()
 
 Particle::Particle(const Particle& p) : 
 anim(p.anim), position(p.position), speed(p.speed),
-fx(p.fx), born(p.born), life(p.life)
+fx(p.fx), born(p.born), life(p.life), reload(p.reload)
 {}
 
 bool Particle::Update()

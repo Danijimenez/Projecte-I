@@ -44,18 +44,17 @@ bool ModuleDebug::Start()
 bool ModuleDebug::CleanUp()
 {
 
+	App->textures->Unload(graphics);
 
 	App->player->Disable();
 	App->player2->Disable();
 
-	App->textures->Unload(graphics);
+	//top->to_delete = true;
+	//bottom->to_delete = true;
 
-	App->enemies->CleanUp();
-	App->enemies_ground->CleanUp();
+	App->enemies->FreeEnemies();
+	App->enemies_ground->FreeEnemies();
 
-	LOG("Unloading Debug level");
-
-	App->player->speed = 1;
 
 
 	return true;

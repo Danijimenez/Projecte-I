@@ -19,7 +19,7 @@ struct Particle
 	Collider* collider = nullptr;
 	Animation anim;
 	uint fx = 0;
-	iPoint position;
+	fPoint position;
 	fPoint speed;
 	Uint32 born = 0;
 	Uint32 life = 0;
@@ -47,7 +47,8 @@ public:
 
 	float movement_x = 0;
 	float movement_y = 0;
-
+	int original_pos_x;
+	int original_pos_y;
 
 private:
 

@@ -47,9 +47,24 @@ GreenShip::GreenShip(int x, int y) : Enemy(x, y)
 
 	path.PushBack({ 0.0f, 0.756f }, 50, &fly);
 	path.PushBack({ 0, 0 }, 1, &shot);
-	path.PushBack({ 0.0f, 0.756f }, 50, &fly);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
 	path.PushBack({ 0, 0 }, 1, &shot);
 	path.PushBack({ 0.0f, 0.756f }, 50, &fly);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0.0f, 0.756f }, 50, &fly);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0, 0 }, 1, &shot);
 	path.PushBack({ 0, 0 }, 1, &shot);
 	path.PushBack({ -1.07f, 1.214f }, 100, &leave);
 	path.PushBack({ 0.0f, -0.75f }, 500, &back);
@@ -88,28 +103,45 @@ void GreenShip::Move()
 		break;
 	case 1:
 
-		if (animation == &shot && player1_y>=0)
+		if (animation == &shot)
 		{
 			float proj_speed = 2.0f;
 			float speed_x_mult, speed_y_mult, common_mult, a_mult;
 
-			speed_x_mult = (App->player->position.x - position.x);
-			speed_y_mult = (App->player->position.y - position.y);
+			speed_x_mult = (App->player->position.x - position.x - 11);
+			speed_y_mult = (App->player->position.y - position.y + 20);
 
 			a_mult = sqrt((pow(speed_x_mult, 2) + pow(speed_y_mult, 2)));
 
 			common_mult = (proj_speed / a_mult);
 
-			App->particles->laser2.speed.x = (common_mult * speed_x_mult);
+			App->particles->enemy_shot.speed.x = (common_mult * speed_x_mult);
 
-			App->particles->laser2.speed.y = (common_mult * speed_y_mult);
+			App->particles->enemy_shot.speed.y = (common_mult * speed_y_mult);
 
-			if (App->particles->laser2.speed.x != 0 && App->particles->laser2.speed.y != 0)
-				App->particles->AddParticle(App->particles->enemy_shot, position.x + 11, position.y + 10, COLLIDER_ENEMY_SHOT, 0);
-			App->particles->AddParticle(App->particles->enemy_shot, position.x + 11, position.y + 10, COLLIDER_ENEMY_SHOT, 1);
-			App->particles->AddParticle(App->particles->enemy_shot, position.x + 11, position.y + 10, COLLIDER_ENEMY_SHOT, 2);
+			if (App->particles->enemy_shot.speed.x != 0 && App->particles->enemy_shot.speed.y != 0) {
+				App->particles->AddParticle(App->particles->enemy_shot, position.x + 11, position.y + 30, COLLIDER_ENEMY_SHOT, 0);
+			}
+
+
+
+
+			speed_x_mult = (App->player->position.x - position.x - 60);
+			speed_y_mult = (App->player->position.y - position.y + 20);
+
+			a_mult = sqrt((pow(speed_x_mult, 2) + pow(speed_y_mult, 2)));
+
+			common_mult = (proj_speed / a_mult);
+
+			App->particles->enemy_shot.speed.x = (common_mult * speed_x_mult);
+
+			App->particles->enemy_shot.speed.y = (common_mult * speed_y_mult);
+
+			if (App->particles->enemy_shot.speed.x != 0 && App->particles->enemy_shot.speed.y != 0) {
+
+				App->particles->AddParticle(App->particles->enemy_shot, position.x + 60, position.y + 30, COLLIDER_ENEMY_SHOT, 0);
+			}
 		}
-
 
 		break;
 	case 2:
@@ -125,13 +157,12 @@ void GreenShip::Move()
 
 			common_mult = (proj_speed / a_mult);
 
-			App->particles->laser2.speed.x = (common_mult * speed_x_mult);
+			App->particles->laser2.speed.x = -(common_mult * speed_x_mult);
 
-			App->particles->laser2.speed.y = (common_mult * speed_y_mult);
+			App->particles->laser2.speed.y = -(common_mult * speed_y_mult);
 
 			if (App->particles->laser2.speed.x != 0 && App->particles->laser2.speed.y != 0)
 				App->particles->AddParticle(App->particles->laser2, position.x + 11, position.y + 10, COLLIDER_ENEMY_SHOT, 0);
-
 		}
 		break;
 	}

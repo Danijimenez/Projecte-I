@@ -20,9 +20,9 @@ bool ModuleAudio::Start()
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
 	fx_shoot = Mix_LoadWAV("assets/fx/shootFX.wav");
-	powerup_ship_explosion = Mix_LoadWAV("assets/fx/powerup_ship explosion.wav");;
-	green_ship_explosion = Mix_LoadWAV("assets/fx/green_ship_explosion.wav");;
-	basic_enemy_explosion = Mix_LoadWAV("assets/fx/basic_enemy_explosion.wav");;
+	powerup_ship_explosion = Mix_LoadWAV("assets/fx/powerup_ship explosion.wav");
+	green_ship_explosion = Mix_LoadWAV("assets/fx/green_ship_explosion.wav");
+	basic_enemy_explosion = Mix_LoadWAV("assets/fx/basic_enemy explosion.wav");
 
 	return true;
 }
@@ -41,7 +41,7 @@ bool ModuleAudio::Play(const char* path)
 		LOG("Music Loaded");
 		ret = true;
 	}
-	Mix_VolumeMusic(50);
+	Mix_VolumeMusic(30);
 	Mix_PlayMusic(soundtrack, -1);
 	
 	return ret;

@@ -49,7 +49,7 @@ PowerUpShip::PowerUpShip(int x, int y) : Enemy(x, y)
 	//path
 
 	path.PushBack({ 0, +0.2638f }, 72, &fly);
-	path.PushBack({ 0, 0 }, 37, &fly);
+	path.PushBack({ 0, -0.5f }, 37, &fly);
 	path.PushBack({ -0.34065f, 0.28162f }, 91, &fly);
 	path.PushBack({ 0,0 }, 1, &shoot);
 	path.PushBack({ +0.34065f, 0.28162f }, 182, &fly);

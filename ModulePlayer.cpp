@@ -9,6 +9,7 @@
 #include "ModuleCollision.h"
 #include "ModuleFonts.h"
 #include "ModuleLevel1.h"
+#include "ModuleLevel2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleHallOfAces.h"
 
@@ -228,15 +229,15 @@ update_status ModulePlayer::Update()
 			break;
 		}
 
-		if (homing && ammo)
-		{
-			ammo = false;
+		//if (homing && ammo)
+		//{
+		//	ammo = false;
 
-			App->particles->AddParticle(App->particles->homing_missile, App->player->position.x, App->player->position.y, COLLIDER_PLAYER_SHOT, 0);
+		//	App->particles->AddParticle(App->particles->homing_missile, App->player->position.x, App->player->position.y, COLLIDER_PLAYER_SHOT, 0);
 
-			homing_shot = true;
+		//	homing_shot = true;
 
-		}
+		//}
 
 		if (nuclear && ammo)
 		{
@@ -306,7 +307,7 @@ update_status ModulePlayer::Update()
 		if (lifes < 0) {
 			player->to_delete = true;
 			this->Disable();
-			App->fade->FadeToBlack(App->level_1, App->HallOfAces, 2.0f);
+			App->fade->FadeToBlack(App->level_2, App->HallOfAces, 2.0f);
 		}
 		living = true;
 	}

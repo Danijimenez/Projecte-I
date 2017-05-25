@@ -44,7 +44,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 
 	break;
 	case COLLIDER_ENEMY_BASIC:
-		App->particles->AddParticle(App->particles->ground_explosion, position.x, position.y, COLLIDER_NONE, 0);
+		App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x, position.y, COLLIDER_NONE, 0);
 		Mix_PlayChannel(-1, App->audio->basic_enemy_explosion, 0);
 		break;
 	case COLLIDER_ENEMY_GREENSHIP:

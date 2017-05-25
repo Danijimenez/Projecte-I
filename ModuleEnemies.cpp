@@ -68,37 +68,58 @@ update_status ModuleEnemies::PreUpdate()
 // Called before render is available
 update_status ModuleEnemies::Update()
 {
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
-		if(enemies[i] != nullptr) enemies[i]->Move();
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies[i] != nullptr) enemies[i]->Move();
 
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
-		if(enemies[i] != nullptr) enemies[i]->Draw(sprites);
-	
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies[i] != nullptr) enemies[i]->Draw(sprites);
+
 
 	if (App->player->homing_shot) {
-		for (uint i = 0; i < MAX_ENEMIES; ++i) {
-			if (enemies[i] != nullptr) {
 
-				speed_x_mult = (App->particles->homing_missile.position.x - enemies[i]->position.x);
-				speed_y_mult = (App->particles->homing_missile.position.y - enemies[i]->position.y);
+		int target = 0;
 
-				a_mult = sqrt((pow(speed_x_mult, 2) + pow(speed_y_mult, 2)));
+		for (uint i = 0; i < MAX_ENEMIES - 1; ++i) {
 
-				common_mult = (proj_speed / a_mult);
+			if (enemies[target] != nullptr && enemies[i + 1] != nullptr) {
 
-				App->particles->movement_x = common_mult * speed_x_mult;
-				App->particles->movement_y = common_mult * speed_y_mult;
 
-				LOG("TODO BIEN");
+				int enemy1_x = (App->particles->homing_missile.position.x - enemies[target]->position.x);
+				int enemy1_y = (App->particles->homing_missile.position.y - enemies[target]->position.y);
 
-				LOG("%.2f\t%.2f", App->particles->movement_x, App->particles->movement_y);
+				int enemy2_x = (App->particles->homing_missile.position.x - enemies[i]->position.x);
+				int enemy2_y = (App->particles->homing_missile.position.y - enemies[i]->position.y);
 
-				App->player->homing_shot = false;
+				int enemy_1 = pow(enemy1_x, 2) + pow(enemy1_y, 2);
+				int enemy_2 = pow(enemy2_x, 2) + pow(enemy2_y, 2);
+
+
+				if (enemy_1 <= enemy_2) {
+					target = i;
+				}
+
 			}
+		}
 
+		if (enemies[target] != nullptr) {
+			speed_x_mult = (enemies[target]->position.x - App->particles->homing_missile.position.x);
+			speed_y_mult = (enemies[target]->position.y - App->particles->homing_missile.position.y);
+
+			a_mult = sqrt((pow(speed_x_mult, 2) + pow(speed_y_mult, 2)));
+
+			common_mult = (proj_speed / a_mult);
+
+			App->particles->movement_x = common_mult * speed_x_mult;
+			App->particles->movement_y = common_mult * speed_y_mult;
+
+			LOG("TODO BIEN");
+
+			LOG("%.2f\t%.2f", App->particles->movement_x, App->particles->movement_y);
+
+			//		App->player->homing_shot = false;
 		}
 	}
-	
+
 
 	return UPDATE_CONTINUE;
 }
