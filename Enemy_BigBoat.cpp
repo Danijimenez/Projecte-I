@@ -60,6 +60,7 @@ BigBoat::BigBoat(int x, int y) : Enemy(x, y)
 	path.PushBack({ 0, 0 }, 1, &shot);
 	path.PushBack({ 0, 0 }, 1, &shot);
 	path.PushBack({ 0, 0 }, 1, &shot);
+	path.PushBack({ 0.0f, 0.756f }, 1, &sail);
 
 	path.loop = false;
 }
