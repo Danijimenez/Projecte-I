@@ -1,25 +1,23 @@
-#ifndef __BEE_H__
-#define __BEE_H__
+#ifndef __BOAT_H__
+#define __BOAT_H__
 
 #include "Enemy.h"
 #include "Path.h"
 
-class Bee : public Enemy
+
+class Boat : public Enemy
 {
 private:
 	fPoint original_pos;
 	Path path;
 	bool going_up = true;
 	int original_y = 0;
-	Animation leave;
-	Animation anim;
-	
-
+	Animation sail[16];
+	Animation shot;
 public:
 
-	Bee(int x, int y);
-
+	Boat(int x, int y);
 	void Move();
 };
 
-#endif // __BEE_H__
+#endif // __POWERUPSHIP_H__

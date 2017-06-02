@@ -4,12 +4,27 @@
 #include "ModulePlayer.h"
 #include "Enemy_TankTurret.h"
 
+
+#include "Application.h"
+#include "Enemy_GreenShip.h"
+#include "ModuleCollision.h"
+#include "ModuleInput.h"
+#include "ModulePlayer.h"
+#include "ModuleParticles.h"
+#include "ModulePlayer2.h"
+
+
 BrownTank_Base::BrownTank_Base(int x, int y, int path_type) : Enemy(x, y)
 {
 	//Change
-	Brown_Tank.PushBack({ 534,281,15,13 });
-	Brown_Tank.PushBack({ 554,281,15,13 });
-	Brown_Tank.PushBack({ 574,281,15,13 });
+	Brown_Tank.PushBack({ 30,795,34,34 });
+	Brown_Tank.PushBack({ 80,792,34,34 });
+	Brown_Tank.PushBack({ 133,798,34,34 });
+	Brown_Tank.PushBack({ 40,833,34,34 });
+	Brown_Tank.PushBack({ 89,832,34,34 });
+	Brown_Tank.PushBack({ 134,835,34,34 });
+	Brown_Tank.PushBack({ 39,870,34,34 });
+	Brown_Tank.PushBack({ 91,871,34,34 });
 	Brown_Tank.loop = true;
 	Brown_Tank.speed = 0.1f;
 
@@ -19,7 +34,7 @@ BrownTank_Base::BrownTank_Base(int x, int y, int path_type) : Enemy(x, y)
 	turret = new Tank_Turret(x, y);
 
 
-	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_POWER_UP, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 34, 34 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
 	collider->life_units = 8;
 
 	original_pos.x = x;

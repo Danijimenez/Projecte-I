@@ -34,7 +34,7 @@ bool ModuleEnemies::Start()
 	if (sprites == nullptr) {
 		LOG("No cargado");
 	}
-	sprites = App->textures->Load("assets/textures/enemies.png");
+	sprites = App->textures->Load("assets/textures/enemieslvl2.png");
 	if (sprites != nullptr) {
 		LOG("Cargado");
 	}

@@ -296,6 +296,9 @@ void ModuleCollision::DebugDraw()
 			case COLLIDER_ENEMY_BASIC: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
+			case COLLIDER_ENEMY_TANK: // red
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
 			case COLLIDER_ENEMY_GREENSHIP: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;

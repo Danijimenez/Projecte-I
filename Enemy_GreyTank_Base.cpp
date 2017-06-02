@@ -16,7 +16,7 @@ GreyTank_Base::GreyTank_Base(int x, int y, int path_type) : Enemy(x, y)
 	animation = &Grey_Tank;
 	hittable = false;
 
-	turret = new Tank_Turret(x, y);
+	turret = new GreyTank_Turret(x, y);
 
 
 	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_POWER_UP, (Module*)App->enemies);

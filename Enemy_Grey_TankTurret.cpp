@@ -7,7 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleParticles.h"
 
-Tank_Turret::Tank_Turret(int x, int y) : Enemy(x, y)
+GreyTank_Turret::GreyTank_Turret(int x, int y) : Enemy(x, y)
 {
 
 	//Animation
@@ -40,7 +40,7 @@ Tank_Turret::Tank_Turret(int x, int y) : Enemy(x, y)
 }
 
 
-void Tank_Turret::Move()
+void GreyTank_Turret::Move()
 {
 
 	// Turret rotation

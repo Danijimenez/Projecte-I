@@ -10,26 +10,90 @@
 Tank_Turret::Tank_Turret(int x, int y) : Enemy(x, y)
 {
 
+
+	int i = 0;
 	//Animation
 
-	///
-	turret_anim[0].PushBack({ 480,146,26,25 });
-	turret_anim[1].PushBack({ 562,43,22,21 });
-	turret_anim[2].PushBack({ 562,75,22,21 });
-	turret_anim[3].PushBack({ 521,7,22,21 });
-	turret_anim[4].PushBack({ 480,113,22,21 });
-	turret_anim[5].PushBack({ 521,45,22,21 });
-	turret_anim[6].PushBack({ 562,144,22,21 });
-	turret_anim[7].PushBack({ 561,6,22,21 });
-	turret_anim[8].PushBack({ 479,178,22,21 });
-	turret_anim[9].PushBack({ 479,78,22,21 });
-	turret_anim[10].PushBack({ 562,110,22,21 });
-	turret_anim[11].PushBack({ 479,7,22,21 });
-	turret_anim[12].PushBack({ 521,110,22,21 });
-	turret_anim[13].PushBack({ 521,76,22,21 });
-	turret_anim[14].PushBack({ 520,146,22,21 });
-	turret_anim[15].PushBack({ 480,45,22,21 });
-	///
+	//0
+	turret_anim[i].PushBack({ 85,959,34,34 });
+	turret_anim[i].PushBack({ 126,959,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//1
+	turret_anim[i].PushBack({ 126,998,34,34 });
+	turret_anim[i].PushBack({ 85,998,38,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//2
+	turret_anim[i].PushBack({ 170,925,34,34 });
+	turret_anim[i].PushBack({ 205,925,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//3
+	turret_anim[i].PushBack({ 88,1047,34,34 });
+	turret_anim[i].PushBack({ 129,1047,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//4
+	turret_anim[i].PushBack({ 173, 960,34,34 });
+	turret_anim[i].PushBack({ 206,960,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//5 
+	turret_anim[i].PushBack({ 175,1000,34,34 });
+	turret_anim[i].PushBack({ 212,1000,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//6
+	turret_anim[i].PushBack({ 147,1042,34,34 });
+	turret_anim[i].PushBack({ 215, 1042,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//7
+	turret_anim[i].PushBack({ 256,922,34,34 });
+	turret_anim[i].PushBack({ 305,922,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//8 
+	turret_anim[i].PushBack({ 258,952,34,34 });
+	turret_anim[i].PushBack({ 307,952,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//9
+	turret_anim[i].PushBack({ 259,994,34,34 });
+	turret_anim[i].PushBack({ 309,994,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//10
+	turret_anim[i].PushBack({ 259,1042,34,34 });
+	turret_anim[i].PushBack({ 308,1042,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//11
+	turret_anim[i].PushBack({ 14,922,34,34 });
+	turret_anim[i].PushBack({ 46,922,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//12
+	turret_anim[i].PushBack({ 15,958,34,34 });
+	turret_anim[i].PushBack({ 46,957,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//13
+	turret_anim[i].PushBack({ 17,999,34,34 });
+	turret_anim[i].PushBack({ 49,999,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//14
+	turret_anim[i].PushBack({ 13,1044,34,34 });
+	turret_anim[i].PushBack({ 54,1044,34, 34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
+	//15
+	turret_anim[i].PushBack({ 86,924,34,34 });
+	turret_anim[i].PushBack({ 128,924,34,34 });
+	turret_anim[i].loop = true;
+	turret_anim[i++].speed = 0.2f;
 
 
 	original_pos.x = x;

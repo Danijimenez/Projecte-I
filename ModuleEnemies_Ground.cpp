@@ -5,10 +5,9 @@
 #include "ModuleEnemies_Ground.h"
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
-#include "Enemy_BasicEnemy.h"
-#include "Enemy_Turret.h"
-#include "Enemy_GreenShip.h"
-#include "Enemy_PowerUpShip.h"
+#include "Enemy_BrownTank_Base1.h"
+#include "Enemy_Boat.h"
+#include "Enemy_BigBoat.h"
 #include "PowerUp.h"
 #include "ModuleCollision.h"
 
@@ -32,7 +31,7 @@ bool ModuleEnemies_Ground::Start()
 	if (sprites == nullptr) {
 		LOG("No cargado");
 	}
-	sprites = App->textures->Load("assets/textures/enemies.png");
+	sprites = App->textures->Load("assets/textures/enemieslvl2.png");
 	if (sprites != nullptr) {
 		LOG("Cargado");
 	}
@@ -156,8 +155,18 @@ void ModuleEnemies_Ground::SpawnEnemy(const EnemyInfo& info)
 		{
 
 		case ENEMY_TYPES::TURRET:
-			enemies_ground[i] = new Turret(info.x, info.y);
+	//		enemies_ground[i] = new Turret(info.x, info.y);
 			break;
+		case ENEMY_TYPES::BOAT:
+			enemies_ground[i] = new Boat(info.x, info.y);
+			break;
+		case ENEMY_TYPES::BIG_BOAT:
+			enemies_ground[i] = new BigBoat(info.x, info.y);
+			break;
+		case ENEMY_TYPES::BROWN_TANK:
+			enemies_ground[i] = new BrownTank_Base(info.x, info.y, info.path);
+			break;
+
 
 		}			
 	}

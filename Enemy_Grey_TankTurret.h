@@ -1,11 +1,11 @@
-#ifndef __TANK_TURRET_H__
-#define __TANK_TURRET_H__
+#ifndef __GREY_TANK_TURRET_H__
+#define __GREY_TANK_TURRET_H__
 
 #include "Enemy.h"
 #include "Path.h"
 
 
-class Tank_Turret : public Enemy
+class GreyTank_Turret : public Enemy
 {
 private:
 	fPoint original_pos;
@@ -18,7 +18,7 @@ private:
 
 public:
 
-	Tank_Turret(int x, int y);
+	GreyTank_Turret(int x, int y);
 	void Move();
 };
 

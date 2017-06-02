@@ -8,7 +8,7 @@
 BasicEnemy2::BasicEnemy2(int x, int y) : Enemy(x, y)
 {
 
-
+	//Change
 	anim[0].PushBack({ 27,511,32,30 });
 	anim[1].PushBack({ 234,514,32,30 });
 	anim[2].PushBack({ 24,548,32,30 });

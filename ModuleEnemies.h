@@ -17,6 +17,8 @@ enum ENEMY_TYPES
 	POWERUP,
 	TURRET,
 	BROWN_TANK,
+	BOAT,
+	BIG_BOAT,
 };
 
 class Enemy;

@@ -74,13 +74,13 @@ update_status ModuleDebug::Update()
 	// Enemies
 
 	if (App->input->keyboard[SDL_SCANCODE_3] == KEY_STATE::KEY_DOWN) {
-		App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, App->player->position.x, App->player->position.y-200);
+		App->enemies_ground->AddEnemy(ENEMY_TYPES::BOAT, App->player->position.x, App->player->position.y-200);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_4] == KEY_STATE::KEY_DOWN) {
-		App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, App->player->position.x+50, App->player->position.y - 100);
+		App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, App->player->position.x+50, App->player->position.y - 100);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_5] == KEY_STATE::KEY_DOWN) {
-		App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, App->player->position.x, App->player->position.y - 100);
+		App->enemies_ground->AddEnemy(ENEMY_TYPES::BIG_BOAT, App->player->position.x, App->player->position.y - 100);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_6] == KEY_STATE::KEY_DOWN) {
 		App->enemies->AddEnemy(ENEMY_TYPES::POWERUP_SHIP, App->player->position.x, App->player->position.y - 100);
