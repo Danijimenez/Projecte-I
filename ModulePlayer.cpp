@@ -325,7 +325,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	if (hittable) {
 		switch (c2->type)
 		{
-		case COLLIDER_ENEMMY_TURRET:
+		case COLLIDER_ENEMY_TURRET:
 			break;
 		case COLLIDER_ENEMY_BASIC:
 			App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);

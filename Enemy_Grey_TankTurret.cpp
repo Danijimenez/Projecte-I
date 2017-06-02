@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "Enemy_Turret.h"
+#include "Enemy_TankTurret.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
@@ -7,11 +7,12 @@
 #include "ModuleInput.h"
 #include "ModuleParticles.h"
 
-Turret::Turret(int x, int y) : Enemy(x, y)
+Tank_Turret::Tank_Turret(int x, int y) : Enemy(x, y)
 {
 
 	//Animation
 
+	///
 	turret_anim[0].PushBack({ 480,146,26,25 });
 	turret_anim[1].PushBack({ 562,43,22,21 });
 	turret_anim[2].PushBack({ 562,75,22,21 });
@@ -28,12 +29,8 @@ Turret::Turret(int x, int y) : Enemy(x, y)
 	turret_anim[13].PushBack({ 521,76,22,21 });
 	turret_anim[14].PushBack({ 520,146,22,21 });
 	turret_anim[15].PushBack({ 480,45,22,21 });
+	///
 
-
-
-
-	collider = App->collision->AddCollider({ 0, 0, 22, 21 }, COLLIDER_TYPE::COLLIDER_ENEMY_TURRET, (Module*)App->enemies_ground);
-	collider->life_units = 4;
 
 	original_pos.x = x;
 	original_pos.y = y;
@@ -43,13 +40,12 @@ Turret::Turret(int x, int y) : Enemy(x, y)
 }
 
 
-
-void Turret::Move()
+void Tank_Turret::Move()
 {
 
 	// Turret rotation
 
-	//Decide player to shoot;
+	//Decide player to shoot
 
 	int player1_x = (App->player->position.x - position.x);
 	int player1_y = (App->player->position.y - position.y);
@@ -202,7 +198,6 @@ void Turret::Move()
 		break;
 	}
 
-	
 
 	shoot++;
 

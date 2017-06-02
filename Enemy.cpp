@@ -39,7 +39,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 {
 	//if (c2->type)
 	switch (collider->type)	{
-	case COLLIDER_ENEMMY_TURRET:
+	case COLLIDER_ENEMY_TURRET:
 		App->particles->AddParticle(App->particles->ground_explosion, position.x, position.y, COLLIDER_NONE, 0);
 
 	break;
