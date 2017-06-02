@@ -32,10 +32,6 @@ Tank_Turret::Tank_Turret(int x, int y) : Enemy(x, y)
 	///
 
 
-
-	collider = App->collision->AddCollider({ 0, 0, 22, 21 }, COLLIDER_TYPE::COLLIDER_ENEMMY_TURRET, (Module*)App->enemies_ground);
-	collider->life_units = 4;
-
 	original_pos.x = x;
 	original_pos.y = y;
 
@@ -43,10 +39,14 @@ Tank_Turret::Tank_Turret(int x, int y) : Enemy(x, y)
 
 }
 
-//22 28
 
 void Tank_Turret::Move()
 {
+
+	// Turret rotation
+
+	//Decide player to shoot
+
 	int player1_x = (App->player->position.x - position.x);
 	int player1_y = (App->player->position.y - position.y);
 
@@ -197,11 +197,8 @@ void Tank_Turret::Move()
 		}
 		break;
 	}
-	// Turret rotation
-	
+
 
 	shoot++;
-
-	position = original_pos + path.GetCurrentPosition();
 
 }

@@ -15,7 +15,7 @@ protected:
 
 public:
 	fPoint position;
-
+	bool hittable = true;
 public:
 	Enemy(int x, int y);
 	virtual ~Enemy();

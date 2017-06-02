@@ -16,6 +16,7 @@ enum ENEMY_TYPES
 	POWERUP_SHIP,
 	POWERUP,
 	TURRET,
+	BROWN_TANK,
 };
 
 class Enemy;
@@ -23,7 +24,7 @@ class Enemy;
 struct EnemyInfo
 {
 	ENEMY_TYPES type = ENEMY_TYPES::NO_TYPE;
-	int x, y;
+	int x, y, path;
 };
 
 class ModuleEnemies : public Module
@@ -41,7 +42,7 @@ public:
 	bool FreeEnemies();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	bool AddEnemy(ENEMY_TYPES type, int x, int y);
+	bool AddEnemy(ENEMY_TYPES type, int x, int y, int path = 0);
 
 private:
 

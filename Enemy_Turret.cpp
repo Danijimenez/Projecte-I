@@ -42,10 +42,15 @@ Turret::Turret(int x, int y) : Enemy(x, y)
 
 }
 
-//22 28
+
 
 void Turret::Move()
 {
+
+	// Turret rotation
+
+	//Decide player to shoot;
+
 	int player1_x = (App->player->position.x - position.x);
 	int player1_y = (App->player->position.y - position.y);
 
@@ -196,11 +201,9 @@ void Turret::Move()
 		}
 		break;
 	}
-	// Turret rotation
+
 	
 
 	shoot++;
-
-	position = original_pos + path.GetCurrentPosition();
 
 }

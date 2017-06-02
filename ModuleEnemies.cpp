@@ -10,10 +10,10 @@
 #include "Enemy_GreenShip.h"
 #include "Enemy_PowerUpShip.h"
 #include "PowerUp.h"
+#include "Enemy_BrownTank_Base1.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
-
 
 
 #define SPAWN_MARGIN 50
@@ -179,7 +179,7 @@ bool ModuleEnemies::FreeEnemies()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int path)
 {
 	bool ret = false;
 
@@ -190,6 +190,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y)
 			queue[i].type = type;
 			queue[i].x = x;
 			queue[i].y = y;
+			queue[i].path = path;
 			ret = true;
 			break;
 		}
@@ -223,6 +224,8 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		case ENEMY_TYPES::BASICENEMY2:
 			enemies[i] = new BasicEnemy2(info.x, info.y);
 			break;
+		case ENEMY_TYPES::BROWN_TANK:
+			enemies[i] = new BrownTank_Base(info.x, info.y, info.path);
 		}			
 	}
 }
@@ -232,59 +235,74 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
-		{
 
-			c1->life_units--;
+		if (enemies[i] != nullptr) {
+			if (enemies[i]->GetCollider() == c1 && enemies[i]->hittable) {
 
-			if (c2->type == COLLIDER_PLAYER_SHOT) {
-				switch (c1->type)
-				{
-				case COLLIDER_ENEMMY_TURRET:
-					App->player->player_points += 20;
-					break;
-				case COLLIDER_ENEMY_BASIC:
-					App->player->player_points += 150;
-					break;
-				case COLLIDER_ENEMY_GREENSHIP:
-					App->player->player_points += 40;
-				case COLLIDER_ENEMY_POWERUPSHIP:
-					App->player->player_points += 20;
-					break;
-				default:
-					break;
-				}
-			}
 
-			else {
-				switch (c1->type)
-				{
-				case COLLIDER_ENEMMY_TURRET:
-					App->player2->player_points += 20;
-					break;
-				case COLLIDER_ENEMY_BASIC:
-					App->player2->player_points += 150;
-					break;
-				case COLLIDER_ENEMY_GREENSHIP:
-					App->player2->player_points += 40;
-				case COLLIDER_ENEMY_POWERUPSHIP:
-					App->player2->player_points += 20;
-					break;
+				c1->life_units--;
 
-				default:
-					break;
+				if (c2->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_BOMB) {
+					switch (c1->type)
+					{
+					case COLLIDER_ENEMY_TURRET:
+						App->player->player_points += 20;
+						break;
+					case COLLIDER_ENEMY_BASIC:
+						App->player->player_points += 150;
+						break;
+					case COLLIDER_ENEMY_GREENSHIP:
+						App->player->player_points += 40;
+					case COLLIDER_ENEMY_POWERUPSHIP:
+						App->player->player_points += 20;
+						break;
+					case COLLIDER_ENEMY_TANK:
+						App->player->player_points += 40;
+						break;
+					case COLLIDER_ENEMY_TANK_TURRET:
+						App->player->player_points += 40;
+						break;
+
+					default:
+						break;
+					}
 				}
 
-			}
-	
-			if (c1->life_units <= 0) {
-				enemies[i]->OnCollision(c2, c1);
-				delete enemies[i];
-				enemies[i] = nullptr;
-				break;
-				 
-			}
+				else {
+					switch (c1->type)
+					{
+					case COLLIDER_ENEMY_TURRET:
+						App->player2->player_points += 20;
+						break;
+					case COLLIDER_ENEMY_BASIC:
+						App->player2->player_points += 150;
+						break;
+					case COLLIDER_ENEMY_GREENSHIP:
+						App->player2->player_points += 40;
+					case COLLIDER_ENEMY_POWERUPSHIP:
+						App->player2->player_points += 20;
+						break;
+					case COLLIDER_ENEMY_TANK:
+						App->player2->player_points += 40;
+						break;
+					case COLLIDER_ENEMY_TANK_TURRET:
+						App->player2->player_points += 40;
+						break;
+					default:
+						break;
+					}
 
+				}
+
+				if (c1->life_units <= 0) {
+					enemies[i]->OnCollision(c2, c1);
+					delete enemies[i];
+					enemies[i] = nullptr;
+					break;
+
+				}
+
+			}
 		}
 	}
 }

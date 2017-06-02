@@ -7,14 +7,7 @@
 
 BasicEnemy2::BasicEnemy2(int x, int y) : Enemy(x, y)
 {
-	up.PushBack({ 116,36,22,21 });
-	down.PushBack({ 76,36,22,21 });
-	left.PushBack({ 155,35,22,21 });
-	right.PushBack({ 74,75,22,21 });
-	right_up.PushBack({ 157,73,22,21 });
-	right_down.PushBack({ 116,105,22,21 });
-	left_up.PushBack({ 156,173,22,21 });
-	left_down.PushBack({ 74,107,22,21 });
+
 
 	anim[0].PushBack({ 27,511,32,30 });
 	anim[1].PushBack({ 234,514,32,30 });
