@@ -75,6 +75,7 @@
     <ClInclude Include="Enemy_BasicEnemy.h" />
     <ClInclude Include="Enemy_BasicEnemy2.h" />
     <ClInclude Include="Enemy_Bee.h" />
+    <ClInclude Include="Enemy_Big_BrownTank.h" />
     <ClInclude Include="Enemy_Big_GreyTank.h" />
     <ClInclude Include="Enemy_BrownTank_Base1.h" />
     <ClInclude Include="Enemy_GreenShip.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="Enemy_BasicEnemy.cpp" />
     <ClCompile Include="Enemy_BasicEnemy2.cpp" />
     <ClCompile Include="Enemy_Bee.cpp" />
+    <ClCompile Include="Enemy_Big_BrownTank.cpp" />
     <ClCompile Include="Enemy_Big_GreyTank.cpp" />
     <ClCompile Include="Enemy_BrownTank_Base1.cpp" />
     <ClCompile Include="Enemy_GreenShip.cpp" />
