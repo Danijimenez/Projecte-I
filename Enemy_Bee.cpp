@@ -10,9 +10,12 @@ Bee::Bee(int x, int y) : Enemy(x, y)
 
 	//Change
 
-	anim.PushBack({ 27,511,32,30 });
+	spawn.PushBack({ 27,511,32,30 });
 
+	charge.PushBack({ 27,511,32,30 });
 
+	leave.PushBack({ 27,511,32,30 });
+	
 
 	collider = App->collision->AddCollider({ 0, 0, 32, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY_BASIC, (Module*)App->enemies);
 	collider->life_units = 1;

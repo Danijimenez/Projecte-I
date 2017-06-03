@@ -8,6 +8,7 @@
 #include "Enemy_BrownTank_Base1.h"
 #include "Enemy_Boat.h"
 #include "Enemy_BigBoat.h"
+#include "Enemy_Big_GreyTank.h"
 #include "PowerUp.h"
 #include "ModuleCollision.h"
 
@@ -161,7 +162,7 @@ void ModuleEnemies_Ground::SpawnEnemy(const EnemyInfo& info)
 	//		enemies_ground[i] = new Turret(info.x, info.y);
 			break;
 		case ENEMY_TYPES::BOAT:
-			enemies_ground[i] = new Boat(info.x, info.y);
+			enemies_ground[i] = new Big_GreyTank(info.x, info.y,0);
 			break;
 		case ENEMY_TYPES::BIG_BOAT:
 			enemies_ground[i] = new BigBoat(info.x, info.y);

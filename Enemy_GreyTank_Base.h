@@ -12,7 +12,7 @@ private:
 	Path path;
 	bool going_up = true;
 	int original_y = 0;
-	Animation Grey_Tank;
+	Animation Grey_Tank[3];
 	Enemy* turret = nullptr;
 
 

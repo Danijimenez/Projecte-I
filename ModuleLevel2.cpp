@@ -60,6 +60,7 @@ bool ModuleLevel2::Start()
 	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 181, -300);
 	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 162, -100);
 
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 126, 0);
 
 	//	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 48, -337);
 

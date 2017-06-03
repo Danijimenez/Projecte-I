@@ -239,7 +239,6 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		if (enemies[i] != nullptr) {
 			if (enemies[i]->GetCollider() == c1 && enemies[i]->hittable) {
 
-
 				c1->life_units--;
 
 				if (c2->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_BOMB) {
@@ -259,9 +258,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					case COLLIDER_ENEMY_TANK:
 						App->player->player_points += 40;
 						break;
-					case COLLIDER_ENEMY_TANK_TURRET:
-						App->player->player_points += 40;
-						break;
+
 
 					default:
 						break;
@@ -285,9 +282,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					case COLLIDER_ENEMY_TANK:
 						App->player2->player_points += 40;
 						break;
-					case COLLIDER_ENEMY_TANK_TURRET:
-						App->player2->player_points += 40;
-						break;
+
 					default:
 						break;
 					}

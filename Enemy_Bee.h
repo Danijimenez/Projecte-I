@@ -11,8 +11,9 @@ private:
 	Path path;
 	bool going_up = true;
 	int original_y = 0;
+	Animation spawn;
+	Animation charge;
 	Animation leave;
-	Animation anim;
 	
 
 public:

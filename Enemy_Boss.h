@@ -1,11 +1,11 @@
-#ifndef __Enemy_Big_GreyTank_H__
-#define __Enemy_Big_GreyTank_H__
+#ifndef __BOSS_H__
+#define __BOSS_H__
 
 #include "Enemy.h"
 #include "Path.h"
 
 
-class Big_GreyTank : public Enemy
+class Boss : public Enemy
 {
 private:
 	fPoint original_pos;
@@ -18,7 +18,7 @@ private:
 
 public:
 
-	Big_GreyTank(int x, int y, int path);
+	Boss(int x, int y);
 	int life_units = 8;
 	void Move();
 

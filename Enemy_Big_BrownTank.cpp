@@ -17,7 +17,7 @@ Big_BrownTank::Big_BrownTank(int x, int y, int path_type) : Enemy(x, y)
 	hittable = true;
 
 
-	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_POWER_UP, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
 	collider->life_units = 8;
 
 	original_pos.x = x;
