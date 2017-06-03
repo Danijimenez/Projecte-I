@@ -12,26 +12,24 @@ GreenShip::GreenShip(int x, int y) : Enemy(x, y)
 {
 
 	//Animation
-	fly.PushBack({ 289,309,72,52 });
-	fly.PushBack({ 366,310,72,52 });
+	fly.PushBack({ 401,318,72,53 });
+	fly.PushBack({ 478,318,72,53 });
 	fly.speed = 0.2f;
 
-	leave.PushBack({ 291,372,72,52 });
-	leave.PushBack({ 369,372,72,52 });
-	leave.PushBack({ 446,372,72,52 });
-
-	leave.PushBack({ 526,372,72,52 });
-	leave.PushBack({ 606,372,72,52 });
+	leave.PushBack({ 403,281,72,53 });
+	leave.PushBack({ 481,381,72,53 });
+	leave.PushBack({ 559,381,72,53 });
+	leave.PushBack({ 638,381,72,53 });
+	leave.PushBack({ 718,381,72,53 });
 	leave.speed = 0.2f;
 
-	back.PushBack({ 292,444,72,52 });
-	back.PushBack({ 369,443,72,52 });
+	back.PushBack({ 404,452,72,53 });
+	back.PushBack({ 481,452,72,53 });
+	back.PushBack({ 558,452,72,53 });
+	back.PushBack({ 638,452,72,53 });
 	back.speed = 0.2f;
 
-	back.PushBack({ 446,444,72,52 });
-	back.PushBack({ 526,443,72,52 });
-
-	shot.PushBack({ 366,310,72,52 });
+	shot.PushBack({ 366,310,72,53 });
 
 
 	animation = &fly;

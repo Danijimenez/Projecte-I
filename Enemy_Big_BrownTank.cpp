@@ -7,9 +7,9 @@
 Big_BrownTank::Big_BrownTank(int x, int y, int path_type) : Enemy(x, y)
 {
 	//Change
-	BigBrown_Tank.PushBack({ 534,281,15,13 });
-	BigBrown_Tank.PushBack({ 554,281,15,13 });
-	BigBrown_Tank.PushBack({ 574,281,15,13 });
+	BigBrown_Tank.PushBack({ 427,1110,48,47 });
+	BigBrown_Tank.PushBack({ 497,1111,48,47 });
+	BigBrown_Tank.PushBack({ 566,1111,48,47 });
 	BigBrown_Tank.loop = true;
 	BigBrown_Tank.speed = 0.1f;
 
@@ -17,7 +17,7 @@ Big_BrownTank::Big_BrownTank(int x, int y, int path_type) : Enemy(x, y)
 	hittable = true;
 
 
-	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 48, 47 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
 	collider->life_units = 8;
 
 	original_pos.x = x;

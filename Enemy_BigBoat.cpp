@@ -30,7 +30,7 @@ BigBoat::BigBoat(int x, int y) : Enemy(x, y)
 
 	animation = &sail;
 
-	collider = App->collision->AddCollider({ 0, 0, 72, 52 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 72, 52 }, COLLIDER_TYPE::COLLIDER_ENEMY_POWERUPSHIP, (Module*)App->enemies);
 	collider->life_units = 20;
 
 	original_pos.x = x;

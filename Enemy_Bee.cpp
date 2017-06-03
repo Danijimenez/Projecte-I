@@ -10,12 +10,17 @@ Bee::Bee(int x, int y) : Enemy(x, y)
 
 	//Change
 
-	spawn.PushBack({ 27,511,32,30 });
+	spawn.PushBack({ 413,925,32,39 });
+	spawn.PushBack({ 447,924,32,39 });
+	spawn.PushBack({ 483,925,32,39 });
+	spawn.PushBack({ 523,927,32,39 });
 
-	charge.PushBack({ 27,511,32,30 });
+	charge.PushBack({ 416,972,32,29 });
+	charge.PushBack({ 460,972,32,29 });	
+	charge.PushBack({ 500,972,32,29 });
 
-	leave.PushBack({ 27,511,32,30 });
-	
+	leave.PushBack({ 540,972,32,39 });
+	leave.PushBack({ 580,972,32,39 });
 
 	collider = App->collision->AddCollider({ 0, 0, 32, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY_BASIC, (Module*)App->enemies);
 	collider->life_units = 1;
@@ -32,6 +37,6 @@ Bee::Bee(int x, int y) : Enemy(x, y)
 void Bee::Move()
 {	
 
-	position = original_pos + path.GetCurrentPosition(&animation);
+	position = original_pos + path.GetCurrentPosition();
 
 }
