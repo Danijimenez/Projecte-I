@@ -11,7 +11,8 @@ private:
 	Path path;
 	bool going_up = true;
 	int original_y = 0;
-	Animation power_up;
+	Animation laser;
+	Animation vulcan;
 
 
 

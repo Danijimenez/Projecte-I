@@ -89,6 +89,7 @@
     <ClInclude Include="Enemy_Turret.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemLeaks.h" />
+    <ClInclude Include="Missile.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollision.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Enemy_Turret.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Missile.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleDebug.cpp" />

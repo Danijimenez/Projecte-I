@@ -1,25 +1,11 @@
 #include "Application.h"
-#include "PowerUp.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 
 #include "ModuleInput.h"
 
-PowerUp::PowerUp(int x, int y) : Enemy(x, y)
 {
-	laser.PushBack({ 534,281,15,13 });
-	laser.PushBack({ 554,281,15,13 });
-	laser.PushBack({ 574,281,15,13 });
-	laser.loop = true;
-	laser.speed = 0.1f;
 
-	vulcan.PushBack({ 534,264,15,13 });
-	vulcan.PushBack({ 554,264,15,13 });
-	vulcan.PushBack({ 574,264,15,13 });
-	vulcan.loop = true;
-	vulcan.speed = 0.1f;
-
-	animation = &laser;
 	
 
 	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_POWER_UP, (Module*)App->enemies);
@@ -35,7 +21,6 @@ PowerUp::PowerUp(int x, int y) : Enemy(x, y)
 	path.loop = true;
 }
 
-void PowerUp::Move()
 {
 
 //	original_pos.y -= 1;
