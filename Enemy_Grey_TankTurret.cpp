@@ -13,22 +13,22 @@ GreyTank_Turret::GreyTank_Turret(int x, int y) : Enemy(x, y)
 	//Animation
 
 	///
-	turret_anim[0].PushBack({ 480,146,26,25 });
-	turret_anim[1].PushBack({ 562,43,22,21 });
-	turret_anim[2].PushBack({ 562,75,22,21 });
-	turret_anim[3].PushBack({ 521,7,22,21 });
-	turret_anim[4].PushBack({ 480,113,22,21 });
-	turret_anim[5].PushBack({ 521,45,22,21 });
-	turret_anim[6].PushBack({ 562,144,22,21 });
-	turret_anim[7].PushBack({ 561,6,22,21 });
-	turret_anim[8].PushBack({ 479,178,22,21 });
-	turret_anim[9].PushBack({ 479,78,22,21 });
-	turret_anim[10].PushBack({ 562,110,22,21 });
-	turret_anim[11].PushBack({ 479,7,22,21 });
-	turret_anim[12].PushBack({ 521,110,22,21 });
-	turret_anim[13].PushBack({ 521,76,22,21 });
-	turret_anim[14].PushBack({ 520,146,22,21 });
-	turret_anim[15].PushBack({ 480,45,22,21 });
+	turret_anim[0].PushBack({ 3,654,34,34 });
+	turret_anim[1].PushBack({ 169,616,34,34 });
+	turret_anim[2].PushBack({ 128,619,34,34 });
+	turret_anim[3].PushBack({ 106,696,34,34 });
+	turret_anim[4].PushBack({ 89,619,34,34 });
+	turret_anim[5].PushBack({ 51,619,34,34 });
+	turret_anim[6].PushBack({ 10,620,34,34 });
+	turret_anim[7].PushBack({ 63,654,34,34 });
+	turret_anim[8].PushBack({ 111,651,34,34 });
+	turret_anim[9].PushBack({ 155,647,34,34 });
+	turret_anim[10].PushBack({ 197,686,34,34 });
+	turret_anim[11].PushBack({ 63,688,34,34 });
+	turret_anim[12].PushBack({ 149,683,34,34 });
+	turret_anim[13].PushBack({ 199,645,34,34 });
+	turret_anim[14].PushBack({ 1,730,34,34 });
+	turret_anim[15].PushBack({ 2,689,34,34 });
 	///
 
 

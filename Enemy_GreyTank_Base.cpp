@@ -2,14 +2,15 @@
 #include "Enemy_GreyTank_Base.h"
 #include "ModuleCollision.h"
 #include "Enemy_Grey_TankTurret.h"
+#include "ModuleEnemies_Ground.h"
 
 
 GreyTank_Base::GreyTank_Base(int x, int y, int path_type) : Enemy(x, y)
 {
 	//Change
-	Grey_Tank[0].PushBack({ 534,281,15,13 });
-	Grey_Tank[1].PushBack({ 554,281,15,13 });
-	Grey_Tank[2].PushBack({ 574,281,15,13 });
+	Grey_Tank[0].PushBack({ 58,736,34,34 });
+	Grey_Tank[1].PushBack({ 110,734,34,34 });
+	Grey_Tank[2].PushBack({ 166,732,34,34 });
 
 
 	animation = &Grey_Tank[0];
@@ -61,6 +62,19 @@ GreyTank_Base::GreyTank_Base(int x, int y, int path_type) : Enemy(x, y)
 void GreyTank_Base::Move()
 {
 
-	position = original_pos + path.GetCurrentPosition(&animation);
+	position = original_pos + path.GetCurrentPosition();
+
+	if (collider->life_units > 3)
+	{
+		turret->Move();
+		turret->position = position;
+		turret->Draw(App->enemies_ground->sprites);
+	}
+	else if (collider->life_units == 3)
+	{
+		hittable = true;
+		delete turret;
+		turret = nullptr;
+	}
 
 }

@@ -9,23 +9,102 @@ BasicEnemy2::BasicEnemy2(int x, int y) : Enemy(x, y)
 {
 
 	//Change
-	anim[0].PushBack({ 27,511,32,30 });
-	anim[1].PushBack({ 234,514,32,30 });
-	anim[2].PushBack({ 24,548,32,30 });
-	anim[3].PushBack({ 141,272,32,30 });
-	anim[4].PushBack({ 64,589,32,30 });
-	anim[5].PushBack({ 234,586,32,30 });
-	anim[6].PushBack({ 67,624,32,30 });
-	anim[7].PushBack({ 60,373,32,30 });
-	anim[8].PushBack({ 55,343,32,30 });
-	anim[9].PushBack({ 142,311,32,30 });
-	anim[10].PushBack({ 81,309,32,30 });
-	anim[11].PushBack({ 20,272,32,30 });
-	anim[12].PushBack({ 26,408,32,30 });
-	anim[13].PushBack({ 28,443,32,30 });
-	anim[14].PushBack({ 66,475,32,30 });
-	anim[15].PushBack({ 132,373,32,30 });
-	finish.PushBack({ 132,373,32,30 });
+	anim[0].PushBack({ 7,498,30,30 });
+	anim[0].PushBack({ 53,498,30,30 });
+	anim[0].PushBack({ 102,498,30,30 });
+	anim[0].PushBack({ 149,498,30,30 });
+	anim[0].loop = true;
+
+	anim[1].PushBack({ 8,537,30,30 });
+	anim[1].PushBack({ 57,537,30,30 }); 
+	anim[1].PushBack({ 103,537,30,30 });
+	anim[1].PushBack({ 152,537,30,30 });
+	anim[1].loop = true;
+
+	anim[2].PushBack({ 8,577,30,30 });
+	anim[2].PushBack({ 57,577,30,30 });
+	anim[2].PushBack({ 103,577,30,30 });
+	anim[2].PushBack({ 153,577,30,30 });
+	anim[2].loop = true;
+
+	anim[3].PushBack({ 214,460,30,30 });
+	anim[3].PushBack({ 262,460,30,30 }); 
+	anim[3].PushBack({ 309,460,30,30 });
+	anim[3].PushBack({ 357,460,30,30 });
+	anim[3].loop = true;
+
+	anim[4].PushBack({ 216,502,30,30 });
+	anim[4].PushBack({ 265,502,30,30 });
+	anim[4].PushBack({ 311,502,30,30 });
+	anim[4].PushBack({ 360,502,30,30 });
+	anim[4].loop = true;
+
+	anim[5].PushBack({ 220,541,30,30 });
+	anim[5].PushBack({ 269,541,30,30 });
+	anim[5].PushBack({ 315,541,30,30 });
+	anim[5].PushBack({ 365,541,30,30 });
+	anim[5].loop = true;
+
+	anim[6].PushBack({ 219,578,30,30 });
+	anim[6].PushBack({ 271,578,30,30 });
+	anim[6].PushBack({ 314,578,30,30 });
+	anim[6].PushBack({ 367,578,30,30 });
+	anim[6].loop = true;
+
+	anim[7].PushBack({ 142,276,30,30 });
+	anim[7].PushBack({ 96,276,30,30 });
+	anim[7].PushBack({ 51,276,30,30 });
+	anim[7].PushBack({ 9,276,30,30 });
+	anim[7].loop = true;
+
+	anim[8].PushBack({ 147,317,30,30 });
+	anim[8].PushBack({ 97,317,30,30 });
+	anim[8].PushBack({ 54,317,30,30 });
+	anim[8].PushBack({ 11,317,30,30 });
+	anim[8].loop = true;
+
+	anim[9].PushBack({ 10,362,30,30 });
+	anim[9].PushBack({ 55,362,30,30 });
+	anim[9].PushBack({ 99,362,30,30 });
+	anim[9].PushBack({ 148,362,30,30 });
+	anim[9].loop = true;
+
+	anim[10].PushBack({ 10,405,30,30 });
+	anim[10].PushBack({ 56,405,30,30 });
+	anim[10].PushBack({ 102,405,30,30 });
+	anim[10].PushBack({ 149,405,30,30 });
+	anim[10].loop = true;
+
+	anim[11].PushBack({ 207,276,30,30 });
+	anim[11].PushBack({ 254,276,30,30 });
+	anim[11].PushBack({ 303,276,30,30 });
+	anim[11].PushBack({ 350,276,30,30 });
+	anim[11].loop = true;
+
+	anim[12].PushBack({ 209,314,30,30 });
+	anim[12].PushBack({ 254,314,30,30 });
+	anim[12].PushBack({ 302,314,30,30 });
+	anim[12].PushBack({ 350,314,30,30 });
+	anim[12].loop = true;
+
+	anim[13].PushBack({ 209,355,30,30 });
+	anim[13].PushBack({ 258,355,30,30 });
+	anim[13].PushBack({ 304,355,30,30 });
+	anim[13].PushBack({ 351,355,30,30 });
+	anim[13].loop = true;
+
+	anim[14].PushBack({ 213,402,30,30 });
+	anim[14].PushBack({ 258,402,30,30 });
+	anim[14].PushBack({ 302,402,30,30 });
+	anim[14].PushBack({ 349,402,30,30 });
+	anim[14].loop = true;
+
+	anim[15].PushBack({ 7,459,30,30 });
+	anim[15].PushBack({ 53,459,30,30 });
+	anim[15].PushBack({ 102,459,30,30 });
+	anim[15].PushBack({ 148,459,30,30 });
+	anim[15].loop = true;
+
 
 	collider = App->collision->AddCollider({ 0, 0, 32, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY_BASIC, (Module*)App->enemies);
 	collider->life_units = 1;
