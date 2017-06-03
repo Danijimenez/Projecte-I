@@ -105,6 +105,7 @@ BasicEnemy2::BasicEnemy2(int x, int y) : Enemy(x, y)
 	anim[15].PushBack({ 148,459,30,30 });
 	anim[15].loop = true;
 
+	animation = &anim[15];
 
 	collider = App->collision->AddCollider({ 0, 0, 32, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY_BASIC, (Module*)App->enemies);
 	collider->life_units = 1;
@@ -113,7 +114,7 @@ BasicEnemy2::BasicEnemy2(int x, int y) : Enemy(x, y)
 	original_pos.y = y;
 
 	path.PushBack({ 0.46428f, 0 }, 312);
-	path.PushBack({ 0.0f, 0.0f }, 1, &finish);
+	
 
 	path.loop = false;
 }
