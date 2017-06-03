@@ -61,11 +61,14 @@ update_status ModuleEnemies_Ground::PreUpdate()
 // Called before render is available
 update_status ModuleEnemies_Ground::Update()
 {
+
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies_ground[i] != nullptr) enemies_ground[i]->Draw(sprites);
+
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 		if(enemies_ground[i] != nullptr) enemies_ground[i]->Move();
 
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
-		if(enemies_ground[i] != nullptr) enemies_ground[i]->Draw(sprites);
 
 	return UPDATE_CONTINUE;
 }

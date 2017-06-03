@@ -12,15 +12,9 @@ private:
 	bool going_up = true;
 	bool direction=false;
 	int original_y = 0;
-	Animation up;
-	Animation down;
-	Animation left;
-	Animation right;
-	Animation right_up;
-	Animation right_down;
-	Animation left_up;
-	Animation left_down;
+	Animation finish;
 	Animation anim[16];
+	bool aim = false;
 
 	float proj_speed = 3.0f;
 	float speed_x_mult, speed_y_mult, common_mult, a_mult;

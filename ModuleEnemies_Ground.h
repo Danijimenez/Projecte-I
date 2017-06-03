@@ -2,7 +2,7 @@
 #define __ModuleEnemies_Ground_H__
 
 #include "Module.h"
-#include "Enemy_BasicEnemy.h"
+#include "ModuleEnemies.h"
 
 #define MAX_ENEMIES 1000
 
@@ -28,6 +28,8 @@ public:
 
 	bool AddEnemy(ENEMY_TYPES type, int x, int y);
 
+	SDL_Texture* sprites;
+
 private:
 
 	void SpawnEnemy(const EnemyInfo& info);
@@ -36,7 +38,7 @@ private:
 
 	EnemyInfo queue_ground[MAX_ENEMIES];
 	Enemy* enemies_ground[MAX_ENEMIES];
-	SDL_Texture* sprites;
+
 };
 
 #endif // __ModuleEnemies_H__

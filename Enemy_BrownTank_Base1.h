@@ -10,7 +10,7 @@ private:
 	Path path;
 	bool going_up = true;
 	int original_y = 0;
-	Animation Brown_Tank;
+	Animation Brown_Tank[8];
 	Enemy* turret = nullptr;
 
 

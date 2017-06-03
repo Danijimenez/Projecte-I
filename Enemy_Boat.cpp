@@ -14,94 +14,94 @@ Boat::Boat(int x, int y) : Enemy(x, y)
 	//Animation
 	
 	//0
-	sail[i].PushBack({ 696,768,38,34 });
-	sail[i].PushBack({ 642,768,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[0].PushBack({ 696,768,38,34 });
+	sail[0].PushBack({ 642,768,38,34 });
+	sail[0].loop = true;
+	sail[0].speed = 0.2f;
 	//1
-	sail[i].PushBack({ 696,817,38,34 });
-	sail[i].PushBack({ 642,817,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[1].PushBack({ 696,817,38,34 });
+	sail[1].PushBack({ 642,817,38,34 });
+	sail[1].loop = true;
+	sail[1].speed = 0.2f;
 	//2
-	sail[i].PushBack({ 802,621,38,34 });
-	sail[i].PushBack({ 754,621,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[2].PushBack({ 802,621,38,34 });
+	sail[2].PushBack({ 754,621,38,34 });
+	sail[2].loop = true;
+	sail[2].speed = 0.2f;
 	//3
-	sail[i].PushBack({ 696,722,38,34 });
-	sail[i].PushBack({ 642,722,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[3].PushBack({ 696,722,38,34 });
+	sail[3].PushBack({ 642,722,38,34 });
+	sail[3].loop = true;
+	sail[3].speed = 0.2f;
 	//4
-	sail[i].PushBack({ 696,673,38,34 });
-	sail[i].PushBack({ 642,673,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[4].PushBack({ 696,673,38,34 });
+	sail[4].PushBack({ 642,673,38,34 });
+	sail[4].loop = true;
+	sail[4].speed = 0.2f;
 	//5
-	sail[i].PushBack({ 696,621,38,34 });
-	sail[i].PushBack({ 642,621,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[5].PushBack({ 696,621,38,34 });
+	sail[5].PushBack({ 642,621,38,34 });
+	sail[5].loop = true;
+	sail[5].speed = 0.2f;
 	//6
-	sail[i].PushBack({ 578,817,38,34 });
-	sail[i].PushBack({ 526, 817,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[6].PushBack({ 578,817,38,34 });
+	sail[6].PushBack({ 526, 817,38,34 });
+	sail[6].loop = true;
+	sail[6].speed = 0.2f;
 	//7
-	sail[i].PushBack({ 578,768,38,34 });
-	sail[i].PushBack({ 526,768,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[7].PushBack({ 578,768,38,34 });
+	sail[7].PushBack({ 526,768,38,34 });
+	sail[7].loop = true;
+	sail[7].speed = 0.2f;
 	//8
-	sail[i].PushBack({ 578,722,38,34 });
-	sail[i].PushBack({ 526,722,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[8].PushBack({ 578,722,38,34 });
+	sail[8].PushBack({ 526,722,38,34 });
+	sail[8].loop = true;
+	sail[8].speed = 0.2f;
 	//9
-	sail[i].PushBack({ 578,674,38,34 });
-	sail[i].PushBack({ 526,674,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[9].PushBack({ 578,674,38,34 });
+	sail[9].PushBack({ 526,674,38,34 });
+	sail[9].loop = true;
+	sail[9].speed = 0.2f;
 	//10
-	sail[i].PushBack({ 578,621,38,34 });
-	sail[i].PushBack({ 526,621,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[10].PushBack({ 578,621,38,34 });
+	sail[10].PushBack({ 526,621,38,34 });
+	sail[10].loop = true;
+	sail[10].speed = 0.2f;
 	//11
-	sail[i].PushBack({ 465,621,38,34 });
-	sail[i].PushBack({ 410,621,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[11].PushBack({ 465,621,38,34 });
+	sail[11].PushBack({ 410,621,38,34 });
+	sail[11].loop = true;
+	sail[11].speed = 0.2f;
 	//12
-	sail[i].PushBack({ 465,674,38,34 });
-	sail[i].PushBack({ 410,674,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[12].PushBack({ 465,674,38,34 });
+	sail[12].PushBack({ 410,674,38,34 });
+	sail[12].loop = true;
+	sail[12].speed = 0.2f;
 	//13
-	sail[i].PushBack({ 465,722,38,34 });
-	sail[i].PushBack({ 410,722,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[13].PushBack({ 465,722,38,34 });
+	sail[13].PushBack({ 410,722,38,34 });
+	sail[13].loop = true;
+	sail[13].speed = 0.2f;
 	//14
-	sail[i].PushBack({ 465,768,38,34 });
-	sail[i].PushBack({ 410,768,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[14].PushBack({ 465,768,38,34 });
+	sail[14].PushBack({ 410,768,38,34 });
+	sail[14].loop = true;
+	sail[14].speed = 0.2f;
 	//15
-	sail[i].PushBack({ 465,817,38,34 });
-	sail[i].PushBack({ 410,817,38,34 });
-	sail[i].loop = true;
-	sail[i++].speed = 0.2f;
+	sail[15].PushBack({ 465,817,38,34 });
+	sail[15].PushBack({ 410,817,38,34 });
+	sail[15].loop = true;
+	sail[15].speed = 0.2f;
 
 
 
 	shot.PushBack({ 366,310,72,52 });
 
 
-	animation = &sail[0];
+	animation = &sail[2];
 
-	collider = App->collision->AddCollider({ 0, 0, 72, 52 }, COLLIDER_TYPE::COLLIDER_ENEMY_GREENSHIP, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 38, 34 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
 	collider->life_units = 20;
 
 	original_pos.x = x;
@@ -118,7 +118,84 @@ Boat::Boat(int x, int y) : Enemy(x, y)
 
 void Boat::Move()
 {
+	//if (App->player->living && !App->player2->living) {
+		if (App->player->position.y > position.y) {
 
+			float angle = atan2(App->player->position.y - position.y, App->player->position.x - position.x);
+			angle *= 180 / 3.14;
+
+			uint k = 15;
+			for (uint i = 0; i < 16; i++) {
+				k--;
+				if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+
+					animation = &sail[k];
+
+					break;
+				}
+			}
+		}
+
+		else {
+
+			float angle = atan2(position.y - App->player->position.y, position.x - App->player->position.x);
+			angle *= 180 / 3.14;
+
+			uint k = 7;
+			for (uint i = 0; i < 16; i++) {
+
+				if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+
+					animation = &sail[k];
+
+					break;
+
+				}
+				k--;
+			}
+		}
+//	}
+
+	//Player 2 only
+
+	/*else if (App->player2->living && !App->player->living) {
+		if (App->player2->position.y > position.y) {
+
+			float angle = atan2(App->player2->position.y - position.y, App->player2->position.x - position.x);
+			angle *= 180 / 3.14;
+
+			uint k = 15;
+			for (uint i = 0; i < 16; i++) {
+				k--;
+				if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+
+					animation = &sail[k];
+
+					break;
+				}
+			}
+		}
+
+		else {
+
+			float angle = atan2(position.y - App->player2->position.y, position.x - App->player2->position.x);
+			angle *= 180 / 3.14;
+
+			uint k = 7;
+			for (uint i = 0; i < 16; i++) {
+
+				if (angle >= ((i*22.5) + 11.25) && angle <= (((i + 1)*22.5) + 11.25)) {
+
+					animation = &sail[k];
+
+					break;
+
+				}
+				k--;
+			}
+		}
+	}
+	*/
 
 	int player1_x = (App->player->position.x - position.x);
 	int player1_y = (App->player->position.y - position.y);
@@ -195,6 +272,6 @@ void Boat::Move()
 
 
 
-	position = original_pos + path.GetCurrentPosition(&animation);
+	position = original_pos + path.GetCurrentPosition();
 
 }
