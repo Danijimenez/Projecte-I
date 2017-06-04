@@ -380,26 +380,27 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 
 void Boss::Move()
 {
-
+	
 	if (animation == &Shoot) {
 
 		switch (shot_type)
 		{
-		case 0:
+		case 1:
 			App->particles->AddParticle(App->particles->enemy_shot, position.x + 72, position.y + 69, COLLIDER_ENEMY_SHOT, 0);
 			break;
-		case 1:
+		case 2:
 			App->particles->AddParticle(App->particles->enemy_shot, position.x + 81, position.y + 67, COLLIDER_ENEMY_SHOT, 0);
 			break;
 
-		case 2:
+		case 3:
 			App->particles->AddParticle(App->particles->enemy_shot, position.x + 89, position.y + 69, COLLIDER_ENEMY_SHOT, 0);
+			shot_type = 0;
 			break;
 
 		default:
 			break;
 		}
-
+		shot_type++;
 	
 	}
 
@@ -420,6 +421,6 @@ void Boss::Move()
 	}
 
 	position = original_pos + path.GetCurrentPosition(&animation);
-	original_pos.y += 0.6;
+
 }
 
