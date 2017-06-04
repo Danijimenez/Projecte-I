@@ -55,6 +55,8 @@ bool ModuleLevel2::Start()
 	top = App->collision->AddCollider({ 0, top_pos , 352 ,10 }, COLLIDER_WALL_UP);
 	bottom = App->collision->AddCollider({ 0, bottom_pos , 352 ,10 }, COLLIDER_WALL_DOWN);
 
+	App->enemies->AddEnemy(MISSILE, 150, 50);
+
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -41, 2);
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 270, -89, 1);
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 270, -129, 1);
@@ -120,8 +122,7 @@ bool ModuleLevel2::Start()
 	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 0, -886);
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -837, 2);
-	//App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -857, 2);
-	//App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 351, -837, izquierda);
+
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 351, -859,1);
 	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 351, -879,1);
@@ -292,21 +293,6 @@ bool ModuleLevel2::Start()
 
 
 
-
-
-
-
-	
-
-
-
-
-
-	//	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 48, -337);
-
-	
-
-
 	return ret;
 }
 
@@ -371,7 +357,6 @@ update_status ModuleLevel2::Update()
 		App->fade->FadeToBlack(this, App->HallOfAces, 2.0f);
 		top->to_delete = true;
 		bottom->to_delete = true;
-
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_F6])

@@ -81,10 +81,6 @@ update_status ModuleWelcome::Update()
 		player2 = true;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_F5]) {
-		App->fade->FadeToBlack(this, App->debug, 2.0f);
-	}
-
 	if (App->render->camera.y > 3400) {
 		App->render->camera.y = 0;
 	}

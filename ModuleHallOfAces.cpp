@@ -48,6 +48,10 @@ bool ModuleHallOfAces::Start()
 		temp_hiScore = App->player2->player_points;
 	}
 
+
+	App->player2->player_points = 0;
+	App->player2->player_points = 0;
+
 	char_num = 0;
 
 	scores[9].score = temp_hiScore;

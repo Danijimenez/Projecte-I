@@ -32,6 +32,7 @@ bool ModuleAudio::Play(const char* path)
 {
 	bool ret;
 
+
 	soundtrack = Mix_LoadMUS(path);
 	if (soundtrack == nullptr) {
 		LOG("Error");
@@ -50,10 +51,10 @@ bool ModuleAudio::Play(const char* path)
 
 bool ModuleAudio::Stop()
 {
-	if (App->stop_music) {
-//		Mix_FreeMusic(soundtrack);
+
+		Mix_FreeMusic(soundtrack);
 		App->stop_music = false;
-	}
+	
 	return true;
 }
 

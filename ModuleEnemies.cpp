@@ -294,7 +294,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 
 				c1->life_units--;
 
-				if (c2->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_BOMB) {
+				if (c2->type == COLLIDER_PLAYER_SHOT) {
 					switch (c1->type)
 					{
 			
@@ -326,7 +326,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					}
 				}
 
-				else {
+				else if(c2->type == COLLIDER_PLAYER_2_SHOT){
 					switch (c1->type)
 					{
 

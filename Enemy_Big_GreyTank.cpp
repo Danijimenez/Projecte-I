@@ -431,7 +431,7 @@ void Big_GreyTank::Move()
 
 
 	}
-	original_pos.y -= 0.1f;
+	original_pos.y += 0.2f;
 	position = original_pos + path.GetCurrentPosition(&animation);
 
 }

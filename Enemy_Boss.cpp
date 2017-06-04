@@ -69,7 +69,7 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 	Stage2Shoot.loop = true;
 	Stage2Shoot.speed = 0.1f;
 
-	
+
 
 	collider = App->collision->AddCollider({ 0, 0, 160, 70 }, COLLIDER_TYPE::COLLIDER_ENEMY_BOSS, (Module*)App->enemies);
 	collider->life_units = 270;
@@ -382,7 +382,7 @@ void Boss::Move()
 {
 	
 	if (animation == &Shoot) {
-
+		App->particles->enemy_shot.speed.y = 3;
 		switch (shot_type)
 		{
 		case 1:
