@@ -11,7 +11,14 @@ private:
 	fPoint original_pos;
 	bool going_up = true;
 	int original_y = 0;
-	Animation BigBrown_Tank;
+	Animation waiting;
+	Animation preparing;
+	Animation shoot;
+	Path path;
+	int shoot_type;
+
+	int proj_speed;
+
 
 public:
 

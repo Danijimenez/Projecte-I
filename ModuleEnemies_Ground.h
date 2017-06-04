@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "ModuleEnemies.h"
 
-#define MAX_ENEMIES 1000
+#define MAX_ENEMIES 100
 
 
 class Enemy;

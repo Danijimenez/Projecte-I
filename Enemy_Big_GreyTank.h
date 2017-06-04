@@ -17,6 +17,9 @@ private:
 	Animation Moving;
 	Animation Shoot;
 
+	float proj_speed = 4.0f;
+	float speed_x_mult, speed_y_mult, common_mult, a_mult;
+
 public:
 
 	Big_GreyTank(int x, int y, int path);

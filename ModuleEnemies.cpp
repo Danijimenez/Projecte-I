@@ -126,7 +126,9 @@ update_status ModuleEnemies::Update()
 			App->particles->movement_x = common_mult * speed_x_mult;
 			App->particles->movement_y = common_mult * speed_y_mult;
 
-
+			if (enemies[target] == nullptr) {
+				need_target = true;
+			}
 
 			//		App->player->homing_shot = false;
 		}

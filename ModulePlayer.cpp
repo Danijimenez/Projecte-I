@@ -71,7 +71,7 @@ bool ModulePlayer::Start()
 		position.y = 176;
 		destroyed = false;
 
-		bombs = 3;
+		bombs = 2;
 
 		graphics = App->textures->Load("assets/textures/player1.png");
 		App->collision->Enable();
@@ -88,6 +88,7 @@ bool ModulePlayer::Start()
 		App->audio->Enable();
 		player_points = 0;
 		movep = true;
+		shots = 0;
 	return ret;
 }
 
@@ -202,7 +203,10 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN 
 		|| App->input->contrkey1[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN)
 	{
-
+		shots++;
+		if (shots > 30) {
+			ammo = true;
+		}
 		switch (shoot_type)
 		{
 		case STANDARD:
@@ -230,6 +234,12 @@ update_status ModulePlayer::Update()
 			App->particles->AddParticle(App->particles->standard_shot, position.x + 16, position.y, COLLIDER_PLAYER_SHOT, 0);
 			break;
 		case VULCAN_LVL2:
+
+			App->particles->AddParticle(App->particles->standard_shot, position.x + 4, position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->standard_shot, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->standard_shot, position.x + 4, position.y, COLLIDER_PLAYER_SHOT, 0);
+
+
 
 			break;
 		default:
@@ -261,7 +271,7 @@ update_status ModulePlayer::Update()
 		Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 	}
 
-
+	
 	if ((App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN || App->input->contrkey1[SDL_CONTROLLER_BUTTON_X] == KEY_STATE::KEY_DOWN) && bombs >= 0)
 	{
 		App->particles->AddParticle(App->particles->bomb, position.x - 70, position.y - 130, COLLIDER_BOMB, 0);
@@ -300,7 +310,21 @@ update_status ModulePlayer::Update()
 
 	}
 
+	switch (bombs)
+	{
+	case 0:
+		App->fonts->BlitText(0, 250, font_score, " ");
+		break;
+	case 1:
+		App->fonts->BlitText(0, 240, font_score, "  ");
+		break;
+	case 2:
+		App->fonts->BlitText(0, 240, font_score, "   ");
+		break;
 
+	default:
+		break;
+	}
 
 
 	sprintf_s(score_text, 10, "%7d", player_points);

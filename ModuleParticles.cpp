@@ -132,7 +132,8 @@ bool ModuleParticles::Start()
 	nuclear_missile.anim.PushBack({ 171,44,4,11 });
 
 	nuclear_missile.speed.x = 0;
-	nuclear_missile.speed.y = -3;
+	nuclear_missile.speed.y = -4;
+	nuclear_missile.life = 1000;
 
 	nuclear_missile.reload = true;
 	

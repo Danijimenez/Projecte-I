@@ -12,10 +12,12 @@ class Enemy
 protected:
 	Animation* animation = nullptr;
 	Collider* collider = nullptr;
+	int shot_type;
 
 public:
 	fPoint position;
 	bool hittable = true;
+	fPoint relative_position;
 public:
 	Enemy(int x, int y);
 	virtual ~Enemy();
