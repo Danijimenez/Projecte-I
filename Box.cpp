@@ -29,6 +29,6 @@ void Box::Move()
 {
 
 
-	position.y = position.y-1;
+	//position.y = position.y-1;
 
 }

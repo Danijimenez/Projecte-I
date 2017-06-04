@@ -29,6 +29,6 @@ void DarkBox::Move()
 {
 
 
-	position.y = position.y - 1;
+	//position.y = position.y - 1;
 
 }

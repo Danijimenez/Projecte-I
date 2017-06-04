@@ -13,6 +13,13 @@
 #include "Enemy_Bee.h"
 #include "Enemy_BrownTank_Base1.h"
 #include "Enemy_Boss.h"
+#include "Enemy_GreyTank_Base.h"
+#include "Enemy_Boat.h"
+#include "Enemy_BigBoat.h"
+#include "Enemy_Big_GreyTank.h"
+#include "Enemy_Big_BrownTank.h"
+#include "Box.h"
+#include "DarkBox.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
@@ -236,6 +243,27 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		case ENEMY_TYPES::BOSS:
 			enemies[i] = new Boss(info.x, info.y);
+			break;
+		case ENEMY_TYPES::BOAT:
+			enemies[i] = new Boat(info.x, info.y);
+			break;
+		case ENEMY_TYPES::BIG_BOAT:
+			enemies[i] = new BigBoat(info.x, info.y);
+			break;
+		case ENEMY_TYPES::GREY_TANK:
+			enemies[i] = new GreyTank_Base(info.x, info.y, info.path);
+			break;
+		case ENEMY_TYPES::BIGGREYTANK:
+			enemies[i] = new Big_GreyTank(info.x, info.y, info.path);
+			break;
+		case ENEMY_TYPES::BIGBROWNTANK:
+			enemies[i] = new Big_BrownTank(info.x, info.y, info.path);
+			break;
+		case ENEMY_TYPES::BOX:
+			enemies[i] = new Box(info.x, info.y);
+			break;
+		case ENEMY_TYPES::DARKBOX:
+			enemies[i] = new DarkBox(info.x, info.y);
 			break;
 		}			
 	}
