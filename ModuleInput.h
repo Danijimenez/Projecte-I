@@ -30,9 +30,11 @@ public:
 public:
 	KEY_STATE keyboard[MAX_KEYS];
 
-	SDL_GameController* controller = nullptr;
+	SDL_GameController* controller_1 = nullptr;
+	SDL_GameController* controller_2 = nullptr;
 
-	KEY_STATE contrkey[15];
+	KEY_STATE contrkey1[15];
+	KEY_STATE contrkey2[15];
 	SDL_GameControllerButton button[15] = { 
 		SDL_CONTROLLER_BUTTON_A,
 		SDL_CONTROLLER_BUTTON_B,

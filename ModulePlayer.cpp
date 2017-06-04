@@ -110,16 +110,16 @@ update_status ModulePlayer::Update()
 
 
 	if ((App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT
-		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_UP] == KEY_STATE::KEY_REPEAT
-		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTY) < -5000)
+		|| App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_UP] == KEY_STATE::KEY_REPEAT
+		|| SDL_GameControllerGetAxis(App->input->controller_1, SDL_CONTROLLER_AXIS_LEFTY) < -5000)
 		&& move_up)
 	{
 		position.y -= 2 * move_speed;
 	}
 
 	if ((App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT
-		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_DOWN] == KEY_STATE::KEY_REPEAT
-		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTY) > 5000)
+		|| App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_DOWN] == KEY_STATE::KEY_REPEAT
+		|| SDL_GameControllerGetAxis(App->input->controller_1, SDL_CONTROLLER_AXIS_LEFTY) > 5000)
 		&& move_down)
 	{
 		position.y += 2 * move_speed;
@@ -128,16 +128,16 @@ update_status ModulePlayer::Update()
 
 
 	if ((App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP
-		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_UP)
-		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > 5000) {
-		int i = SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < 5000;
+		|| App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_UP)
+		|| SDL_GameControllerGetAxis(App->input->controller_1, SDL_CONTROLLER_AXIS_LEFTX) > 5000) {
+
 		right_anim = 0;
 	}
 
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT
-		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_REPEAT
-		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > 5000)
+		|| App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_REPEAT
+		|| SDL_GameControllerGetAxis(App->input->controller_1, SDL_CONTROLLER_AXIS_LEFTX) > 5000)
 	{
 		if (position.x < 330) {
 			position.x += 2 * move_speed;
@@ -157,13 +157,15 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_UP)) {
+	if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP 
+		|| App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_UP
+		|| SDL_GameControllerGetAxis(App->input->controller_1, SDL_CONTROLLER_AXIS_LEFTX) > -5000)) {
 		right_anim = 0;
 	}
 
 	if ((App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT
-		|| App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_REPEAT)
-		|| SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < -5000)
+		|| App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_REPEAT)
+		|| SDL_GameControllerGetAxis(App->input->controller_1, SDL_CONTROLLER_AXIS_LEFTX) < -5000)
 	{
 
 		if (position.x > 0) {
@@ -184,11 +186,12 @@ update_status ModulePlayer::Update()
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
-		&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_IDLE
-		&& App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_IDLE
+		&& App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_IDLE
+		&& App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_IDLE
 		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-		&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) < 5000
-		&& SDL_GameControllerGetAxis(App->input->controller, SDL_CONTROLLER_AXIS_LEFTX) > -5000) {
+		&& SDL_GameControllerGetAxis(App->input->controller_1, SDL_CONTROLLER_AXIS_LEFTX) < 5000
+		&& SDL_GameControllerGetAxis(App->input->controller_1, SDL_CONTROLLER_AXIS_LEFTX) > -5000) 
+	{
 		current_animation = &idle;
 
 	}
@@ -196,7 +199,8 @@ update_status ModulePlayer::Update()
 		position.y -= speed;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN 
+		|| App->input->contrkey1[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN)
 	{
 
 		switch (shoot_type)
@@ -251,7 +255,7 @@ update_status ModulePlayer::Update()
 	}
 
 
-	if ((App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_X] == KEY_STATE::KEY_DOWN) && bombs >= 0)
+	if ((App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN || App->input->contrkey1[SDL_CONTROLLER_BUTTON_X] == KEY_STATE::KEY_DOWN) && bombs >= 0)
 	{
 		App->particles->AddParticle(App->particles->bomb, position.x - 70, position.y - 130, COLLIDER_BOMB, 0);
 		bombs--;

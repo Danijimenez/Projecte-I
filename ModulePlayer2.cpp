@@ -53,7 +53,6 @@ ModulePlayer2::ModulePlayer2()
 	left[1].loop = true;
 	left[1].speed = 0.1f;
 
-	shoot_type = STANDARD;
 }
 
 ModulePlayer2::~ModulePlayer2()
@@ -80,6 +79,9 @@ bool ModulePlayer2::Start()
 		move_speed = 1;
 		lifes = 2;
 		living = true;
+
+		bombs = 3;
+
 	
 	return ret;
 }
@@ -102,26 +104,32 @@ update_status ModulePlayer2::Update()
 
 	int speed = 1;
 
-	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT && move_up)
+	if ((App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT 
+		|| SDL_GameControllerGetAxis(App->input->controller_2, SDL_CONTROLLER_AXIS_LEFTY) < -5000)
+		&& move_up)
 	{
 		position.y -= move_speed;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT && move_down)
+	if ((App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT 
+		|| SDL_GameControllerGetAxis(App->input->controller_2, SDL_CONTROLLER_AXIS_LEFTY) > 5000) 
+		&& move_down)
 	{
 		position.y += 2 * move_speed;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_UP) {
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_UP
+		|| SDL_GameControllerGetAxis(App->input->controller_2, SDL_CONTROLLER_AXIS_LEFTX) > 5000) {
 		right_anim = 0;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT
+		|| SDL_GameControllerGetAxis(App->input->controller_2, SDL_CONTROLLER_AXIS_LEFTX) > 5000)
 	{
 
-		if (position.x < 385) {
+		if (position.x < 330) {
 			position.x += 2*move_speed;
-			if (App->render->camera.x > -360) {
+			if (App->render->camera.x > -128) {
 				App->render->camera.x -= move_speed;
 			}
 
@@ -137,10 +145,12 @@ update_status ModulePlayer2::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_UP) {
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_UP
+		|| SDL_GameControllerGetAxis(App->input->controller_2, SDL_CONTROLLER_AXIS_LEFTX) > -5000) {
 		left_anim = 0;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT
+		|| SDL_GameControllerGetAxis(App->input->controller_2, SDL_CONTROLLER_AXIS_LEFTX) < -5000)
 	{
 
 		if (position.x > 0) {
@@ -161,12 +171,19 @@ update_status ModulePlayer2::Update()
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE) {
-		//	idle.Reset();
+		&& App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE
+		&& SDL_GameControllerGetAxis(App->input->controller_2, SDL_CONTROLLER_AXIS_LEFTX) < 5000
+		&& SDL_GameControllerGetAxis(App->input->controller_2, SDL_CONTROLLER_AXIS_LEFTX) > -5000) 
+	{
 		current_animation = &idle;
 
 	}
-	if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN)
+
+
+
+
+	if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN
+		|| App->input->contrkey2[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN)
 	{
 		uint i = 16;
 		switch (shoot_type)
@@ -206,11 +223,20 @@ update_status ModulePlayer2::Update()
 		Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 	}
 
+	if ((App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN || App->input->contrkey2[SDL_CONTROLLER_BUTTON_X] == KEY_STATE::KEY_DOWN) && bombs >= 0)
+	{
+		App->particles->AddParticle(App->particles->bomb, position.x - 70, position.y - 130, COLLIDER_BOMB, 0);
+		bombs--;
+	}
+
+
+
 	move_up = true;
 	move_down = true;
 
-
-	position.y -= App->player->speed;
+	if (App->player->movep) {
+		position.y -= App->player->speed;
+	}
 
 	player2->SetPos(position.x, position.y);
 

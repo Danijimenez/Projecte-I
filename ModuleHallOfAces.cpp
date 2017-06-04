@@ -133,13 +133,13 @@ update_status ModuleHallOfAces::Update()
 	App->fonts->BlitText(78, 9, 2, App->player->hiscore_text); // hi score
 
 
-	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_DOWN || App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] == KEY_STATE::KEY_DOWN) {
 		char_num++;
 		if (char_num == 3) {
 			char_num = 0;
 		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_DOWN || App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_LEFT] == KEY_STATE::KEY_DOWN) {
 		char_num--;
 		if (char_num == -1) {
 			char_num = 2;
@@ -147,13 +147,13 @@ update_status ModuleHallOfAces::Update()
 	}
 
 
-	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_UP] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN || App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_UP] == KEY_STATE::KEY_DOWN) {
 		scores[score_index].character[char_num]++;
 		if (scores[score_index].character[char_num] == 65) {
 			scores[score_index].character[char_num] = 0;
 		}
 	}
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN || App->input->contrkey[SDL_CONTROLLER_BUTTON_DPAD_DOWN] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN || App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_DOWN] == KEY_STATE::KEY_DOWN) {
 		scores[score_index].character[char_num]--;
 		if (scores[score_index].character[char_num] == -1) {
 			scores[score_index].character[char_num] = 64;
@@ -194,7 +194,7 @@ update_status ModuleHallOfAces::Update()
 		blit = 0;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->contrkey[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] || App->input->contrkey1[SDL_CONTROLLER_BUTTON_A] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, App->welcome, 2.0f);
 	}
 

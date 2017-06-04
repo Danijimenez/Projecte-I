@@ -38,7 +38,7 @@ public:
 	bool move_up = true;
 	bool move_down = true;
 	bool living = false;
-
+	int bombs;
 	int font_score = -1;
 	char score_text[10];
 	char hiscore_text[10];
