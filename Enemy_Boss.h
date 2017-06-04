@@ -16,6 +16,9 @@ private:
 	Animation Moving;
 	Animation Shoot;
 	Animation Bee;
+	Animation Stage2Stay;
+	Animation Stage2Moving;
+	Animation Stage2Shoot;
 
 public:
 
