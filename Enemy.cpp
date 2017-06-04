@@ -52,6 +52,10 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		Mix_PlayChannel(-1, App->audio->green_ship_explosion, 0);
 
 		break;
+	case COLLIDER_DARK_BOX:
+		App->particles->AddParticle(App->particles->ground_explosion, position.x, position.y, COLLIDER_NONE, 0);
+		App->enemies->AddEnemy(MISSILE, position.x + 15, position.y + 15);
+
 	case COLLIDER_ENEMY_POWERUPSHIP:
 		App->particles->AddParticle(App->particles->air_enemy_explosion, position.x, position.y, COLLIDER_NONE, 0);
 		App->enemies->AddEnemy(POWERUP, position.x + 28, position.y + 29);

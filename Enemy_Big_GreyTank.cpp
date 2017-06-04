@@ -248,6 +248,8 @@ Big_GreyTank::Big_GreyTank(int x, int y, int path_type) : Enemy(x, y)
 	path.PushBack({ 0,0 }, 1, &Shoot);
 	path.PushBack({ 0,0 }, 1, &Shoot);
 
+	path.PushBack({ 0, 1.0833f }, 1, &Moving);
+
 	path.loop = false;
 
 }
@@ -258,7 +260,7 @@ void Big_GreyTank::Move()
 
 	if (animation == &Shoot) {
 		shot_type++;
-
+		relative_position = position;
 		//Decide player to shoot;
 
 		int player1_x = (App->player->position.x - position.x);
@@ -329,7 +331,7 @@ void Big_GreyTank::Move()
 			case 8:
 				relative_position.x = position.x + 25;
 				relative_position.y = position.y + 17;
-
+				shot_type = 0;
 				break;
 
 			default:

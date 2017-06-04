@@ -47,25 +47,6 @@ PowerUp::PowerUp(int x, int y) : Enemy(x, y)
 	path.PushBack({ -0.48f, +0.48f }, 64, &laser);
 	path.PushBack({ +0.48f, +0.48f }, 64, &laser);
 
-	path.PushBack({ +0.48f, -0.48f }, 64, &laser);
-	path.PushBack({ -0.48f, -0.48f }, 64, &laser);
-	path.PushBack({ -0.48f, +0.48f }, 64, &laser);
-	path.PushBack({ +0.48f, +0.48f }, 64, &laser);
-
-	path.PushBack({ +0.48f, -0.48f }, 64, &laser);
-	path.PushBack({ -0.48f, -0.48f }, 64, &laser);
-	path.PushBack({ -0.48f, +0.48f }, 64, &laser);
-	path.PushBack({ +0.48f, +0.48f }, 64, &laser);
-
-	path.PushBack({ +0.48f, -0.48f }, 64, &vulcan);
-	path.PushBack({ -0.48f, -0.48f }, 64, &vulcan);
-	path.PushBack({ -0.48f, +0.48f }, 64, &vulcan);
-	path.PushBack({ +0.48f, +0.48f }, 64, &vulcan);
-
-	path.PushBack({ +0.48f, -0.48f }, 64, &vulcan);
-	path.PushBack({ -0.48f, -0.48f }, 64, &vulcan);
-	path.PushBack({ -0.48f, +0.48f }, 64, &vulcan);
-	path.PushBack({ +0.48f, +0.48f }, 64, &vulcan);
 	
 	path.PushBack({ +0.48f, -0.48f }, 64, &vulcan);
 	path.PushBack({ -0.48f, -0.48f }, 64, &vulcan);

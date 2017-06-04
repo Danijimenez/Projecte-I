@@ -33,25 +33,6 @@ Missile::Missile(int x, int y) : Enemy(x, y)
 	path.PushBack({ -0.48f, +0.48f }, 64, &nuclear);
 	path.PushBack({ +0.48f, +0.48f }, 64, &nuclear);
 
-	path.PushBack({ +0.48f, -0.48f }, 64, &nuclear);
-	path.PushBack({ -0.48f, -0.48f }, 64, &nuclear);
-	path.PushBack({ -0.48f, +0.48f }, 64, &nuclear);
-	path.PushBack({ +0.48f, +0.48f }, 64, &nuclear);
-
-	path.PushBack({ +0.48f, -0.48f }, 64, &nuclear);
-	path.PushBack({ -0.48f, -0.48f }, 64, &nuclear);
-	path.PushBack({ -0.48f, +0.48f }, 64, &nuclear);
-	path.PushBack({ +0.48f, +0.48f }, 64, &nuclear);
-
-	path.PushBack({ +0.48f, -0.48f }, 64, &homing);
-	path.PushBack({ -0.48f, -0.48f }, 64, &homing);
-	path.PushBack({ -0.48f, +0.48f }, 64, &homing);
-	path.PushBack({ +0.48f, +0.48f }, 64, &homing);
-
-	path.PushBack({ +0.48f, -0.48f }, 64, &homing);
-	path.PushBack({ -0.48f, -0.48f }, 64, &homing);
-	path.PushBack({ -0.48f, +0.48f }, 64, &homing);
-	path.PushBack({ +0.48f, +0.48f }, 64, &homing);
 
 	path.PushBack({ +0.48f, -0.48f }, 64, &homing);
 	path.PushBack({ -0.48f, -0.48f }, 64, &homing);

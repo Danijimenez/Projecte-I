@@ -25,6 +25,7 @@
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
+#include "Missile.h"
 
 
 #define SPAWN_MARGIN 50
@@ -274,6 +275,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		case ENEMY_TYPES::BOMB:
 			enemies[i] = new Bomb(info.x, info.y);
+			break;
+		case ENEMY_TYPES::MISSILE:
+			enemies[i] = new Missile(info.x, info.y);
 			break;
 		}			
 	}
