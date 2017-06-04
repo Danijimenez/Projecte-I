@@ -12,6 +12,7 @@ private:
 	Path path;
 	bool going_up = true;
 	int original_y = 0;
+	Animation Prepare;
 	Animation Open;
 	Animation Moving;
 	Animation Shoot;

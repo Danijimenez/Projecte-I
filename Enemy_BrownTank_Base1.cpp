@@ -57,8 +57,10 @@ BrownTank_Base::BrownTank_Base(int x, int y, int path_type) : Enemy(x, y)
 		
 		break;
 	case 5:
-
+		path.PushBack({ 0.76579f, -0.76579f }, 97, &Brown_Tank[7]);
 		break;
+	case 6:
+		path.PushBack({ 0, 0 }, 1, &Brown_Tank[15]);
 	default:
 		break;
 	}

@@ -54,6 +54,17 @@ GreyTank_Base::GreyTank_Base(int x, int y, int path_type) : Enemy(x, y)
 		path.loop = true;
 
 		break;
+	case 5:
+		path.PushBack({ 0.76579f, 0.76579f }, 200, &Grey_Tank[1]);
+		path.loop = true;
+		break;
+	case 6:
+		path.PushBack({ -0.76579f, -0.76579f }, 200, &Grey_Tank[2]);
+		path.loop = true;
+		break;
+	case 7:
+		path.PushBack({ 0, 0 }, 97, &Grey_Tank[2]);
+		break;
 	default:
 		break;
 	}

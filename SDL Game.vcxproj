@@ -86,6 +86,7 @@
     <ClInclude Include="Enemy_Grey_TankTurret.h" />
     <ClInclude Include="Enemy_PowerUpShip.h" />
     <ClInclude Include="Enemy_TankTurret.h" />
+    <ClInclude Include="Enemy_Train.h" />
     <ClInclude Include="Enemy_Turret.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemLeaks.h" />
@@ -132,6 +133,7 @@
     <ClCompile Include="Enemy_Grey_TankTurret.cpp" />
     <ClCompile Include="Enemy_PowerUpShip.cpp" />
     <ClCompile Include="Enemy_TankTurret.cpp" />
+    <ClCompile Include="Enemy_Train.cpp" />
     <ClCompile Include="Enemy_Turret.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />

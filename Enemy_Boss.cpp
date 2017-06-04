@@ -21,7 +21,43 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 
 	//Change path
 
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 6, &Stay);
+	path.PushBack({ 0,0 }, 1, &Shoot);
 
+	path.PushBack({ 0,0 }, 117, &Stay);
+
+	path.PushBack({ 0,0 }, 65, &Moving);
+
+	path.PushBack({ 0.76579f , -0.76579f }, 1, &Shoot);
+	path.PushBack({ 0.76579f, -0.76579f }, 6, &Stay);
+	path.PushBack({ 0.76579f , -0.76579f }, 1, &Shoot);
+	path.PushBack({ 0.76579f , -0.76579f }, 1, &Shoot);
+	path.PushBack({ 0.76579f , -0.76579f }, 1, &Shoot);
 
 
 }

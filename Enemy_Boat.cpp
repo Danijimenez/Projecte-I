@@ -110,10 +110,9 @@ Boat::Boat(int x, int y) : Enemy(x, y)
 
 	//path
 
-	path.PushBack({ 0.0f, 0.756f }, 50);
-
-
-	path.loop = false;
+	path.PushBack({ 0.0f, 1.0833f }, 50);
+	
+	path.loop = true;
 }
 
 void Boat::Move()

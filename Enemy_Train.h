@@ -1,24 +1,24 @@
-#ifndef __BROWNTANK_1__
-#define __BROWNTANK_1__
+#ifndef __TRAIN_H__
+#define __TRAIN_H__
 
 #include "Enemy.h"
 #include "Path.h"
 
-class BrownTank_Base : public Enemy
+class Train : public Enemy
 {
 private:
 	fPoint original_pos;
 	Path path;
 	bool going_up = true;
 	int original_y = 0;
-	Animation Brown_Tank[8];
-	Enemy* turret = nullptr;
+	Animation train;
+
 
 
 
 public:
 
-	BrownTank_Base(int x, int y, int path);
+	Train(int x, int y);
 	int life_units = 8;
 	void Move();
 };

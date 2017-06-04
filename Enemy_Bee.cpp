@@ -21,22 +21,33 @@ Bee::Bee(int x, int y) : Enemy(x, y)
 
 	leave.PushBack({ 540,972,32,39 });
 	leave.PushBack({ 580,972,32,39 });
+	leave.loop = true;
 
 	collider = App->collision->AddCollider({ 0, 0, 32, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY_BASIC, (Module*)App->enemies);
 	collider->life_units = 1;
 
-	original_pos.x = x;
-	original_pos.y = y;
 
-	path.PushBack({ -0.21f, +2.08f }, 90);
-	path.PushBack({ 0.0f, 0.0f }, 40);
-	path.PushBack({ -0.05f, -1.392f }, 135);
-	path.loop = false;
 }
 
 void Bee::Move()
-{	
+{
 
-	position = original_pos + path.GetCurrentPosition();
+	if (!direction) {
 
+
+		speed_x_mult = (App->player->position.x - position.x);
+		speed_y_mult = (App->player->position.y - position.y);
+
+		a_mult = sqrt((pow(speed_x_mult, 2) + pow(speed_y_mult, 2)));
+
+		common_mult = (proj_speed / a_mult);
+		direction = true;
+	}
+
+	position.x += (common_mult * speed_x_mult);
+
+	position.y += (common_mult * speed_y_mult);
+
+	if (App->player->movep)
+		position.y -= 1;
 }

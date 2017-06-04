@@ -7,6 +7,9 @@
 Big_GreyTank::Big_GreyTank(int x, int y, int path_type) : Enemy(x, y)
 {
 	//Change
+
+	Prepare.PushBack({ 1073,20,76,49 });
+
 	Open.PushBack({ 1073,20,76,49 });
 	Open.PushBack({ 1163,17,76,49 });
 	Open.PushBack({ 1252,19,76,49 });
@@ -40,6 +43,7 @@ Big_GreyTank::Big_GreyTank(int x, int y, int path_type) : Enemy(x, y)
 	Moving.PushBack({ 969,178,76,49 });
 	Moving.PushBack({ 887,230,76,49 });
 
+	Shoot.PushBack({ 887,230,76,49 });
 
 
 	animation = &Open;
@@ -53,11 +57,206 @@ Big_GreyTank::Big_GreyTank(int x, int y, int path_type) : Enemy(x, y)
 	original_pos.y = y;
 
 	//Change path
+	path.PushBack({ -1.0833f, 0 }, 100, &Prepare);
+
+	path.PushBack({ 0, 0 }, 50, &Open);
+
+	path.PushBack({ 0,-1.0833f }, 45, &Moving);
+
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
 
 
+	path.PushBack({ 0,-1.0833f }, 45, &Moving);
+
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+
+	path.PushBack({ 0,-1.0833f }, 45, &Moving);
+
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+
+
+	path.PushBack({ 0,-1.0833f }, 45, &Moving);
+
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+
+	path.PushBack({ 0,-1.0833f }, 45, &Moving);
+
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+
+	path.PushBack({ 0,-1.0833f }, 45, &Moving);
+
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+
+	path.PushBack({ 0,-1.0833f }, 45, &Moving);
+
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+
+
+	path.PushBack({ 0,-1.0833f }, 45, &Moving);
+
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+
+	path.PushBack({ 0, 1.0833f }, 45, &Moving);
+
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+
+	path.PushBack({ 0, 1.0833f }, 45, &Moving);
+
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
+	path.PushBack({ 0,0 }, 1, &Shoot);
 
 
 }
+
 
 void Big_GreyTank::Move()
 {

@@ -113,7 +113,7 @@ BasicEnemy2::BasicEnemy2(int x, int y) : Enemy(x, y)
 	original_pos.x = x;
 	original_pos.y = y;
 
-	path.PushBack({ 0.46428f, 0 }, 312);
+	path.PushBack({ 1, 0 }, 150);
 	
 
 	path.loop = false;

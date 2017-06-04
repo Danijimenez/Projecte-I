@@ -12,9 +12,10 @@ private:
 	Path path;
 	bool going_up = true;
 	int original_y = 0;
-	Animation Open;
+	Animation Stay;
 	Animation Moving;
 	Animation Shoot;
+	Animation Bee;
 
 public:
 
