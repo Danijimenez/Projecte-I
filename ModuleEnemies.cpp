@@ -18,6 +18,7 @@
 #include "Enemy_BigBoat.h"
 #include "Enemy_Big_GreyTank.h"
 #include "Enemy_Big_BrownTank.h"
+#include "Enemy_Train.h"
 #include "Box.h"
 #include "DarkBox.h"
 #include "ModuleCollision.h"
@@ -233,7 +234,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i] = new PowerUp(info.x, info.y);
 			break;
 		case ENEMY_TYPES::BASICENEMY2:
-			enemies[i] = new BasicEnemy2(info.x, info.y);
+			enemies[i] = new BasicEnemy2(info.x, info.y, info.path);
 			break;
 		case ENEMY_TYPES::BROWN_TANK:
 			enemies[i] = new BrownTank_Base(info.x, info.y, info.path);
@@ -264,6 +265,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		case ENEMY_TYPES::DARKBOX:
 			enemies[i] = new DarkBox(info.x, info.y);
+			break;
+		case ENEMY_TYPES::WAGON:
+			enemies[i] = new Train(info.x, info.y);
 			break;
 		}			
 	}

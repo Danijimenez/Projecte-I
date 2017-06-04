@@ -14,13 +14,13 @@ GreyTank_Base::GreyTank_Base(int x, int y, int path_type) : Enemy(x, y)
 
 
 	animation = &Grey_Tank[0];
-	hittable = false;
+	//hittable = false;
 
 	turret = new GreyTank_Turret(x, y);
 
 
-	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
-	collider->life_units = 8;
+	collider = App->collision->AddCollider({ 0, 0, 34, 34 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
+	collider->life_units = 3;
 
 	original_pos.x = x;
 	original_pos.y = y;
@@ -65,6 +65,9 @@ GreyTank_Base::GreyTank_Base(int x, int y, int path_type) : Enemy(x, y)
 	case 7:
 		path.PushBack({ 0, 0 }, 97, &Grey_Tank[2]);
 		break;
+	case 8:
+		path.PushBack({ 0, 0 }, 97, &Grey_Tank[0]);
+		break;
 	default:
 		break;
 	}
@@ -75,13 +78,13 @@ void GreyTank_Base::Move()
 
 	position = original_pos + path.GetCurrentPosition();
 
-	if (collider->life_units > 3)
+	if (collider->life_units > 1)
 	{
 		turret->Move();
 		turret->position = position;
 		turret->Draw(App->enemies_ground->sprites);
 	}
-	else if (collider->life_units == 3)
+	else if (collider->life_units == 1)
 	{
 		hittable = true;
 		delete turret;

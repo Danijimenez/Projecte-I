@@ -21,7 +21,7 @@ private:
 
 public:
 
-	BasicEnemy2(int x, int y);
+	BasicEnemy2(int x, int y, int path_type);
 
 	void Move();
 };
