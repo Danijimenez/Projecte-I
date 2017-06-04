@@ -186,8 +186,114 @@ bool ModuleLevel2::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 0, -1416, 9);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::WAGON, 351, -1728);
+	App->enemies->AddEnemy(ENEMY_TYPES::WAGON, 351, -1714);
 
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 165, -1496, 8);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 207, -1496, 8);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::POWERUP_SHIP, 189, -1619);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 292, -1628, 8);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 271, -1665, 8);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 98, -1665, 8);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 0, -1651, 9);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::WAGON, 351, -1794);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 351, -1849, 10);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 391, -1849, 10);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 431, -1849, 10);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 110, -1865, 8);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 165, -1865, 8);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 227, -1865, 8);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, 230, -1999);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, 112, -2108);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 46, -2196, 4);
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 34, -2253, 4);
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 97, -2303, 1);
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 97, -2333, 1);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BOX, 272, -2023);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOX, 244, -2045);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOX, 222, -2066);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOX, 198, -2086);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOX, 173, -2110);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOX, 150, -2157);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOX, 150, -2206);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, 174, -2237);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BIG_BOAT, 238, -2409);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 0, -2355);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 351, -2386, 1);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 94, -2492, 1);
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 94, -2522, 1);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BIGGREYTANK, 177, -2562);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BOAT, 268, -2547);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOAT, 268, -2600);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOAT, 268, -2640);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 0, -2589);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 0, -2691);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 0, -2721);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::POWERUP_SHIP, 137, -2948);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -2995, 6);
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -3025, 6);
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -3055, 6);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 170, -3038, 6);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 68, -3209, 8);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 133, -3230, 8);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::WAGON, 351, -3370);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 0, -3338);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, -20, -3338);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, -40, -3338);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, -60, -3338);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, -80, -3338);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, -100, -3338);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 351, -3338);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 371, -3338);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 391, -3338);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 411, -3338);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 431, -3338);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 451, -3338);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 0, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, -20, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, -40, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, -60, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, -80, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, -100, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, -120, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 351, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 371, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 391, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 411, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 431, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 451, -3537);
+	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 471, -3537);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, 179, -3784);
+
+
+
+
+
+
+
+	
 
 
 
@@ -254,7 +360,7 @@ update_status ModuleLevel2::Update()
 		bottom->to_delete = true;
 	}
 
-	if (App->render->camera.y > 3400) {
+	if (App->render->camera.y > 4400) {
 		speed = 0;
 		App->player->speed = 0;
 		App->player2->speed = 0;

@@ -17,6 +17,7 @@ Train::Train(int x, int y) : Enemy(x, y)
 	train.PushBack({ 566,546,75,23 });
 	train.PushBack({ 646,546,75,23 });
 	train.PushBack({ 404,579,75,23 });
+	train.speed = 0.2f;
 
 	hittable = true;
 
@@ -38,6 +39,6 @@ Train::Train(int x, int y) : Enemy(x, y)
 void Train::Move()
 {
 	
-	position = original_pos + path.GetCurrentPosition();
+	position = original_pos + path.GetCurrentPosition(&animation);
 
 }

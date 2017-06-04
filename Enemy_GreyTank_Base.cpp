@@ -69,7 +69,10 @@ GreyTank_Base::GreyTank_Base(int x, int y, int path_type) : Enemy(x, y)
 		path.PushBack({ 0, 0 }, 97, &Grey_Tank[0]);
 		break;
 	case 9:
-		path.PushBack({ 1.0833f, 0 }, 97, &Grey_Tank[0]);
+		path.PushBack({ 1.0833f, 0 }, 97, &Grey_Tank[1]);
+		break;
+	case 10:
+		path.PushBack({ -1.0833f, 0 }, 97, &Grey_Tank[1]);
 		break;
 	default:
 		break;
@@ -79,7 +82,7 @@ GreyTank_Base::GreyTank_Base(int x, int y, int path_type) : Enemy(x, y)
 void GreyTank_Base::Move()
 {
 
-	position = original_pos + path.GetCurrentPosition();
+	position = original_pos + path.GetCurrentPosition(&animation);
 
 	if (collider->life_units > 1)
 	{
