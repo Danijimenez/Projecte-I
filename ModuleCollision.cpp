@@ -783,6 +783,15 @@ void ModuleCollision::DebugDraw()
 			case COLLIDER_ENEMY_SHOT: // magenta
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
+			case COLLIDER_ENEMY_WAGON: // red
+				App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+				break;
+			case COLLIDER_BOX: // magenta
+				App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+				break;
+			case COLLIDER_DARK_BOX: // magenta
+				App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+				break;
 		}
 	}
 }

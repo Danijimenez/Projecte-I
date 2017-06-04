@@ -16,7 +16,7 @@ DarkBox::DarkBox(int x, int y) : Enemy(x, y)
 	animation = &darkbox;
 
 
-	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_BOX, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 26, 24 }, COLLIDER_TYPE::COLLIDER_BOX, (Module*)App->enemies);
 	collider->life_units = 1;
 
 	original_pos.x = x;

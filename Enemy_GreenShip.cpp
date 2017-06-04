@@ -16,7 +16,7 @@ GreenShip::GreenShip(int x, int y) : Enemy(x, y)
 	fly.PushBack({ 478,318,72,53 });
 	fly.speed = 0.2f;
 
-	leave.PushBack({ 403,281,72,53 });
+	leave.PushBack({ 403,381,72,53 });
 	leave.PushBack({ 481,381,72,53 });
 	leave.PushBack({ 559,381,72,53 });
 	leave.PushBack({ 638,381,72,53 });
@@ -29,7 +29,7 @@ GreenShip::GreenShip(int x, int y) : Enemy(x, y)
 	back.PushBack({ 638,452,72,53 });
 	back.speed = 0.2f;
 
-	shot.PushBack({ 366,310,72,53 });
+	shot.PushBack({ 478,318,72,53 });
 
 
 	animation = &fly;
