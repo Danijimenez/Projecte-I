@@ -25,7 +25,7 @@ public:
 	bool FreeEnemies();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	bool AddEnemy(ENEMY_TYPES type, int x, int y);
+	bool AddEnemy(ENEMY_TYPES type, int x, int y, int path=0);
 
 	SDL_Texture* sprites;
 

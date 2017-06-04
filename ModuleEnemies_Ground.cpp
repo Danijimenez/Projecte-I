@@ -6,10 +6,13 @@
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
 #include "Enemy_BrownTank_Base1.h"
+#include "Enemy_GreyTank_Base.h"
 #include "Enemy_Boat.h"
 #include "Enemy_BigBoat.h"
 #include "Enemy_Big_GreyTank.h"
-#include "PowerUp.h"
+#include "Enemy_Big_BrownTank.h"
+#include "Box.h"
+#include "DarkBox.h"
 #include "ModuleCollision.h"
 
 
@@ -128,7 +131,7 @@ bool ModuleEnemies_Ground::FreeEnemies()
 	return true;
 }
 
-bool ModuleEnemies_Ground::AddEnemy(ENEMY_TYPES type, int x, int y)
+bool ModuleEnemies_Ground::AddEnemy(ENEMY_TYPES type, int x, int y, int path)
 {
 	bool ret = false;
 
@@ -139,6 +142,7 @@ bool ModuleEnemies_Ground::AddEnemy(ENEMY_TYPES type, int x, int y)
 			queue_ground[i].type = type;
 			queue_ground[i].x = x;
 			queue_ground[i].y = y;
+			queue_ground[i].path = path;
 			ret = true;
 			break;
 		}
@@ -158,11 +162,9 @@ void ModuleEnemies_Ground::SpawnEnemy(const EnemyInfo& info)
 		switch (info.type)
 		{
 
-		case ENEMY_TYPES::TURRET:
-	//		enemies_ground[i] = new Turret(info.x, info.y);
-			break;
+
 		case ENEMY_TYPES::BOAT:
-			enemies_ground[i] = new Big_GreyTank(info.x, info.y,0);
+			enemies_ground[i] = new Boat(info.x, info.y);
 			break;
 		case ENEMY_TYPES::BIG_BOAT:
 			enemies_ground[i] = new BigBoat(info.x, info.y);
@@ -170,7 +172,21 @@ void ModuleEnemies_Ground::SpawnEnemy(const EnemyInfo& info)
 		case ENEMY_TYPES::BROWN_TANK:
 			enemies_ground[i] = new BrownTank_Base(info.x, info.y, info.path);
 			break;
-
+		case ENEMY_TYPES::GREY_TANK:
+			enemies_ground[i] = new GreyTank_Base(info.x, info.y, info.path);
+			break;
+		case ENEMY_TYPES::BIGGREYTANK:
+			enemies_ground[i] = new Big_GreyTank(info.x, info.y, info.path);
+			break;
+		case ENEMY_TYPES::BIGBROWNTANK:
+			enemies_ground[i] = new Big_BrownTank(info.x, info.y, info.path);
+			break;
+		case ENEMY_TYPES::BOX:
+			enemies_ground[i] = new Box(info.x, info.y);
+			break;
+		case ENEMY_TYPES::DARKBOX:
+			enemies_ground[i] = new DarkBox(info.x, info.y);
+			break;
 
 		}			
 	}

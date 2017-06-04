@@ -54,43 +54,46 @@ bool ModuleLevel2::Start()
 
 	top = App->collision->AddCollider({ 0, top_pos , 352 ,10 }, COLLIDER_WALL_UP);
 	bottom = App->collision->AddCollider({ 0, bottom_pos , 352 ,10 }, COLLIDER_WALL_DOWN);
+	//Derecha 2 / Abajo 1 / BajarDiagonal-Quito-Bajar 3 / DiagonalIzquierda-Quieto-Baja 4 / DiagonalArriba 5 / Quieto 6
 
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -274, 2);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 254, -280, 1);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 254, -325, 1);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 254, -370, 1);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -375, 2);
+	
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 0, -375);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 337, -405);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 337, -445);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 126, -100);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 181, -300);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 162, -100);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -417, 2);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 259, -522, 1);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 126, 0);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 340, -540);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 337, -576);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::POWERUP_SHIP, 191, -537);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 0, -541);
+	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY2, 0, -565);
+
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -597, 2);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -640, 2);
+
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 278, -640, 1);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 278, -680, 1);
+
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 107, -738, 6);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 138, -752, 6);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 155, -730, 6);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 185, -745, 6);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 210, -720, 6);
+	App->enemies_ground->AddEnemy(ENEMY_TYPES::BROWN_TANK, 229, -737, 6);
+
 
 	//	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 48, -337);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 140, -210);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 256, -400);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 200, -970);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 256, -1020);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 256, -1070);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 148, -1020);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 100, -1090);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 50, -1090);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 230, -1600);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 260, -1630);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 240, -1660);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 270, -1690);
-	App->enemies->AddEnemy(ENEMY_TYPES::BASICENEMY, 230, -1710);
-
-	App->enemies->AddEnemy(ENEMY_TYPES::POWERUP_SHIP, 140, -520);
-	App->enemies->AddEnemy(ENEMY_TYPES::POWERUP_SHIP, 130, -1120);
-	App->enemies->AddEnemy(ENEMY_TYPES::POWERUP_SHIP, 140, -1800);
-
-	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, 150, -680);
-	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, 120, -850);
-	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHIP, 120, -2000);
-
-	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 67, -1535);
-	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 131, -1563);
-
-	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 230, -1611);
-	App->enemies_ground->AddEnemy(ENEMY_TYPES::TURRET, 294, -1643);
+	
 
 
 	return ret;
