@@ -48,7 +48,7 @@ V0.7:
 
 V0.6:
 -Added gamepad control for player 1 and player 2.
--Implamented full screen.	
+-Implemented full screen.	
 
 V0.5:
 -Added Win/Lose condition.
