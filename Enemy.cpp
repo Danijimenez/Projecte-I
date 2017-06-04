@@ -45,6 +45,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		break;
 	case COLLIDER_ENEMY_WAGON:
 		App->particles->AddParticle(App->particles->ground_explosion, position.x, position.y, COLLIDER_NONE, 0);
+		break;
 	case COLLIDER_ENEMY_BOSS:
 		App->particles->AddParticle(App->particles->air_enemy_explosion, position.x, position.y, COLLIDER_NONE, 0);
 		App->particles->AddParticle(App->particles->air_enemy_explosion, position.x+5, position.y-5, COLLIDER_NONE, 5);
@@ -56,7 +57,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 
 		break;
 
-		break;
+		
 	case COLLIDER_ENEMY_BASIC:
 		App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x, position.y, COLLIDER_NONE, 0);
 		Mix_PlayChannel(-1, App->audio->basic_enemy_explosion, 0);
