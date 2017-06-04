@@ -80,45 +80,303 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 	original_pos.x = x;
 	original_pos.y = y;
 
-	//Change path
+	{
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 6, &Stay);
+		path.PushBack({ 0,0 }, 1, &Shoot);
 
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
-	path.PushBack({ 0,0 }, 6, &Stay);
-	path.PushBack({ 0,0 }, 1, &Shoot);
+		path.PushBack({ 0,0 }, 117, &Stay);
 
-	path.PushBack({ 0,0 }, 117, &Stay);
+	}
+	
 
-	path.PushBack({ 0,0 }, 65, &Moving);
+	float speed_x = 0.76579f;
+	float speed_y = -0.76579f;
 
-	path.PushBack({ 0.76579f , -0.76579f }, 1, &Shoot);
-	path.PushBack({ 0.76579f, -0.76579f }, 6, &Stay);
-	path.PushBack({ 0.76579f , -0.76579f }, 1, &Shoot);
-	path.PushBack({ 0.76579f , -0.76579f }, 1, &Shoot);
-	path.PushBack({ 0.76579f , -0.76579f }, 1, &Shoot);
+	{
+		path.PushBack({ 0.76579f,0 }, 65, &Moving);
+
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 3, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Bee);
+
+		path.PushBack({ speed_x, speed_y }, 2, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x, speed_y }, 15, &Stay);
+		path.PushBack({ speed_x, speed_y }, 1, &Bee);
+
+	}
+
+	speed_x = -speed_x;
+
+	
+		path.PushBack({ speed_x, speed_y }, 74, &Moving);
+		path.PushBack({ speed_x, speed_y }, 1, &Bee);
+
+		path.PushBack({ speed_x, speed_y }, 91, &Moving);
+
+
+		{
+
+
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x, speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 3, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Bee);
+
+		path.PushBack({ speed_x, speed_y }, 2, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x, speed_y }, 15, &Stay);
+		path.PushBack({ speed_x, speed_y }, 1, &Bee);
+
+	}
+
+
+	speed_x = -speed_x;
+
+	path.PushBack({ speed_x, speed_y }, 74, &Moving);
+	path.PushBack({ speed_x, speed_y }, 1, &Bee);
+
+	path.PushBack({ 0, 0 }, 55, &Stay);
+
+
+	{
+
+
+		speed_x = -speed_x;
+
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 3, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Bee);
+
+		path.PushBack({ speed_x, speed_y }, 2, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x, speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 3, &Stay);
+
+
+
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 1, &Bee);
+		path.PushBack({ speed_x, speed_y }, 2, &Stay);
+	
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x, speed_y }, 15, &Stay);
+		path.PushBack({ speed_x, speed_y }, 1, &Bee);
+
+
+	}
+
+
+	speed_x = -speed_x;
+
+	{
+
+		path.PushBack({ speed_x, speed_y }, 74, &Moving);
+		path.PushBack({ speed_x, speed_y }, 1, &Bee);
+
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x, speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 3, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Bee);
+
+		path.PushBack({ speed_x, speed_y }, 2, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x, speed_y }, 15, &Stay);
+		path.PushBack({ speed_x, speed_y }, 1, &Bee);
+
+		path.PushBack({ speed_x, speed_y }, 2, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x, speed_y }, 15, &Stay);
+		path.PushBack({ speed_x, speed_y }, 1, &Bee);
+	}
+
+
+	speed_x = -speed_x;
+
+	{
+		path.PushBack({ speed_x, speed_y }, 74, &Moving);
+		path.PushBack({ speed_x, speed_y }, 1, &Bee);
+
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x, speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 3, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Bee);
+
+		path.PushBack({ speed_x, speed_y }, 2, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x, speed_y }, 15, &Stay);
+		path.PushBack({ speed_x, speed_y }, 1, &Bee);
+
+		path.PushBack({ speed_x, speed_y }, 2, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x , speed_y }, 1, &Shoot);
+		path.PushBack({ speed_x, speed_y }, 6, &Stay);
+		path.PushBack({ speed_x, speed_y }, 15, &Stay);
+		path.PushBack({ speed_x, speed_y }, 1, &Bee);
+	}
+
 
 
 }
