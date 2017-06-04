@@ -289,7 +289,7 @@ bool ModuleLevel2::Start()
 	App->enemies->AddEnemy(ENEMY_TYPES::BOMB, 248, -4134);
 	App->enemies->AddEnemy(ENEMY_TYPES::BOMB, 248, -4323);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, 179, -3784);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, 80, -3784);
 
 
 
@@ -364,7 +364,7 @@ update_status ModuleLevel2::Update()
 		bottom->to_delete = true;
 	}
 
-	if (App->render->camera.y > 4400) {
+	if (App->render->camera.y > 4500) {
 		speed = 0;
 		App->player->speed = 0;
 		App->player2->speed = 0;
