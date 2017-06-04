@@ -19,6 +19,13 @@ PowerUp::PowerUp(int x, int y) : Enemy(x, y)
 	vulcan.loop = true;
 	vulcan.speed = 0.1f;
 
+	bombamo.PushBack({ 516,176,16,14 });
+	bombamo.PushBack({ 538,175,13,16 });
+	bombamo.PushBack({ 553,175,13,15 });
+	bombamo.PushBack({ 570,177,16,13 });
+	bombamo.loop = true;
+	bombamo.speed = 0.1f;
+
 	animation = &laser;
 	
 

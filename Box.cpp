@@ -7,9 +7,9 @@
 
 Box::Box(int x, int y) : Enemy(x, y)
 {
-	box.PushBack({ 534,281,15,13 });
-	box.PushBack({ 554,281,15,13 });
-	box.PushBack({ 574,281,15,13 });
+	box.PushBack({ 431,224,26,24 });
+	box.PushBack({ 464,224,26,24 });
+	
 	box.loop = true;
 	box.speed = 0.1f;
 

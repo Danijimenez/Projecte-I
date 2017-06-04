@@ -7,16 +7,22 @@
 
 Missile::Missile(int x, int y) : Enemy(x, y)
 {
-	nuclear.PushBack({ 534,281,15,13 });
-	nuclear.PushBack({ 554,281,15,13 });
-	nuclear.PushBack({ 574,281,15,13 });
+	nuclear.PushBack({ 533,228,16,13 });
+	nuclear.PushBack({ 553,228,16,13 });
+	nuclear.PushBack({ 573,228,16,13 });
 	nuclear.loop = true;
 	nuclear.speed = 0.1f;
+
+	homing.PushBack({ 534,247,16,13 });
+	homing.PushBack({ 553,247,16,13 });
+	homing.PushBack({ 573,247,16,13 });
+	homing.loop = true;
+	homing.speed = 0.1f;
 
 	animation = &nuclear;
 	
 
-	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_POWER_UP, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 16, 13 }, COLLIDER_TYPE::COLLIDER_MISSILE, (Module*)App->enemies);
 	collider->life_units = 1;
 
 	original_pos.x = x;
