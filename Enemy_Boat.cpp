@@ -102,7 +102,7 @@ Boat::Boat(int x, int y) : Enemy(x, y)
 	animation = &sail[2];
 
 	collider = App->collision->AddCollider({ 0, 0, 38, 34 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
-	collider->life_units = 20;
+	collider->life_units = 15;
 
 	original_pos.x = x;
 	original_pos.y = y;

@@ -18,7 +18,7 @@ Big_BrownTank::Big_BrownTank(int x, int y, int path_type) : Enemy(x, y)
 
 
 	collider = App->collision->AddCollider({ 0, 0, 48, 47 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
-	collider->life_units = 8;
+	collider->life_units = 30;
 
 	original_pos.x = x;
 	original_pos.y = y;

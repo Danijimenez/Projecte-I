@@ -18,13 +18,13 @@ BrownTank_Base::BrownTank_Base(int x, int y, int path_type) : Enemy(x, y)
 	Brown_Tank[6].PushBack({ 39,870,34,34 });
 	Brown_Tank[7].PushBack({ 91,871,34,34 });
 
-	hittable = false;
+	hittable = true;
 
 	turret = new Tank_Turret(x, y);
 
 
 	collider = App->collision->AddCollider({ 0, 0, 34, 34 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
-	collider->life_units = 8;
+	collider->life_units = 3;
 
 	original_pos.x = x;
 	original_pos.y = y;
@@ -71,13 +71,13 @@ void BrownTank_Base::Move()
 
 	position = original_pos + path.GetCurrentPosition();
 
-	if (collider->life_units > 3)
+	if (collider->life_units > 1)
 	{
 		turret->Move();
 		turret->position = position;
 		turret->Draw(App->enemies_ground->sprites);
 	}
-	else if (collider->life_units == 3)
+	else if (collider->life_units == 1)
 	{
 		hittable = true;
 		delete turret;

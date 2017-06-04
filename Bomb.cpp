@@ -38,7 +38,7 @@ Bomb::Bomb(int x, int y) : Enemy(x, y)
 	
 
 	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_ENEMY_BASIC, (Module*)App->enemies);
-	collider->life_units = 1;
+	collider->life_units = 10;
 
 	original_pos.x = x;
 	original_pos.y = y;

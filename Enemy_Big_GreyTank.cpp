@@ -51,7 +51,7 @@ Big_GreyTank::Big_GreyTank(int x, int y, int path_type) : Enemy(x, y)
 
 
 	collider = App->collision->AddCollider({ 0, 0, 76, 49 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
-	collider->life_units = 8;
+	collider->life_units = 50;
 
 	original_pos.x = x;
 	original_pos.y = y;
