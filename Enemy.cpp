@@ -54,7 +54,6 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		App->particles->AddParticle(App->particles->air_enemy_explosion, position.x-5, position.y-5, COLLIDER_NONE, 20);
 		App->particles->AddParticle(App->particles->air_enemy_explosion, position.x+5, position.y+5, COLLIDER_NONE, 25);
 		App->particles->AddParticle(App->particles->air_enemy_explosion, position.x, position.y, COLLIDER_NONE, 30);
-
 		break;
 
 		
