@@ -16,7 +16,7 @@ private:
 	Animation anim[16];
 	bool aim = false;
 
-	float proj_speed = 3.0f;
+	float proj_speed = 4.0f;
 	float speed_x_mult, speed_y_mult, common_mult, a_mult;
 
 public:

@@ -39,9 +39,9 @@ Application::Application()
 	modules[i++] = level_1_assets = new ModuleLevel1_assets();
 	modules[i++] = welcome = new ModuleWelcome();
 	modules[i++] = collision = new ModuleCollision();
+	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
-	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = fonts = new ModuleFonts();
 	modules[i++] = fade = new ModuleFadeToBlack();

@@ -57,21 +57,25 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		App->enemies->AddEnemy(POWERUP, position.x+28, position.y+29);
 		Mix_PlayChannel(-1, App->audio->powerup_ship_explosion, 0);
 		break;
+	case COLLIDER_ENEMY_TANK:
+		App->particles->AddParticle(App->particles->ground_explosion, position.x, position.y, COLLIDER_NONE, 0);
+
+		break;
 	case COLLIDER_POWER_UP_LASER:
 		if (c1->type==COLLIDER_PLAYER) {
 			if (App->player->shoot_type != SHOOT_TYPE::LASER) {
 				App->player->shoot_type = SHOOT_TYPE::LASER;
 			}
-			else {
-				App->player->shoot_type = SHOOT_TYPE::VULCAN;
+			else if (App->player->shoot_type == SHOOT_TYPE::LASER){
+				App->player->shoot_type = SHOOT_TYPE::LASER_LVL2;
 			}
 		}
 		else {
 			if (App->player2->shoot_type != SHOOT_TYPE::LASER) {
 				App->player2->shoot_type = SHOOT_TYPE::LASER;
 			}
-			else {
-				App->player2->shoot_type = SHOOT_TYPE::VULCAN;
+			else if (App->player2->shoot_type == SHOOT_TYPE::LASER) {
+				App->player2->shoot_type = SHOOT_TYPE::LASER_LVL2;
 			}
 		}
 			break;

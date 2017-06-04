@@ -100,9 +100,9 @@ bool ModuleHallOfAces::Start()
 		sprintf_s(scores[i].score_text, 10, "%7d", scores[i].score);
 	}
 
-	scores[score_index].character[0] = 62;
-	scores[score_index].character[1] = 62;
-	scores[score_index].character[2] = 62;
+	scores[score_index].character[0] = 27;
+	scores[score_index].character[1] = 27;
+	scores[score_index].character[2] = 27;
 
 
 
@@ -149,14 +149,14 @@ update_status ModuleHallOfAces::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN || App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_UP] == KEY_STATE::KEY_DOWN) {
 		scores[score_index].character[char_num]++;
-		if (scores[score_index].character[char_num] == 65) {
+		if (scores[score_index].character[char_num] == 27) {
 			scores[score_index].character[char_num] = 0;
 		}
 	}
 	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN || App->input->contrkey1[SDL_CONTROLLER_BUTTON_DPAD_DOWN] == KEY_STATE::KEY_DOWN) {
 		scores[score_index].character[char_num]--;
 		if (scores[score_index].character[char_num] == -1) {
-			scores[score_index].character[char_num] = 64;
+			scores[score_index].character[char_num] = 26;
 		}
 	}
 

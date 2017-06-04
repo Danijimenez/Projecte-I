@@ -14,7 +14,8 @@
 #include "Box.h"
 #include "DarkBox.h"
 #include "ModuleCollision.h"
-
+#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 
 
 #define SPAWN_MARGIN 50
@@ -195,18 +196,72 @@ void ModuleEnemies_Ground::SpawnEnemy(const EnemyInfo& info)
 void ModuleEnemies_Ground::OnCollision(Collider* c1, Collider* c2)
 {
 	
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(enemies_ground[i] != nullptr && enemies_ground[i]->GetCollider() == c1)
-		{
-			c1->life_units--;
-			if (c1->life_units <= 0) {
-				enemies_ground[i]->OnCollision(c2, c1);
-				delete enemies_ground[i];
-				enemies_ground[i] = nullptr;
-				break;
+
+		if (enemies_ground[i] != nullptr) {
+			if (enemies_ground[i]->GetCollider() == c1 && enemies_ground[i]->hittable) {
+
+				c1->life_units--;
+
+				if (c2->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_BOMB) {
+					switch (c1->type)
+					{
+					case COLLIDER_ENEMY_TURRET:
+						App->player->player_points += 20;
+						break;
+					case COLLIDER_ENEMY_BASIC:
+						App->player->player_points += 150;
+						break;
+					case COLLIDER_ENEMY_GREENSHIP:
+						App->player->player_points += 40;
+					case COLLIDER_ENEMY_POWERUPSHIP:
+						App->player->player_points += 20;
+						break;
+					case COLLIDER_ENEMY_TANK:
+						App->player->player_points += 40;
+						break;
+
+
+					default:
+						break;
+					}
+				}
+
+				else {
+					switch (c1->type)
+					{
+					case COLLIDER_ENEMY_TURRET:
+						App->player2->player_points += 20;
+						break;
+					case COLLIDER_ENEMY_BASIC:
+						App->player2->player_points += 150;
+						break;
+					case COLLIDER_ENEMY_GREENSHIP:
+						App->player2->player_points += 40;
+					case COLLIDER_ENEMY_POWERUPSHIP:
+						App->player2->player_points += 20;
+						break;
+					case COLLIDER_ENEMY_TANK:
+						App->player2->player_points += 40;
+						break;
+
+					default:
+						break;
+					}
+
+				}
+
+				if (c1->life_units <= 0) {
+					enemies_ground[i]->OnCollision(c2, c1);
+					delete enemies_ground[i];
+					enemies_ground[i] = nullptr;
+					break;
+
+				}
+
 			}
 		}
 	}
-	
 }
