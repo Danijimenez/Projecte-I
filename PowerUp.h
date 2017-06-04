@@ -14,6 +14,9 @@ private:
 	Animation laser;
 	Animation vulcan;
 
+
+
+
 public:
 
 	PowerUp(int x, int y);
