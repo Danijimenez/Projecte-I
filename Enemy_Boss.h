@@ -19,6 +19,7 @@ private:
 	Animation Stage2Stay;
 	Animation Stage2Moving;
 	Animation Stage2Shoot;
+	int shot_type=0;
 
 public:
 

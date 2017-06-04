@@ -349,6 +349,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);
 			living = false;
 			break;
+		case COLLIDER_ENEMY_BOSS:
+			App->particles->AddParticle(App->particles->player_explosion, position.x, position.y, COLLIDER_NONE, 0);
+			living = false;
+			break;
 		case COLLIDER_WALL_UP:
 			move_up = false;
 			break;

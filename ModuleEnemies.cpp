@@ -10,7 +10,9 @@
 #include "Enemy_GreenShip.h"
 #include "Enemy_PowerUpShip.h"
 #include "PowerUp.h"
+#include "Enemy_Bee.h"
 #include "Enemy_BrownTank_Base1.h"
+#include "Enemy_Boss.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
@@ -226,6 +228,13 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		case ENEMY_TYPES::BROWN_TANK:
 			enemies[i] = new BrownTank_Base(info.x, info.y, info.path);
+			break;
+		case ENEMY_TYPES::BEE:
+			enemies[i] = new Bee(info.x, info.y);
+			break;
+		case ENEMY_TYPES::BOSS:
+			enemies[i] = new Boss(info.x, info.y);
+			break;
 		}			
 	}
 }

@@ -2,7 +2,8 @@
 #include "Enemy_GreyTank_Base.h"
 #include "ModuleCollision.h"
 #include "Enemy_Boss.h"
-
+#include "ModuleParticles.h"
+#include "ModuleEnemies.h"
 
 Boss::Boss(int x, int y) : Enemy(x, y)
 {
@@ -68,14 +69,10 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 	Stage2Shoot.loop = true;
 	Stage2Shoot.speed = 0.1f;
 
+	
 
-
-
-	hittable = true;
-
-
-	collider = App->collision->AddCollider({ 0, 0, 160, 99 }, COLLIDER_TYPE::COLLIDER_ENEMY_TANK, (Module*)App->enemies);
-	collider->life_units = 8;
+	collider = App->collision->AddCollider({ 0, 0, 160, 70 }, COLLIDER_TYPE::COLLIDER_ENEMY_BOSS, (Module*)App->enemies);
+	collider->life_units = 270;
 
 	original_pos.x = x;
 	original_pos.y = y;
@@ -109,7 +106,7 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 		path.PushBack({ 0,0 }, 6, &Stay);
 		path.PushBack({ 0,0 }, 1, &Shoot);
 
-		path.PushBack({ 0,0 }, 117, &Stay);
+		path.PushBack({ 0,0 }, 20, &Stay);
 
 	}
 	
@@ -384,7 +381,45 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 void Boss::Move()
 {
 
-	position = original_pos + path.GetCurrentPosition(&animation);
+	if (animation == &Shoot) {
 
+		switch (shot_type)
+		{
+		case 0:
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 72, position.y + 69, COLLIDER_ENEMY_SHOT, 0);
+			break;
+		case 1:
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 80, position.y + 67, COLLIDER_ENEMY_SHOT, 0);
+			break;
+
+		case 2:
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 80, position.y + 70, COLLIDER_ENEMY_SHOT, 0);
+			break;
+
+		default:
+			break;
+		}
+
+	
+	}
+
+	else if (animation == &Bee) {
+
+
+		App->enemies->AddEnemy(ENEMY_TYPES::BEE, position.x + 20, position.y + 20);
+		App->enemies->AddEnemy(ENEMY_TYPES::BEE, position.x + 40, position.y + 20);
+		App->enemies->AddEnemy(ENEMY_TYPES::BEE, position.x + 20, position.y + 40);
+		App->enemies->AddEnemy(ENEMY_TYPES::BEE, position.x + 40, position.y + 40);
+
+
+		App->enemies->AddEnemy(ENEMY_TYPES::BEE, position.x + 120, position.y + 20);
+		App->enemies->AddEnemy(ENEMY_TYPES::BEE, position.x + 140, position.y + 20);
+		App->enemies->AddEnemy(ENEMY_TYPES::BEE, position.x + 120, position.y + 40);
+		App->enemies->AddEnemy(ENEMY_TYPES::BEE, position.x + 140, position.y + 40);
+
+	}
+
+	position = original_pos + path.GetCurrentPosition(&animation);
+	original_pos.y += 0.6;
 }
 

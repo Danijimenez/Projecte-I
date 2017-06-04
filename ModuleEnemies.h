@@ -19,6 +19,8 @@ enum ENEMY_TYPES
 	BROWN_TANK,
 	BOAT,
 	BIG_BOAT,
+	BEE,
+	BOSS,
 };
 
 class Enemy;

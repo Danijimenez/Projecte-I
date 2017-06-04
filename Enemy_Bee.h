@@ -15,7 +15,7 @@ private:
 	Animation charge;
 	Animation leave;
 	
-	float proj_speed = 3.0f;
+	float proj_speed = 2.0f;
 	float speed_x_mult, speed_y_mult, common_mult, a_mult;
 	bool direction = false;
 

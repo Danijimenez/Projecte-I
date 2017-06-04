@@ -14,6 +14,8 @@ Bee::Bee(int x, int y) : Enemy(x, y)
 	spawn.PushBack({ 447,924,32,39 });
 	spawn.PushBack({ 483,925,32,39 });
 	spawn.PushBack({ 523,927,32,39 });
+	spawn.speed = 0.5f;
+
 
 	charge.PushBack({ 416,972,32,29 });
 	charge.PushBack({ 460,972,32,29 });	
@@ -23,16 +25,21 @@ Bee::Bee(int x, int y) : Enemy(x, y)
 	leave.PushBack({ 580,972,32,39 });
 	leave.loop = true;
 
-	collider = App->collision->AddCollider({ 0, 0, 32, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY_BASIC, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 32, 39 }, COLLIDER_TYPE::COLLIDER_ENEMY_BASIC, (Module*)App->enemies);
 	collider->life_units = 1;
 
+	path.PushBack({ 0.5f,-0.5f }, 20, &spawn);
+	path.PushBack({ -0.2f, 0.2f}, 15, &charge);
+	path.PushBack({ 0,0 }, 1, &leave);
+	path.loop = false;
 
+	original_pos = position;
 }
 
 void Bee::Move()
 {
 
-	if (!direction) {
+	if (path.finished && !direction) {
 
 
 		speed_x_mult = (App->player->position.x - position.x);
@@ -44,10 +51,13 @@ void Bee::Move()
 		direction = true;
 	}
 
-	position.x += (common_mult * speed_x_mult);
+	original_pos.x += (common_mult * speed_x_mult);
 
-	position.y += (common_mult * speed_y_mult);
+	original_pos.y += (common_mult * speed_y_mult);
 
 	if (App->player->movep)
-		position.y -= 1;
+		original_pos.y -= 1;
+
+	position = original_pos + path.GetCurrentPosition(&animation);
+
 }
