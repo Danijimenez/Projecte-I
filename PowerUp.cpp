@@ -34,21 +34,60 @@ PowerUp::PowerUp(int x, int y) : Enemy(x, y)
 	animation = &laser;
 	
 
-	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_POWER_UP, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 15, 13 }, COLLIDER_TYPE::COLLIDER_POWER_UP_LASER, (Module*)App->enemies);
 	collider->life_units = 1;
+
+
 
 	original_pos.x = x;
 	original_pos.y = y;
 
-	path.PushBack({ +0.48f, -0.48f }, 64);
-	path.PushBack({ -0.48f, -0.48f }, 64);
-	path.PushBack({ -0.48f, +0.48f }, 64);
-	path.PushBack({ +0.48f, +0.48f }, 64);
+	path.PushBack({ +0.48f, -0.48f }, 64, &laser);
+	path.PushBack({ -0.48f, -0.48f }, 64, &laser);
+	path.PushBack({ -0.48f, +0.48f }, 64, &laser);
+	path.PushBack({ +0.48f, +0.48f }, 64, &laser);
+
+	path.PushBack({ +0.48f, -0.48f }, 64, &laser);
+	path.PushBack({ -0.48f, -0.48f }, 64, &laser);
+	path.PushBack({ -0.48f, +0.48f }, 64, &laser);
+	path.PushBack({ +0.48f, +0.48f }, 64, &laser);
+
+	path.PushBack({ +0.48f, -0.48f }, 64, &laser);
+	path.PushBack({ -0.48f, -0.48f }, 64, &laser);
+	path.PushBack({ -0.48f, +0.48f }, 64, &laser);
+	path.PushBack({ +0.48f, +0.48f }, 64, &laser);
+
+	path.PushBack({ +0.48f, -0.48f }, 64, &vulcan);
+	path.PushBack({ -0.48f, -0.48f }, 64, &vulcan);
+	path.PushBack({ -0.48f, +0.48f }, 64, &vulcan);
+	path.PushBack({ +0.48f, +0.48f }, 64, &vulcan);
+
+	path.PushBack({ +0.48f, -0.48f }, 64, &vulcan);
+	path.PushBack({ -0.48f, -0.48f }, 64, &vulcan);
+	path.PushBack({ -0.48f, +0.48f }, 64, &vulcan);
+	path.PushBack({ +0.48f, +0.48f }, 64, &vulcan);
+	
+	path.PushBack({ +0.48f, -0.48f }, 64, &vulcan);
+	path.PushBack({ -0.48f, -0.48f }, 64, &vulcan);
+	path.PushBack({ -0.48f, +0.48f }, 64, &vulcan);
+	path.PushBack({ +0.48f, +0.48f }, 64, &vulcan);
+
+
 	path.loop = true;
 }
 
 void PowerUp::Move()
 {
+
+	if (animation == &laser) 
+	{
+		collider->type = COLLIDER_POWER_UP_LASER;
+	}
+	else
+	{
+		collider->type = COLLIDER_POWER_UP_VULCAN;
+	}
+
 
 //	original_pos.y -= 1;
 	position = original_pos + path.GetCurrentPosition();

@@ -40,7 +40,6 @@ BrownTank_Base::BrownTank_Base(int x, int y, int path_type) : Enemy(x, y)
 	case 2:
 		path.PushBack({ -1.0833f, 0 }, 270, &Brown_Tank[1]);
 		path.loop = true;
-
 		break;
 
 	case 3:

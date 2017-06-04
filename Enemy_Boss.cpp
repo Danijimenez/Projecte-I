@@ -389,11 +389,11 @@ void Boss::Move()
 			App->particles->AddParticle(App->particles->enemy_shot, position.x + 72, position.y + 69, COLLIDER_ENEMY_SHOT, 0);
 			break;
 		case 1:
-			App->particles->AddParticle(App->particles->enemy_shot, position.x + 80, position.y + 67, COLLIDER_ENEMY_SHOT, 0);
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 81, position.y + 67, COLLIDER_ENEMY_SHOT, 0);
 			break;
 
 		case 2:
-			App->particles->AddParticle(App->particles->enemy_shot, position.x + 80, position.y + 70, COLLIDER_ENEMY_SHOT, 0);
+			App->particles->AddParticle(App->particles->enemy_shot, position.x + 89, position.y + 69, COLLIDER_ENEMY_SHOT, 0);
 			break;
 
 		default:

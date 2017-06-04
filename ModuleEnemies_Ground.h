@@ -7,7 +7,6 @@
 #define MAX_ENEMIES 1000
 
 
-
 class Enemy;
 
 
