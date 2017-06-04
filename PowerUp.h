@@ -13,6 +13,8 @@ private:
 	int original_y = 0;
 	Animation laser;
 	Animation vulcan;
+	Animation bombamo;
+	Animation Ppowerup;
 
 public:
 

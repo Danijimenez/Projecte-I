@@ -7,9 +7,9 @@
 
 DarkBox::DarkBox(int x, int y) : Enemy(x, y)
 {
-	darkbox.PushBack({ 534,281,15,13 });
-	darkbox.PushBack({ 554,281,15,13 });
-	darkbox.PushBack({ 574,281,15,13 });
+	darkbox.PushBack({ 431,267,26,24 });
+	darkbox.PushBack({ 464,267,26,24 });
+
 	darkbox.loop = true;
 	darkbox.speed = 0.1f;
 
