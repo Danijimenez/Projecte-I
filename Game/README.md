@@ -29,20 +29,26 @@ F1 Welcome Screen.
 F2 to activate/desactivate Colliders.
 F3 to activate/desactivate God Mode Player 1.
 F4 to activate/desactivate God Mode Player 2.
-F5 to activate/desactivate Debug Screen.
 F6 to Win/Lose Screen.
 
-Debug Screen controls:
-	-Press 1 to spawn player 1
-	-Press 2 to spawn player 2
-	-Press 3 to spawn a Basic Enemy
-	-Press 4 to spawn a Green Ship
-	-Press 5 to spawn a Turret
-	-press 6 to spawn a Power Up Ship
-	-Press 7 to spawn a PowerUp
-	-Press "o" to activate laser PowerUp
-	-Press "p" to activate vulcan PowerUp
-	
+
+V1:
+-Polish all the features.
+
+V0.9:
+-New power ups(homing missiles and nuclear missiles)
+-All enemies added
+-Fx and music added.
+
+V0.8:
+-More enemies added(on debug mode) boats, basic enemy 2 and tanks.
+
+V0.7:
+-Now you can put a nick name to your puntuation.
+
+V0.6:
+-Added gamepad control for player 1 and player 2.
+-Implamented full screen.	
 
 V0.5:
 -Added Win/Lose condition.
