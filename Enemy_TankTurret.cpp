@@ -40,13 +40,13 @@ Tank_Turret::Tank_Turret(int x, int y) : Enemy(x, y)
 	turret_anim[i].loop = true;
 	turret_anim[i++].speed = 0.2f;
 	//5 
-	turret_anim[i].PushBack({ 175,1000,34,34 });
+	turret_anim[i].PushBack({ 176,1000,34,34 });
 	turret_anim[i].PushBack({ 212,1000,34,34 });
 	turret_anim[i].loop = true;
 	turret_anim[i++].speed = 0.2f;
 	//6
-	turret_anim[i].PushBack({ 147,1042,34,34 });
-	turret_anim[i].PushBack({ 215, 1042,34,34 });
+	turret_anim[i].PushBack({ 175,1042,34,34 });
+	turret_anim[i].PushBack({ 217, 1042,34,34 });
 	turret_anim[i].loop = true;
 	turret_anim[i++].speed = 0.2f;
 	//7

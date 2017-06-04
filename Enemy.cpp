@@ -38,11 +38,11 @@ void Enemy::Draw(SDL_Texture* sprites)
 void Enemy::OnCollision(Collider* c1, Collider* c2)
 {
 	//if (c2->type)
-	switch (collider->type)	{
+	switch (collider->type) {
 	case COLLIDER_ENEMY_TURRET:
 		App->particles->AddParticle(App->particles->ground_explosion, position.x, position.y, COLLIDER_NONE, 0);
 
-	break;
+		break;
 	case COLLIDER_ENEMY_BASIC:
 		App->particles->AddParticle(App->particles->basic_enemy_explosion, position.x, position.y, COLLIDER_NONE, 0);
 		Mix_PlayChannel(-1, App->audio->basic_enemy_explosion, 0);
@@ -54,7 +54,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		break;
 	case COLLIDER_ENEMY_POWERUPSHIP:
 		App->particles->AddParticle(App->particles->air_enemy_explosion, position.x, position.y, COLLIDER_NONE, 0);
-		App->enemies->AddEnemy(POWERUP, position.x+28, position.y+29);
+		App->enemies->AddEnemy(POWERUP, position.x + 28, position.y + 29);
 		Mix_PlayChannel(-1, App->audio->powerup_ship_explosion, 0);
 		break;
 	case COLLIDER_ENEMY_TANK:
@@ -62,11 +62,11 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 
 		break;
 	case COLLIDER_POWER_UP_LASER:
-		if (c1->type==COLLIDER_PLAYER) {
+		if (c1->type == COLLIDER_PLAYER) {
 			if (App->player->shoot_type != SHOOT_TYPE::LASER) {
 				App->player->shoot_type = SHOOT_TYPE::LASER;
 			}
-			else if (App->player->shoot_type == SHOOT_TYPE::LASER){
+			else if (App->player->shoot_type == SHOOT_TYPE::LASER) {
 				App->player->shoot_type = SHOOT_TYPE::LASER_LVL2;
 			}
 		}
@@ -78,7 +78,42 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 				App->player2->shoot_type = SHOOT_TYPE::LASER_LVL2;
 			}
 		}
-			break;
+		break;
+	case COLLIDER_POWER_UP_VULCAN:
+		if (c1->type == COLLIDER_PLAYER) {
+			if (App->player->shoot_type != SHOOT_TYPE::LASER) {
+				App->player->shoot_type = SHOOT_TYPE::LASER;
+			}
+			else if (App->player->shoot_type == SHOOT_TYPE::LASER) {
+				App->player->shoot_type = SHOOT_TYPE::LASER_LVL2;
+			}
+		}
+		else {
+			if (App->player2->shoot_type != SHOOT_TYPE::LASER) {
+				App->player2->shoot_type = SHOOT_TYPE::LASER;
+			}
+			else if (App->player2->shoot_type == SHOOT_TYPE::LASER) {
+				App->player2->shoot_type = SHOOT_TYPE::LASER_LVL2;
+			}
+		}
+		break;
+	case COLLIDER_MISSILE_HOMING:
+		if (c1->type == COLLIDER_PLAYER) {
+			App->player->homing = true;
+		}
+		else {
+			App->player2->homing = true;
+		}
+		break;
+
+	case COLLIDER_MISSILE_NUCLEAR:
+		if (c1->type == COLLIDER_PLAYER) {
+			App->player->nuclear= true;
+		}
+		else {
+			App->player2->nuclear = true;
+		}
+		break;
 	default:
 		break;
 	}

@@ -83,30 +83,31 @@ update_status ModuleEnemies::Update()
 	if (App->player->homing_shot) {
 
 		int target = 0;
+		if (need_target) {
+			for (uint i = 0; i < MAX_ENEMIES - 1; ++i) {
 
-		for (uint i = 0; i < MAX_ENEMIES - 1; ++i) {
-
-			if (enemies[target] != nullptr && enemies[i + 1] != nullptr) {
-
-
-				int enemy1_x = (App->particles->homing_missile.position.x - enemies[target]->position.x);
-				int enemy1_y = (App->particles->homing_missile.position.y - enemies[target]->position.y);
-
-				int enemy2_x = (App->particles->homing_missile.position.x - enemies[i]->position.x);
-				int enemy2_y = (App->particles->homing_missile.position.y - enemies[i]->position.y);
-
-				int enemy_1 = pow(enemy1_x, 2) + pow(enemy1_y, 2);
-				int enemy_2 = pow(enemy2_x, 2) + pow(enemy2_y, 2);
+				if (enemies[target] != nullptr && enemies[i + 1] != nullptr) {
 
 
-				if (enemy_1 <= enemy_2) {
-					target = i;
+					int enemy1_x = (App->particles->homing_missile.position.x - enemies[target]->position.x);
+					int enemy1_y = (App->particles->homing_missile.position.y - enemies[target]->position.y);
+
+					int enemy2_x = (App->particles->homing_missile.position.x - enemies[i]->position.x);
+					int enemy2_y = (App->particles->homing_missile.position.y - enemies[i]->position.y);
+
+					int enemy_1 = pow(enemy1_x, 2) + pow(enemy1_y, 2);
+					int enemy_2 = pow(enemy2_x, 2) + pow(enemy2_y, 2);
+
+
+					if (enemy_1 <= enemy_2) {
+						target = i;
+					}
+
 				}
-
 			}
 		}
 
-		if (enemies[target] != nullptr) {
+		if (!need_target && enemies[target] != nullptr) {
 			speed_x_mult = (enemies[target]->position.x - App->particles->homing_missile.position.x);
 			speed_y_mult = (enemies[target]->position.y - App->particles->homing_missile.position.y);
 
@@ -117,9 +118,7 @@ update_status ModuleEnemies::Update()
 			App->particles->movement_x = common_mult * speed_x_mult;
 			App->particles->movement_y = common_mult * speed_y_mult;
 
-			LOG("TODO BIEN");
 
-			LOG("%.2f\t%.2f", App->particles->movement_x, App->particles->movement_y);
 
 			//		App->player->homing_shot = false;
 		}
@@ -256,21 +255,29 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				if (c2->type == COLLIDER_PLAYER_SHOT || c2->type == COLLIDER_BOMB) {
 					switch (c1->type)
 					{
-					case COLLIDER_ENEMY_TURRET:
-						App->player->player_points += 20;
-						break;
+			
 					case COLLIDER_ENEMY_BASIC:
 						App->player->player_points += 150;
 						break;
-					case COLLIDER_ENEMY_GREENSHIP:
-						App->player->player_points += 40;
+
+					case COLLIDER_ENEMY_BIGTANK:
+					case COLLIDER_ENEMY_BIGBOAT:
 					case COLLIDER_ENEMY_POWERUPSHIP:
+					case COLLIDER_ENEMY_BOSS:
+
 						App->player->player_points += 20;
 						break;
+
+					case COLLIDER_ENEMY_GREENSHIP:
 					case COLLIDER_ENEMY_TANK:
+
 						App->player->player_points += 40;
 						break;
 
+					case COLLIDER_BOX:
+
+						App->player->player_points += 500;
+						break;
 
 					default:
 						break;
@@ -280,19 +287,28 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				else {
 					switch (c1->type)
 					{
-					case COLLIDER_ENEMY_TURRET:
-						App->player2->player_points += 20;
-						break;
+
 					case COLLIDER_ENEMY_BASIC:
 						App->player2->player_points += 150;
 						break;
-					case COLLIDER_ENEMY_GREENSHIP:
-						App->player2->player_points += 40;
+
+					case COLLIDER_ENEMY_BIGTANK:
+					case COLLIDER_ENEMY_BIGBOAT:
 					case COLLIDER_ENEMY_POWERUPSHIP:
+					case COLLIDER_ENEMY_BOSS:
+
 						App->player2->player_points += 20;
 						break;
+
+					case COLLIDER_ENEMY_GREENSHIP:
 					case COLLIDER_ENEMY_TANK:
+
 						App->player2->player_points += 40;
+						break;
+
+					case COLLIDER_BOX:
+
+						App->player2->player_points += 500;
 						break;
 
 					default:

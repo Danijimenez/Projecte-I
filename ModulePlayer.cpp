@@ -213,13 +213,16 @@ update_status ModulePlayer::Update()
 			break;
 		case LASER:
 
-			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y - 3, COLLIDER_NONE, 0);
 			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 0);
 			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y + 15, COLLIDER_PLAYER_SHOT, 0);
 
 			break;
 		case LASER_LVL2:
 
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y + 7, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y + 15, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y + 22, COLLIDER_PLAYER_SHOT, 0);
 
 			break;
 		case VULCAN:
@@ -233,21 +236,25 @@ update_status ModulePlayer::Update()
 			break;
 		}
 
-		//if (homing && ammo)
-		//{
-		//	ammo = false;
+		if (homing && ammo)
+		{
+			ammo = false;
 
-		//	App->particles->AddParticle(App->particles->homing_missile, App->player->position.x, App->player->position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->homing_missile, position.x + 10, position.y - 15, COLLIDER_PLAYER_SHOT, 0);
 
-		//	homing_shot = true;
+			App->particles->AddParticle(App->particles->homing_missile, position.x + 20, position.y - 15, COLLIDER_PLAYER_SHOT, 0);
 
-		//}
+			homing_shot = true;
+
+		}
 
 		if (nuclear && ammo)
 		{
 			ammo = false;
 
-			App->particles->AddParticle(App->particles->nuclear_missile, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->nuclear_missile, position.x + 10, position.y - 15, COLLIDER_PLAYER_SHOT, 0);
+
+			App->particles->AddParticle(App->particles->nuclear_missile, position.x + 20, position.y - 15, COLLIDER_PLAYER_SHOT, 0);
 
 		}
 

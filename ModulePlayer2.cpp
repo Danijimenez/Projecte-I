@@ -189,37 +189,59 @@ update_status ModulePlayer2::Update()
 		switch (shoot_type)
 		{
 		case STANDARD:
-			App->particles->AddParticle(App->particles->standard_shot, position.x, position.y+11, COLLIDER_PLAYER_2_SHOT, 0);
+			App->particles->AddParticle(App->particles->standard_shot, position.x, position.y + 11, COLLIDER_PLAYER_2_SHOT, 0);
 			break;
 		case LASER:
 
-			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 0);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 16);
-			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 16);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 32);
+			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y - 3, COLLIDER_NONE, 0);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y + 15, COLLIDER_PLAYER_SHOT, 0);
 
 			break;
 		case LASER_LVL2:
 
-			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 0);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 16);
-			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 16);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 32);
-
-			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 32);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 48);
-			App->particles->AddParticle(App->particles->laser_flash, position.x, position.y, COLLIDER_NONE, 48);
-			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_2_SHOT, 64);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y + 7, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y + 15, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->laser, position.x + 10, position.y + 22, COLLIDER_PLAYER_SHOT, 0);
 			break;
 		case VULCAN:
-
+			App->particles->AddParticle(App->particles->standard_shot, position.x + 4, position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(App->particles->standard_shot, position.x + 16, position.y, COLLIDER_PLAYER_SHOT, 0);
 			break;
 		case VULCAN_LVL2:
 
+
 			break;
+
+
 		default:
 			break;
 		}
+		if (homing && ammo)
+		{
+			ammo = false;
+
+			App->particles->AddParticle(App->particles->homing_missile, position.x + 10, position.y - 15, COLLIDER_PLAYER_SHOT, 0);
+
+			App->particles->AddParticle(App->particles->homing_missile, position.x + 20, position.y - 15, COLLIDER_PLAYER_SHOT, 0);
+
+			homing_shot = true;
+
+		}
+
+		if (nuclear && ammo)
+		{
+			ammo = false;
+
+			App->particles->AddParticle(App->particles->nuclear_missile, position.x + 10, position.y - 15, COLLIDER_PLAYER_SHOT, 0);
+
+			App->particles->AddParticle(App->particles->nuclear_missile, position.x + 20, position.y - 15, COLLIDER_PLAYER_SHOT, 0);
+
+		}
+
+
+
 		Mix_PlayChannel(-1, App->audio->fx_shoot, 0);
 	}
 

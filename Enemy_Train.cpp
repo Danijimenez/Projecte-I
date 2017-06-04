@@ -18,7 +18,7 @@ Train::Train(int x, int y) : Enemy(x, y)
 	train.PushBack({ 91,871,34,34 });
 
 	hittable = true;
-	
+
 
 	collider = App->collision->AddCollider({ 0, 0, 34, 34 }, COLLIDER_TYPE::COLLIDER_ENEMY_WAGON, (Module*)App->enemies);
 	collider->life_units = 8;
@@ -28,16 +28,15 @@ Train::Train(int x, int y) : Enemy(x, y)
 
 
 
-		path.PushBack({ -1.0833f , 0  }, 270, &train);
-		path.loop = true;
-
+	path.PushBack({ -1.0833f , 0 }, 270, &train);
+	path.loop = true;
 
 
 }
 
 void Train::Move()
 {
-
+	
 	position = original_pos + path.GetCurrentPosition();
 
 }

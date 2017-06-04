@@ -28,17 +28,50 @@ Missile::Missile(int x, int y) : Enemy(x, y)
 	original_pos.x = x;
 	original_pos.y = y;
 
-	path.PushBack({ +0.48f, -0.48f }, 64);
-	path.PushBack({ -0.48f, -0.48f }, 64);
-	path.PushBack({ -0.48f, +0.48f }, 64);
-	path.PushBack({ +0.48f, +0.48f }, 64);
-	path.loop = true;
+	path.PushBack({ +0.48f, -0.48f }, 64, &nuclear);
+	path.PushBack({ -0.48f, -0.48f }, 64, &nuclear);
+	path.PushBack({ -0.48f, +0.48f }, 64, &nuclear);
+	path.PushBack({ +0.48f, +0.48f }, 64, &nuclear);
+
+	path.PushBack({ +0.48f, -0.48f }, 64, &nuclear);
+	path.PushBack({ -0.48f, -0.48f }, 64, &nuclear);
+	path.PushBack({ -0.48f, +0.48f }, 64, &nuclear);
+	path.PushBack({ +0.48f, +0.48f }, 64, &nuclear);
+
+	path.PushBack({ +0.48f, -0.48f }, 64, &nuclear);
+	path.PushBack({ -0.48f, -0.48f }, 64, &nuclear);
+	path.PushBack({ -0.48f, +0.48f }, 64, &nuclear);
+	path.PushBack({ +0.48f, +0.48f }, 64, &nuclear);
+
+	path.PushBack({ +0.48f, -0.48f }, 64, &homing);
+	path.PushBack({ -0.48f, -0.48f }, 64, &homing);
+	path.PushBack({ -0.48f, +0.48f }, 64, &homing);
+	path.PushBack({ +0.48f, +0.48f }, 64, &homing);
+
+	path.PushBack({ +0.48f, -0.48f }, 64, &homing);
+	path.PushBack({ -0.48f, -0.48f }, 64, &homing);
+	path.PushBack({ -0.48f, +0.48f }, 64, &homing);
+	path.PushBack({ +0.48f, +0.48f }, 64, &homing);
+
+	path.PushBack({ +0.48f, -0.48f }, 64, &homing);
+	path.PushBack({ -0.48f, -0.48f }, 64, &homing);
+	path.PushBack({ -0.48f, +0.48f }, 64, &homing);
+	path.PushBack({ +0.48f, +0.48f }, 64, &homing);
+
 }
 
 void Missile::Move()
 {
 
-//	original_pos.y -= 1;
+	if (animation == &nuclear)
+	{
+		collider->type = COLLIDER_MISSILE_NUCLEAR;
+	}
+	else
+	{
+		collider->type = COLLIDER_MISSILE_HOMING;
+	}
+
 	position = original_pos + path.GetCurrentPosition();
 
 }

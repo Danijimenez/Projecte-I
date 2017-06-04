@@ -20,8 +20,7 @@ BrownTank_Base::BrownTank_Base(int x, int y, int path_type) : Enemy(x, y)
 
 
 	turret = new Tank_Turret(x, y);
-
-
+	
 
 	animation = &Brown_Tank[0];
 
@@ -31,41 +30,6 @@ BrownTank_Base::BrownTank_Base(int x, int y, int path_type) : Enemy(x, y)
 	original_pos.x = x;
 	original_pos.y = y;
 
-	////Change path && anim
-	//switch (path_type){
-
-	//case 1:
-	//	path.PushBack({ 0, -1.0833f }, 270, &Brown_Tank[0]);
-	//	path.loop = true;
-
-	//	break;
-	//case 2:
-	//	path.PushBack({ -1.0833f, 0 }, 270, &Brown_Tank[1]);
-	//	path.loop = true;
-	//	break;
-
-	//case 3:
-	//	path.PushBack({ 0.76579f, -0.76579f }, 97, &Brown_Tank[7]);
-	//	path.PushBack({ 0, 0 }, 5, &Brown_Tank[5]);
-	//	path.PushBack({ 0, -1.0833f }, 270, &Brown_Tank[0]);
-
-	//	break;
-	//case 4:
-	//	path.PushBack({ -0.76579f, -0.76579f }, 97, &Brown_Tank[4]);
-	//	path.PushBack({ 0, 0 }, 5, &Brown_Tank[2]);
-	//	path.PushBack({ 0, -1.0833f }, 270, &Brown_Tank[0]);
-	//	path.loop = true;
-	//	
-	//	break;
-	//case 5:
-	//	path.PushBack({ 0.76579f, -0.76579f }, 97, &Brown_Tank[7]);
-	//	break;
-	//case 6:
-	//	path.PushBack({ 0, 0 }, 1, &Brown_Tank[1]);
-	//	path.loop = true;
-	//default:
-	//	break;
-	//}
 
 	if (path_type == 1) {
 		path.PushBack({ 0, 1.0533f }, 270, &Brown_Tank[0]);

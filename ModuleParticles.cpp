@@ -113,8 +113,14 @@ bool ModuleParticles::Start()
 
 		///Homing missile
 
-	homing_missile.anim.PushBack({ 50, 50, 20, 20 });
-	homing_missile.anim.PushBack({ 60, 50, 20, 20 });
+	homing_missile.anim.PushBack({ 165, 64, 6, 11 });
+	homing_missile.anim.PushBack({ 172, 64, 6, 11 });
+	homing_missile.anim.PushBack({ 181, 65, 6, 11 });
+
+	homing_missile.anim.PushBack({ 186, 65, 6, 11 });
+	homing_missile.anim.PushBack({ 193, 65, 6, 11 });
+	homing_missile.anim.PushBack({ 200, 65, 6, 11 });
+
 	homing_missile.anim.loop = true;
 	homing_missile.life = 1000;
 
@@ -122,7 +128,8 @@ bool ModuleParticles::Start()
 
 		///Nuclear missile
 
-	nuclear_missile.anim.PushBack({ 50,50,50,50 });
+	nuclear_missile.anim.PushBack({ 164,44,4,11 });
+	nuclear_missile.anim.PushBack({ 171,44,4,11 });
 
 	nuclear_missile.speed.x = 0;
 	nuclear_missile.speed.y = -3;

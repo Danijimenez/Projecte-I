@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
-
+#include "ModulePlayer.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -48,6 +48,17 @@ public:
 	float move_speed;
 	int lifes;
 	int player_points = 0;
+
+
+
+	bool homing = true;
+	bool nuclear = false;
+	bool ammo = true;
+	float enemy_speed = 3.0f;
+	float speed_x_mult, speed_y_mult, common_mult, a_mult;
+
+	bool homing_shot = false;
+
 };
 
 #endif
