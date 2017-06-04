@@ -100,7 +100,8 @@ bool ModulePlayer::CleanUp()
 	App->textures->Unload(graphics);
 	App->collision->EraseCollider(player);
 	App->fonts->UnLoad(font_score);
-
+	homing = false;
+	nuclear = false;
 
 	return true;
 }

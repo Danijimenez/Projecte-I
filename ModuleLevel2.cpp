@@ -55,7 +55,6 @@ bool ModuleLevel2::Start()
 	top = App->collision->AddCollider({ 0, top_pos , 352 ,10 }, COLLIDER_WALL_UP);
 	bottom = App->collision->AddCollider({ 0, bottom_pos , 352 ,10 }, COLLIDER_WALL_DOWN);
 
-	App->enemies->AddEnemy(MISSILE, 150, 50);
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 0, -41, 2);
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_TANK, 270, -89, 1);
