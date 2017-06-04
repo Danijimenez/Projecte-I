@@ -19,6 +19,7 @@
 #include "Enemy_Big_GreyTank.h"
 #include "Enemy_Big_BrownTank.h"
 #include "Enemy_Train.h"
+#include"Bomb.h"
 #include "Box.h"
 #include "DarkBox.h"
 #include "ModuleCollision.h"
@@ -270,6 +271,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		case ENEMY_TYPES::WAGON:
 			enemies[i] = new Train(info.x, info.y);
+			break;
+		case ENEMY_TYPES::BOMB:
+			enemies[i] = new Bomb(info.x, info.y);
 			break;
 		}			
 	}

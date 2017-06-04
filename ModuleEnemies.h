@@ -28,7 +28,8 @@ enum ENEMY_TYPES
 	DARKBOX,
 	EXTRAPOINTS,
 	MISSILE,
-	WAGON
+	WAGON,
+	BOMB
 };
 
 class Enemy;

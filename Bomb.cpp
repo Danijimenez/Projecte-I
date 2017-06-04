@@ -49,7 +49,6 @@ Bomb::Bomb(int x, int y) : Enemy(x, y)
 void Bomb::Move()
 {
 
-
-	position.y = position.y-1;
+	position.y = position.y-0.5f;
 
 }

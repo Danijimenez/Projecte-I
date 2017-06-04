@@ -285,6 +285,10 @@ bool ModuleLevel2::Start()
 	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 451, -3537);
 	App->enemies->AddEnemy(ENEMY_TYPES::BEE, 471, -3537);
 
+	App->enemies->AddEnemy(ENEMY_TYPES::BOMB, 248, -3943);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOMB, 248, -4134);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOMB, 248, -4323);
+
 	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, 179, -3784);
 
 
