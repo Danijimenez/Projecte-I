@@ -11,6 +11,8 @@ private:
 	bool going_up = true;
 	int original_y = 0;
 	Animation bomb;
+	Animation bombexplosion;
+	Animation purplebomb;
 
 
 

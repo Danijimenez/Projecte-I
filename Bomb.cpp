@@ -23,13 +23,13 @@ Bomb::Bomb(int x, int y) : Enemy(x, y)
 	bomb.PushBack({ 623,334,24,34 });
 	bomb.PushBack({ 647,334,24,34 });
 	//Explosion
-	bomb.PushBack({ 676,152,24,34 });
-	bomb.PushBack({ 700,152,24,34 });
-	bomb.PushBack({ 722,152,24,34 });
+	bombexplosion.PushBack({ 676,152,24,34 });
+	bombexplosion.PushBack({ 700,152,24,34 });
+	bombexplosion.PushBack({ 722,152,24,34 });
 	//Moradas
-	bomb.PushBack({ 675,197,24,34 });
-	bomb.PushBack({ 701,197,24,34 });
-	bomb.PushBack({ 724,197,24,34 });
+	purplebomb.PushBack({ 675,197,24,34 });
+	purplebomb.PushBack({ 701,197,24,34 });
+	purplebomb.PushBack({ 724,197,24,34 });
 
 	bomb.loop = true;
 	bomb.speed = 0.1f;
