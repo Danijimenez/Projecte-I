@@ -8,19 +8,20 @@
 Train::Train(int x, int y) : Enemy(x, y)
 {
 	//Change
-	train.PushBack({ 30,795,34,34 });
-	train.PushBack({ 80,792,34,34 });
-	train.PushBack({ 133,798,34,34 });
-	train.PushBack({ 40,833,34,34 });
-	train.PushBack({ 89,832,34,34 });
-	train.PushBack({ 134,835,34,34 });
-	train.PushBack({ 39,870,34,34 });
-	train.PushBack({ 91,871,34,34 });
+	train.PushBack({ 404,515,75,23 });
+	train.PushBack({ 486,515,75,23 });
+	train.PushBack({ 566,515,75,23 });
+	train.PushBack({ 646,515,75,23 });
+	train.PushBack({ 404,546,75,23 });
+	train.PushBack({ 486,546,75,23 });
+	train.PushBack({ 566,546,75,23 });
+	train.PushBack({ 646,546,75,23 });
+	train.PushBack({ 404,579,75,23 });
 
 	hittable = true;
 
 
-	collider = App->collision->AddCollider({ 0, 0, 34, 34 }, COLLIDER_TYPE::COLLIDER_ENEMY_WAGON, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 75, 23 }, COLLIDER_TYPE::COLLIDER_ENEMY_WAGON, (Module*)App->enemies);
 	collider->life_units = 8;
 
 	original_pos.x = x;

@@ -184,9 +184,11 @@ bool ModuleLevel2::Start()
 	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 246, -1443, 8);
 	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 295, -1443, 8);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 0, -1416, 1);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREY_TANK, 0, -1416, 9);
 
 	App->enemies->AddEnemy(ENEMY_TYPES::WAGON, 351, -1728);
+
+
 
 
 
