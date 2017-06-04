@@ -14,6 +14,7 @@ private:
 	Animation laser;
 	Animation vulcan;
 	Animation bombamo;
+	Animation Ppowerup;
 
 public:
 

@@ -26,6 +26,11 @@ PowerUp::PowerUp(int x, int y) : Enemy(x, y)
 	bombamo.loop = true;
 	bombamo.speed = 0.1f;
 
+	Ppowerup.PushBack({ 535,299,16,12 });
+	Ppowerup.PushBack({ 552,299,16,12 });
+	Ppowerup.loop = true;
+	Ppowerup.speed = 0.1f;
+
 	animation = &laser;
 	
 
