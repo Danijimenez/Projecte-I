@@ -10,6 +10,7 @@
 #include "ModuleCollision.h"
 #include "ModuleFonts.h"
 #include "ModuleLevel1.h"
+#include "ModuleLevel2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleHallOfAces.h"
 
@@ -290,7 +291,7 @@ update_status ModulePlayer2::Update()
 		if (lifes < 0) {
 			player2->to_delete = true;
 			this->Disable();
-			App->fade->FadeToBlack(App->level_1, App->HallOfAces, 2.0f);
+			App->fade->FadeToBlack(App->level_2, App->HallOfAces, 2.0f);
 		}
 		living = true;
 	}
